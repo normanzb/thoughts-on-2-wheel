@@ -1,0 +1,12 @@
+<h1>英国、欧洲摩旅指南</h1>
+<ul class="posts">
+    {{#each collections.posts}}
+        {{#if title}}
+            <li>
+                <h2>
+                    <a href="{{path}}">{{title}}</a>
+                </h2>
+            </li>
+        {{/if}}
+    {{/each}}
+</ul>

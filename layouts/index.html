@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{> head }}
+</head>
+<body>
+    {{> nav }}
+    {{#> content}}
+        {{#*inline "actual-content"}}
+            {{> list }}
+        {{/inline}}
+    {{/content}}
+</body>
+</html>

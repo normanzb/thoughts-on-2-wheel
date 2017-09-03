@@ -457,6 +457,7 @@ body {
   --nav-primary-thickness: 80px;
   --margin-default: 10px;
   --margin-large: 30px;
+  --text-color-default: #000;
   display: flex;
   flex-direction: column;
 }
@@ -535,6 +536,7 @@ body .content > .inner {
   }
 }
 body article.post > .inner {
+  font-size: 22px;
   column-width: calc(1226px / 2);
   column-gap: var(--margin-large);
 }
@@ -545,8 +547,53 @@ body article.post > .inner > *:first-child {
   margin-top: 0;
 }
 body article.post > .inner > p > img {
+  margin: 1em 0;
+  display: block;
   width: 100%;
+}
+body article.post > .inner > p > a {
+  display: inline-block;
+  position: relative;
+}
+body article.post > .inner > p > a,
+body article.post > .inner > p > a:focus,
+body article.post > .inner > p > a:active {
+  text-decoration: none;
+  color: var(--text-color-default);
+}
+body article.post > .inner > p > a:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 0;
+  border-bottom: 1px dashed var(--text-color-default);
 }
 body .comment {
   margin: var(--margin-large) 0;
+}
+body ul.posts > li > h2 > a {
+  display: inline-block;
+  position: relative;
+}
+body ul.posts > li > h2 > a,
+body ul.posts > li > h2 > a:focus,
+body ul.posts > li > h2 > a:active {
+  text-decoration: none;
+  color: var(--text-color-default);
+}
+body ul.posts > li > h2 > a:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 0;
+  border-bottom: 1px dashed var(--text-color-default);
+}
+body ul.posts > li:empty {
+  display: none;
 }
