@@ -50,7 +50,7 @@ date: 2017-09-03
 
 在英国许多公交车道允许摩托车使用，公交车道开始前通常都有蓝色路牌标示可通行车辆，如有摩托标识则摩托可通行，否则依据蓝色路牌上规定时间限制通行（规定时间外摩托任然允许通行）。
 
-![该公交车道限定时间内允许摩托行驶](/resources/highway-code/bus-lane-plate.jpg)
+![允许摩托行驶](/resources/highway-code/bus-lane-plate.jpg)
 
 ### 自行车以及自行车道
 
