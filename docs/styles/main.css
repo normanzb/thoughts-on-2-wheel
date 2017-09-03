@@ -507,10 +507,9 @@ body .logo > .inner {
   margin: 0;
 }
 body .content {
-  height: 100%;
   flex-shrink: 1;
   flex-grow: 0;
-  overflow: scroll;
+  background-color: #EFEFEF;
 }
 body .content:before,
 body .content:after {
@@ -520,20 +519,12 @@ body .content:after {
 @media (min-width: 1227px) {
   body .content {
     width: calc(100% - var(--nav-primary-thickness));
+    height: 100%;
+    overflow: scroll;
   }
 }
 body .content > .inner {
   margin: var(--margin-large);
-}
-@media (max-width: 1226px) {
-  body .content > .inner {
-    margin-top: 0;
-  }
-}
-@media (min-width: 1227px) {
-  body .content > .inner {
-    margin-left: 0;
-  }
 }
 body article.post > .inner {
   font-size: 22px;

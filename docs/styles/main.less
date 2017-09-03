@@ -110,33 +110,39 @@ body
         > .inner 
         {
             margin: 0;
+            > .thoughts
+            {
+
+            }
         }
     }
 
     .content
     {
-        height: 100%;
         flex-shrink: 1;
         flex-grow: 0;
-        overflow: scroll;
         .clear;
+        background-color: #EFEFEF;
 
         @media (min-width: (@res-mobile + 1)) 
         {
             width: ~'calc(100% - var(--nav-primary-thickness))';
+
+            height: 100%;
+            overflow: scroll;
         }
 
         > .inner
         {
             margin: var(--margin-large);
-            @media (max-width: @res-mobile) 
-            {
-                margin-top: 0;
-            }
-            @media (min-width: (@res-mobile + 1)) 
-            {
-                margin-left: 0;
-            }
+            // @media (max-width: @res-mobile) 
+            // {
+            //     margin-top: 0;
+            // }
+            // @media (min-width: (@res-mobile + 1)) 
+            // {
+            //     margin-left: 0;
+            // }
         }
     }
 
