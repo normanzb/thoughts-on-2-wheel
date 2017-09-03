@@ -6,7 +6,7 @@
 <body>
     {{> nav }}
     {{#each collections.posts}}
-      {{title}} {{path}}
+      <a href="{{path}}">{{title}}</a>
     {{/each}}
 </body>
 </html>
