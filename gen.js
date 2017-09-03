@@ -17,7 +17,7 @@ Metalsmith(__dirname)
   })
   .source('./src')            // source directory
   .destination('./docs')     // destination directory
-  .clean(true)                // clean destination before
+  .clean(false)                // clean destination before
   .use(collections({          // group all blog posts by internally
     posts: {
       pattern: '**/*.md',
