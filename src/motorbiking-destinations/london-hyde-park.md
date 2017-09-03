@@ -6,6 +6,7 @@ date: 2017-09-01
 坐落于伦敦市中心，北邻老中国城bayswater路的hyde皇家公园，风景优美宁静，是英国一级历史遗产。
 但你可能不会想到，这个曾经由亨利八世从威斯敏斯特教堂的手里取得用于皇家狩猎的公园，是一个能够骑着摩托进入，作为摩旅途中休息停留的一站，或是周末骑行到此放松的好去处。
 
+![Serpentine湖](/resources/hyde-park/animate.gif)
 
 ## 地址
 
@@ -28,5 +29,4 @@ Westminster in London, England
 ## 照片
 
 ![Serpentine湖](/resources/hyde-park/serpentine-lake.jpg)
-![Serpentine湖](/resources/hyde-park/animate.gif)
 ![湖边有各种美味](/resources/hyde-park/birds-at-serpenting-lake.jpg)

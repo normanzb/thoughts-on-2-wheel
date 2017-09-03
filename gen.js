@@ -6,8 +6,40 @@ var layouts     = require('metalsmith-layouts');
 var markdown    = require('metalsmith-markdown');
 var permalinks  = require('metalsmith-permalinks');
 var less = require('metalsmith-less');
+var handlebars = require('handlebars');
+var pathUtil = require('path');
+var cheerio = require('cheerio');
 
+var folderMapping = {
+  'motorbiking-destinations': '摩旅目的地',
+  'highway-code-talks': '交通'
+};
 
+handlebars.registerHelper('folder', function(path) {
+  path = handlebars.Utils.escapeExpression(path);
+  var folders = path.split(pathUtil.sep);
+
+  return new handlebars.SafeString(
+    folderMapping[folders[0]] || 
+    folders[0]
+  );
+});
+
+handlebars.registerHelper('preview', function(content) {
+  var $ = cheerio.load(content);
+  var text = $('p').eq(0).text();
+  var $image = $('img').eq(0);
+  var imageSource = $image.attr('src');
+  var imageAlt = $image.attr('alt');
+
+  return new handlebars.SafeString(`
+    <p class="preview-text">${text}</p>
+    <div class="image-container" title="${imageAlt}">
+      <img src="${imageSource}" alt="${imageAlt}" />
+    </div>
+    `
+  );
+});
 
 Metalsmith(__dirname)         
   .metadata({                 

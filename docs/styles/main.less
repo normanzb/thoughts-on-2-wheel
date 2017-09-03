@@ -18,6 +18,12 @@ html, body
     }
 }
 
+.column-settings()
+{
+    column-width: ~'calc(@{res-mobile} / 2)';
+    column-gap: var(--margin-large);
+}
+
 .has-anchor()
 {
     > a 
@@ -155,6 +161,7 @@ body
             
             > .caption
             {
+                margin: var(--margin-large) 0;
                 text-align: center;
                 @media (min-width: (@res-mobile + 1))
                 {
@@ -170,8 +177,7 @@ body
         > .inner 
         {
             font-size: 22px;
-            column-width: ~'calc(@{res-mobile} / 2)';
-            column-gap: var(--margin-large);
+            .column-settings;
 
             > *:first-child
             {
@@ -184,29 +190,10 @@ body
             > p
             {
                 > img,
-                > .image-container > img
                 {
                     margin: var(--margin-large) 0;
                     display: block;
                     width: 100%;
-                }
-
-                > .image-container
-                {
-                    position: relative;
-
-                    &:after 
-                    {
-                        content: attr(title);
-                        padding: var(--margin-default) var(--margin-large);
-                        background-color: #FFF;
-                        display: block;
-                        position: absolute;
-                        right: 0;
-                        top: 10%;
-
-                        font-size: .8em;
-                    }
                 }
                 
                 .has-anchor();
@@ -223,6 +210,14 @@ body
     {
         padding: 0;
         margin: var(--margin-large) 0;
+        display: grid;
+
+        @media (min-width: (@res-mobile + 1))
+        {
+            grid-template-columns: ~'calc(50% - var(--margin-large) / 2) calc(50% - var(--margin-large) / 2)';
+            grid-gap: var(--margin-large);
+        }
+
         > li 
         {
             display: block;
@@ -235,11 +230,54 @@ body
             > .caption
             {
                 .has-anchor();
+
+                > .date
+                {
+                    margin: var(--margin-default) 0;
+                    display: block;
+                    font-size: .6em;
+                    color: #999;
+                }
+            }
+
+            > .preview-text
+            {
+        
+            }
+
+            > .image-container
+            {
+                
             }
         }
         > li:empty 
         {
             display: none;
+        }
+    }
+
+    .image-container
+    {
+        position: relative;
+
+        &:after 
+        {
+            content: attr(title);
+            padding: var(--margin-default) var(--margin-large);
+            background-color: #FFF;
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 10%;
+
+            font-size: .8em;
+        }
+
+        > img 
+        {
+            margin: var(--margin-large) 0;
+            display: block;
+            width: 100%;
         }
     }
 }
