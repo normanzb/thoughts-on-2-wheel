@@ -56,6 +56,7 @@ html, body
 body 
 {
     --nav-primary-thickness: 80px;
+    --margin-small: 5px;
     --margin-default: 10px;
     --margin-large: 30px;
     --text-color-default: #000;
@@ -63,6 +64,7 @@ body
 
     display: flex;
     flex-direction: column;
+    line-height: 1.3em;
 
     @media (min-width: (@res-mobile + 1)) 
     {
@@ -179,6 +181,7 @@ body
         > .inner 
         {
             font-size: 22px;
+            line-height: 1.3em;
             .column-settings;
 
             > *:first-child
@@ -191,11 +194,24 @@ body
             
             > p
             {
+                
                 > img,
                 {
                     margin: var(--margin-large) 0;
                     display: block;
                     width: 100%;
+                }
+
+                > code 
+                {
+                    margin: 0 var(--margin-small);
+                    padding: .15em var(--margin-default);
+                    font-size: .7em;
+                    vertical-align: top;
+                    background-color: #E1E1E1;
+                    color: #000;
+                    border-radius: 3px;
+                    text-shadow: 1px 1px 0 rgba(255,255,255,1);
                 }
                 
                 .has-anchor();
