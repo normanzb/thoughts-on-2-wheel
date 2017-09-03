@@ -65,10 +65,9 @@ body
 
     nav.primary
     {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
         flex-shrink: 0;
+
+        display: flex;
 
         height: var(--nav-primary-thickness);
 
@@ -76,22 +75,38 @@ body
         {
             height: 100%;
             width: var(--nav-primary-thickness);
-            flex-direction: column;
-            justify-content: flex-start;
+            
         }
 
         > .inner 
         {
             margin: var(--margin-default);
 
-            @media (min-width: (@res-mobile + 1)) 
-            {
-                margin: var(--margin-large) var(--margin-default);
-            }
+            flex-grow: 1;
+            flex-shrink: 0;
 
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            @media (min-width: (@res-mobile + 1)) 
+            {
+                justify-content: flex-start;
+                margin: var(--margin-large) var(--margin-default);
+            }
+
+            > sub 
+            {
+                margin: var(--margin-default) 0;
+
+                @media (min-width: (@res-mobile + 1)) 
+                {
+                    
+                    writing-mode: vertical-rl;
+                }
+            }
         }
     }
 
@@ -185,7 +200,8 @@ body
     {
         > li 
         {
-            > h2 
+            display: block;
+            > .caption
             {
                 .has-anchor();
             }
