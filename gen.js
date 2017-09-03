@@ -16,7 +16,7 @@ Metalsmith(__dirname)
     description: 'It\'s about saying »Hello« to the world.'
   })
   .source('./src')            // source directory
-  .destination('./static')     // destination directory
+  .destination('./docs')     // destination directory
   .clean(true)                // clean destination before
   .use(collections({          // group all blog posts by internally
     posts: {
