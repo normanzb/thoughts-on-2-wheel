@@ -223,13 +223,11 @@ body
         > li 
         {
             display: block;
-            text-align: center;
             position: relative;
 
             @media (min-width: (@res-mobile + 1))
             {
                 padding-bottom: ~'calc(100% / 16 * 9 + var(--margin-large) * 2)';
-                text-align: left;
             }
 
             > .caption
@@ -237,6 +235,12 @@ body
                 .has-anchor();
                 /* again cancel it out */
                 margin-top: 0;
+                text-align: center;
+
+                @media (min-width: (@res-mobile + 1))
+                {
+                    text-align: left;
+                }
 
                 > .date
                 {
@@ -283,7 +287,12 @@ body
             right: 0;
             top: 10%;
 
-            font-size: .8em;
+            font-size: .6em;
+
+            @media (min-width: (@res-mobile + 1))
+            {
+                font-size: .8em;
+            }
         }
 
         > img 

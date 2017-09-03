@@ -12,7 +12,7 @@ var cheerio = require('cheerio');
 
 var folderMapping = {
   'motorbiking-destinations': '摩旅目的地',
-  'highway-code-talks': '交通'
+  'highway-code-talks': '交规学习班'
 };
 
 handlebars.registerHelper('folder', function(path) {
@@ -32,12 +32,15 @@ handlebars.registerHelper('preview', function(content) {
   var imageSource = $image.attr('src');
   var imageAlt = $image.attr('alt');
 
-  return new handlebars.SafeString(`
-    <p class="preview-text">${text}</p>
-    <div class="image-container" title="${imageAlt}">
-      <img src="${imageSource}" alt="${imageAlt}" />
-    </div>
-    `
+  return new handlebars.SafeString(`<p class="preview-text">${text}</p>` +
+    (
+      imageSource?
+      `
+      <div class="image-container" title="${imageAlt}">
+        <img src="${imageSource}" alt="${imageAlt}" />
+      </div>
+      `:''
+    )
   );
 });
 
