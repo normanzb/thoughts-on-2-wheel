@@ -518,6 +518,7 @@ body .content {
   flex-shrink: 1;
   flex-grow: 0;
   background-color: #EFEFEF;
+  min-height: 100%;
 }
 body .content:before,
 body .content:after {
@@ -533,6 +534,14 @@ body .content:after {
 }
 body .content > .inner {
   margin: var(--margin-large);
+}
+body .content > .inner > .caption {
+  text-align: center;
+}
+@media (min-width: 1227px) {
+  body .content > .inner > .caption {
+    text-align: left;
+  }
 }
 body article.post > .inner {
   font-size: 22px;
@@ -587,8 +596,18 @@ body article.post > .inner > p > a:after {
 body .comment {
   margin: var(--margin-large) 0;
 }
+body ul.posts {
+  padding: 0;
+  margin: var(--margin-large) 0;
+}
 body ul.posts > li {
   display: block;
+  text-align: center;
+}
+@media (min-width: 1227px) {
+  body ul.posts > li {
+    text-align: left;
+  }
 }
 body ul.posts > li > .caption > a {
   display: inline-block;

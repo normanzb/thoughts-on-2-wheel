@@ -133,10 +133,13 @@ body
 
     .content
     {
+        .clear;
+
         flex-shrink: 1;
         flex-grow: 0;
-        .clear;
+        
         background-color: #EFEFEF;
+        min-height: 100%;
 
         @media (min-width: (@res-mobile + 1)) 
         {
@@ -149,14 +152,15 @@ body
         > .inner
         {
             margin: var(--margin-large);
-            // @media (max-width: @res-mobile) 
-            // {
-            //     margin-top: 0;
-            // }
-            // @media (min-width: (@res-mobile + 1)) 
-            // {
-            //     margin-left: 0;
-            // }
+            
+            > .caption
+            {
+                text-align: center;
+                @media (min-width: (@res-mobile + 1))
+                {
+                    text-align: left;
+                }
+            }
         }
     }
 
@@ -217,9 +221,17 @@ body
 
     ul.posts
     {
+        padding: 0;
+        margin: var(--margin-large) 0;
         > li 
         {
             display: block;
+            text-align: center;
+
+            @media (min-width: (@res-mobile + 1))
+            {
+                text-align: left;
+            }
             > .caption
             {
                 .has-anchor();

@@ -3,8 +3,6 @@ title: 伦敦Ace Cafe
 date: 2017-09-03
 ---
 
-# 伦敦Ace Cafe
-
 如果你来自北京，你可能听说过在北京798艺术区有一家Ace Cafe，拥有着夸张的外部建筑和高大上的内部装修。但是你也许不知道，这家北京的Ace Cafe的真正身份继承自伦敦老牌著名机车、汽车玩家聚集地——伦敦Ace Cafe。
 
 ![Ace Cafe外景，可以看到Wembly体育场](/resources/ace-cafe/ace-wembley-arch.jpg)
