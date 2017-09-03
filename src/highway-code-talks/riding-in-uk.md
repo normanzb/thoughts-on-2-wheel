@@ -139,4 +139,4 @@ date: 2017-09-03
 ![环岛交规示意图](/resources/highway-code/roundabout-rules.jpg)
 ![进入环岛前的提示牌](/resources/highway-code/roundabout-sign.jpg)
 
-另外需要特别注意的是，在英国某些区域，甚至设有“魔法环岛”之称的连环大环岛，详细参见：https://en.wikipedia.org/wiki/Magic_Roundabout_(Hemel_Hempstead)
+另外需要特别注意的是，在英国某些区域，甚至设有“魔法环岛”之称的连环大环岛，详细参见：<https://en.wikipedia.org/wiki/Magic_Roundabout_(Hemel_Hempstead)>

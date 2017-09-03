@@ -578,6 +578,7 @@ body article.post > .inner > p > code {
 body article.post > .inner > p > a {
   display: inline-block;
   position: relative;
+  word-break: keep-all;
 }
 body article.post > .inner > p > a,
 body article.post > .inner > p > a:focus,
@@ -626,6 +627,7 @@ body ul.posts > li > .caption {
 body ul.posts > li > .caption > a {
   display: inline-block;
   position: relative;
+  word-break: keep-all;
 }
 body ul.posts > li > .caption > a,
 body ul.posts > li > .caption > a:focus,
