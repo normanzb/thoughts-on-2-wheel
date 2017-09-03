@@ -19,7 +19,7 @@ Westminster in London, England
 
 非拥堵时段骑车通过公园全程只需要8分钟，因此该公园适合作为旅程中休息暂作停留休整的一站。公园由一条双向车道分割，该车道限速20英里，跨越serpentine湖。建议从公园南面入口进入，在serpentine停车场停车，停车场右边的出口直接通向黛安娜王妃纪念喷泉以及serpentine湖。湖边有餐厅提供经典英式菜单。游毕从北面bayswater路离开公园，还能立刻去bayswater与queensway地铁站交界旧中国城补充骑行力。
 
-<iframe height="450" src="https://www.youtube.com/embed/cKZ0xyQXzdw" frameborder="0" style="width: 100%; border:0" allowfullscreen></iframe>
+![骑车穿过海德公园](/resources/hyde-park/ride-thru-hyde-park.gif)
 
 ## 停车
 
@@ -29,6 +29,6 @@ Westminster in London, England
 
 ## 照片
 
-![serpentine lake](/resources/hyde-park/serpentine-lake.jpg)
-![serpentine lake](/resources/hyde-park/animate.gif)
-![birds at serpenting lake](/resources/hyde-park/birds-at-serpenting-lake.jpg)
+![Serpentine湖](/resources/hyde-park/serpentine-lake.jpg)
+![Serpentine湖](/resources/hyde-park/animate.gif)
+![湖边有各种美味](/resources/hyde-park/birds-at-serpenting-lake.jpg)

@@ -31,13 +31,20 @@
                 <div class="inner">
                     <h1 id="-ace-cafe">伦敦Ace Cafe</h1>
             <p>如果你来自北京，你可能听说过在北京798艺术区有一家Ace Cafe，拥有着夸张的外部建筑和高大上的内部装修。但是你也许不知道，这家北京的Ace Cafe的真正身份继承自伦敦老牌著名机车、汽车玩家聚集地——伦敦Ace Cafe。</p>
-            <p><img src="/resources/ace-cafe/ace-wembley-arch.jpg" alt="wembley arch from ace cafe"></p>
+            <p><img src="/resources/ace-cafe/ace-wembley-arch.jpg" alt="Ace Cafe外景，可以看到Wembly体育场"></p>
             <p>伦敦版的Ace Cafe外观上来讲并没有北京版那么高大上，甚至当你路过它时可能会觉得这是一家不起眼的小餐馆。但是伦敦Ace Cafe在英国车界，尤其是摩托界，有着相当重要的历史地位。</p>
             <p>这家餐馆与1938年建立，建立之初只为类似于环路服务区一般的存在，为过路赶路的司机提供餐饮、汽油、修理和休息服务。</p>
             <p><img src="/resources/ace-cafe/ace-cafe-1938.jpg" alt="1938年"></p>
             <p>而当时的摩托车爱好者喜欢在这一类的公路服务区餐馆聚集，向自动店唱机里投上一枚硬币，打赌在音乐结束前跑完指定路线，或者三两相约以餐馆为起点和终点进行比赛。由于当时的Ace Cafe为24小时营业，因此逐渐吸引了许多摩托车爱好。这一现象也逐渐发展出了Cafe Racer文化和今天我们所熟知的Cafe Racer车型。</p>
             <p><img src="/resources/ace-cafe/vintage-bikes.jpg" alt="复古摩托车聚会"></p>
             <p>Ace Cafe由于受到二战、汽车行业的兴起和道路扩展的影响，几经关闭又再次重生，它的存在对于我们今天的摩托文化的影响甚大。作为摩托车爱好者到了伦敦，Ace Cafe是必朝圣之地。</p>
+            <h2 id="-">注意事项</h2>
+            <ul>
+            <li>可访问其官网确定感兴趣的活动日期后再出发</li>
+            <li>避免在街道上翘头、翘尾，遵守交通规则</li>
+            <li>欣赏他人车辆时切记眼观手勿动</li>
+            <li>不要酒驾</li>
+            </ul>
             <h2 id="-">地址和联系方式</h2>
             <p>North Circular Road<br>
             Stonebridge<br>
@@ -54,18 +61,38 @@
             <li>王牌汉堡</li>
             <li>王牌香肠</li>
             <li>嘉实多轮滑油</li>
-            <li>Frog in the hole</li>
+            <li>Toad in the hole</li>
             </ul>
             <p>菜单网址：<a href="https://london.acecafe.com/menu/">https://london.acecafe.com/menu/</a></p>
             <h2 id="-">停车</h2>
             <p>Ace Cafe门口即可免费停车，注意活动期间入口可能关闭，需要稍微前行一段从原出口进入。</p>
             <h2 id="-">照片</h2>
-            <p><img src="/resources/ace-cafe/castrol-served-on-bar.jpg" alt="该店的吧台上提供嘉实多润滑油">
-            <img src="/resources/ace-cafe/outside.jpg" alt="餐馆外观">
-            <img src="/resources/ace-cafe/vintage-cars.jpg" alt="复古汽车聚会">
-            <img src="/resources/ace-cafe/ace-75th-x2.jpg" alt="75周年庆"></p>
+            <p><img src="/resources/ace-cafe/castrol-served-on-bar.jpg" alt="该店的吧台提供嘉实多润滑油😂">
+            <img src="/resources/ace-cafe/outside.jpg" alt="餐馆外景">
+            <img src="/resources/ace-cafe/vintage-cars.jpg" alt="复古汽车集结">
+            <img src="/resources/ace-cafe/ace-75th-x2.jpg" alt="75周年庆">
+            <img src="/resources/ace-cafe/female-rider-event.gif" alt="2015女骑士集结"></p>
             
                 </div>
+                <script>
+                (function(){
+                    'use strict';
+                    var script = document.scripts[document.scripts.length - 1];
+                    var container = script.parentNode;
+                    /* TODO: auto wrap from server side */
+                    var imgs = container.querySelectorAll('img');
+                    var img;
+                    var wrap;
+                    for(var l = imgs.length; l--; ) {
+                        img = imgs[l];
+                        wrap = document.createElement('div');
+                        wrap.classList.add('image-container');
+                        img.parentNode.insertBefore(wrap,img);
+                        wrap.appendChild(img);
+                        wrap.setAttribute('title', img.getAttribute('alt'));
+                    }
+                })();
+                </script>
             </article>            <div class="comment">
                 <div id="disqus_thread"></div>
                 <script>

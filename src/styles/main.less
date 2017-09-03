@@ -179,12 +179,32 @@ body
             
             > p
             {
-                > img 
+                > img,
+                > .image-container > img
                 {
-                    margin: 1em 0;
+                    margin: var(--margin-large) 0;
                     display: block;
                     width: 100%;
                 }
+
+                > .image-container
+                {
+                    position: relative;
+
+                    &:after 
+                    {
+                        content: attr(title);
+                        padding: var(--margin-default) var(--margin-large);
+                        background-color: #FFF;
+                        display: block;
+                        position: absolute;
+                        right: 0;
+                        top: 10%;
+
+                        font-size: .8em;
+                    }
+                }
+                
                 .has-anchor();
             }
         }

@@ -545,10 +545,24 @@ body article.post > .inner > *:first-child {
                 */
   margin-top: 0;
 }
-body article.post > .inner > p > img {
-  margin: 1em 0;
+body article.post > .inner > p > img,
+body article.post > .inner > p > .image-container > img {
+  margin: var(--margin-large) 0;
   display: block;
   width: 100%;
+}
+body article.post > .inner > p > .image-container {
+  position: relative;
+}
+body article.post > .inner > p > .image-container:after {
+  content: attr(title);
+  padding: var(--margin-default) var(--margin-large);
+  background-color: #FFF;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 10%;
+  font-size: .8em;
 }
 body article.post > .inner > p > a {
   display: inline-block;

@@ -7,7 +7,7 @@ date: 2017-09-03
 
 如果你来自北京，你可能听说过在北京798艺术区有一家Ace Cafe，拥有着夸张的外部建筑和高大上的内部装修。但是你也许不知道，这家北京的Ace Cafe的真正身份继承自伦敦老牌著名机车、汽车玩家聚集地——伦敦Ace Cafe。
 
-![wembley arch from ace cafe](/resources/ace-cafe/ace-wembley-arch.jpg)
+![Ace Cafe外景，可以看到Wembly体育场](/resources/ace-cafe/ace-wembley-arch.jpg)
 
 伦敦版的Ace Cafe外观上来讲并没有北京版那么高大上，甚至当你路过它时可能会觉得这是一家不起眼的小餐馆。但是伦敦Ace Cafe在英国车界，尤其是摩托界，有着相当重要的历史地位。
 
@@ -20,6 +20,13 @@ date: 2017-09-03
 ![复古摩托车聚会](/resources/ace-cafe/vintage-bikes.jpg)
 
 Ace Cafe由于受到二战、汽车行业的兴起和道路扩展的影响，几经关闭又再次重生，它的存在对于我们今天的摩托文化的影响甚大。作为摩托车爱好者到了伦敦，Ace Cafe是必朝圣之地。
+
+## 注意事项
+
+* 可访问其官网确定感兴趣的活动日期后再出发
+* 避免在街道上翘头、翘尾，遵守交通规则
+* 欣赏他人车辆时切记眼观手勿动
+* 不要酒驾
 
 ## 地址和联系方式
 
@@ -39,7 +46,7 @@ United Kingdom<br>
 * 王牌汉堡
 * 王牌香肠
 * 嘉实多轮滑油
-* Frog in the hole
+* Toad in the hole
 
 菜单网址：https://london.acecafe.com/menu/
 
@@ -49,7 +56,8 @@ Ace Cafe门口即可免费停车，注意活动期间入口可能关闭，需要
 
 ## 照片
 
-![该店的吧台上提供嘉实多润滑油](/resources/ace-cafe/castrol-served-on-bar.jpg)
-![餐馆外观](/resources/ace-cafe/outside.jpg)
-![复古汽车聚会](/resources/ace-cafe/vintage-cars.jpg)
+![该店的吧台提供嘉实多润滑油😂](/resources/ace-cafe/castrol-served-on-bar.jpg)
+![餐馆外景](/resources/ace-cafe/outside.jpg)
+![复古汽车集结](/resources/ace-cafe/vintage-cars.jpg)
 ![75周年庆](/resources/ace-cafe/ace-75th-x2.jpg)
+![2015女骑士集结](/resources/ace-cafe/female-rider-event.gif)

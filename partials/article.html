@@ -2,4 +2,23 @@
     <div class="inner">
         {{{contents}}}
     </div>
+    <script>
+    (function(){
+        'use strict';
+        var script = document.scripts[document.scripts.length - 1];
+        var container = script.parentNode;
+        /* TODO: auto wrap from server side */
+        var imgs = container.querySelectorAll('img');
+        var img;
+        var wrap;
+        for(var l = imgs.length; l--; ) {
+            img = imgs[l];
+            wrap = document.createElement('div');
+            wrap.classList.add('image-container');
+            img.parentNode.insertBefore(wrap,img);
+            wrap.appendChild(img);
+            wrap.setAttribute('title', img.getAttribute('alt'));
+        }
+    })();
+    </script>
 </article>
