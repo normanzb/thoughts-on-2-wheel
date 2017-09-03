@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{> head }}
+</head>
+<body>
+    {{> nav }}
+    {{#each collections.posts}}
+      {{title}} {{path}}
+    {{/each}}
+</body>
+</html>

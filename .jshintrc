@@ -1,0 +1,11 @@
+{
+    "validthis": true,
+    "eqnull": true,
+    "globals": {
+        "define": true,
+        "require": true,
+        "window": true,
+        "module": true,
+        "__dirname": true
+    }
+}
