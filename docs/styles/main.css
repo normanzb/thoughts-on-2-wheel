@@ -577,6 +577,11 @@ body article.post > .inner h3,
 body article.post > .inner h4 {
   line-height: 1.3;
 }
+@media (max-width: 1226px) {
+  body article.post > .inner > h1 {
+    text-align: center;
+  }
+}
 body article.post > .inner > p {
   line-height: 1.3;
 }
