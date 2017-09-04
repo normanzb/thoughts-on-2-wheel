@@ -6,6 +6,7 @@
         "require": true,
         "window": true,
         "module": true,
-        "__dirname": true
+        "__dirname": true,
+        "process": true
     }
 }

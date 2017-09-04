@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node gen.js"
+    "build": "node gen.js",
+    "build:all": "node gen.js --with-images"
   },
   "author": "",
   "license": "ISC",
