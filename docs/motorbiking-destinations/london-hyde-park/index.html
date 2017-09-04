@@ -67,6 +67,25 @@
                         wrap.appendChild(img);
                         wrap.setAttribute('title', img.getAttribute('alt'));
                     }
+            
+                    // columns scroll handling
+                    container.addEventListener('mousewheel', function(event){
+                        var value = event.deltaY; //Math.max(event.deltaY, event.deltaX);
+                        var boundingRect = container.getBoundingClientRect();
+            
+                        if (value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+                            return;
+                        }
+            
+                        if (boundingRect.top < container.offsetTop || 
+                            (value < 0 && container.scrollLeft <= 0)
+                        ) {
+                            return;
+                        }
+            
+                        container.scrollLeft += (value * 10);
+                        event.preventDefault();
+                    }, {passive: false, capture: false});
                 })();
                 </script>
             </article>            <div class="comment">
