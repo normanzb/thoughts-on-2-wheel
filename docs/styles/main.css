@@ -510,6 +510,7 @@ body .logo {
 }
 @media (min-width: 1227px) {
   body .logo {
+    /* blows on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
     writing-mode: vertical-rl;
   }
 }
@@ -548,17 +549,36 @@ body .content > .inner > .caption {
     text-align: left;
   }
 }
+@media (min-width: 1227px) {
+  body article.post {
+    height: calc(100vh - var(--margin-large) * 2);
+    overflow: hidden;
+  }
+}
 body article.post > .inner {
   font-size: 22px;
-  line-height: 1.3em;
   column-width: calc(1226px / 2);
   column-gap: var(--margin-large);
+}
+@media (min-width: 1227px) {
+  body article.post > .inner {
+    height: 100%;
+  }
 }
 body article.post > .inner > *:first-child {
   /* 
                 removing margin-collapsing sucks
                 */
   margin-top: 0;
+}
+body article.post > .inner > h1,
+body article.post > .inner h2,
+body article.post > .inner h3,
+body article.post > .inner h4 {
+  line-height: 1.3;
+}
+body article.post > .inner > p {
+  line-height: 1.3;
 }
 body article.post > .inner > p > img {
   margin: var(--margin-large) 0;

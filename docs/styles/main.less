@@ -127,6 +127,7 @@ body
         
         @media (min-width: (@res-mobile + 1)) 
         {
+            /* blows on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
             writing-mode: vertical-rl;
         }
 
@@ -178,12 +179,21 @@ body
 
     article.post
     {
+        @media (min-width: (@res-mobile + 1)) 
+        {
+            height: ~'calc(100vh - var(--margin-large) * 2)';
+            overflow: hidden;
+        }
 
         > .inner 
         {
             font-size: 22px;
-            line-height: 1.3em;
             .column-settings;
+            
+            @media (min-width: (@res-mobile + 1)) 
+            {
+                height: 100%;
+            }
 
             > *:first-child
             {
@@ -192,9 +202,15 @@ body
                 */
                 margin-top: 0;
             }
+
+            > h1, h2, h3, h4
+            {
+                line-height: 1.3;
+            }
             
             > p
             {
+                line-height: 1.3;
                 
                 > img,
                 {
