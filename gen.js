@@ -76,7 +76,8 @@ Metalsmith(__dirname)
   }))
   .use(sitemap({
     hostname: 'http://norm.im',
-    omitIndex: true
+    omitIndex: true,
+    pattern: '**/*.html'
   }))
   .build(function(err) {      // build process
     if (err) throw err;       // error handling is required
