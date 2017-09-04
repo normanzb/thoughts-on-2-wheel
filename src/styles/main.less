@@ -127,6 +127,7 @@ body
         
         @media (min-width: (@res-mobile + 1)) 
         {
+            /* blows on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
             writing-mode: vertical-rl;
         }
 
@@ -178,8 +179,11 @@ body
 
     article.post
     {
-        height: ~'calc(100vh - var(--margin-large) * 2)';
-        overflow: hidden;
+        @media (min-width: (@res-mobile + 1)) 
+        {
+            height: ~'calc(100vh - var(--margin-large) * 2)';
+            overflow: hidden;
+        }
 
         > .inner 
         {

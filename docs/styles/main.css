@@ -510,6 +510,7 @@ body .logo {
 }
 @media (min-width: 1227px) {
   body .logo {
+    /* blows on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
     writing-mode: vertical-rl;
   }
 }
@@ -548,9 +549,11 @@ body .content > .inner > .caption {
     text-align: left;
   }
 }
-body article.post {
-  height: calc(100vh - var(--margin-large) * 2);
-  overflow: hidden;
+@media (min-width: 1227px) {
+  body article.post {
+    height: calc(100vh - var(--margin-large) * 2);
+    overflow: hidden;
+  }
 }
 body article.post > .inner {
   font-size: 22px;

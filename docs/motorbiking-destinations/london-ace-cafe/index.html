@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <title>伦敦Ace Cafe</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css"><meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" /></head>
+    <link rel="stylesheet" href="/styles/main.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+    <meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" /></head>
 <body>
     <nav class="primary">
         <div class="inner">
@@ -92,9 +93,44 @@
                         wrap.setAttribute('title', img.getAttribute('alt'));
                     }
             
+                    var requestAnimationFrame = window.requestAnimationFrame;
+                    var cancelAnimationFrame = window.cancelAnimationFrame;
+            
+                    (function() {
+                        var lastTime = 0;
+                        var vendors = ['ms', 'moz', 'webkit', 'o'];
+                        for(var x = 0; x < vendors.length && !requestAnimationFrame; ++x) {
+                            requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+                            cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || 
+                                window[vendors[x]+'CancelRequestAnimationFrame'];
+                        }
+                     
+                        if (!requestAnimationFrame)
+                            requestAnimationFrame = function(callback) {
+                                var currTime = new Date().getTime();
+                                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                                var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                                  timeToCall);
+                                lastTime = currTime + timeToCall;
+                                return id;
+                            };
+                     
+                        if (!cancelAnimationFrame)
+                            cancelAnimationFrame = function(id) {
+                                clearTimeout(id);
+                            };
+                    }());
+            
                     // columns scroll handling
+                    var TWEEN = window.TWEEN;
+                    var obj = {
+                        x: container.scrollLeft * 1
+                    };
+                    var tween = new TWEEN.Tween(obj)
+                    .start();
+            
                     container.addEventListener('mousewheel', function(event){
-                        var value = event.deltaY; //Math.max(event.deltaY, event.deltaX);
+                        var value = event.deltaY; //event.deltaY/Math.abs(event.deltaY) >> 0; //Math.max(event.deltaY, event.deltaX);
                         var boundingRect = container.getBoundingClientRect();
             
                         if (value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
@@ -107,9 +143,19 @@
                             return;
                         }
             
-                        container.scrollLeft += (value * 10);
+                        tween
+                            .to({
+                                x: obj.x + (value * 5)
+                            }, 30);
+            
                         event.preventDefault();
                     }, {passive: false, capture: false});
+            
+                    requestAnimationFrame(function loop(time){
+                        tween.update(time);
+                        container.scrollLeft = obj.x;
+                        requestAnimationFrame(loop);
+                    });
                 })();
                 </script>
             </article>            <div class="comment">
