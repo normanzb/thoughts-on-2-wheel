@@ -6,6 +6,7 @@ var layouts     = require('metalsmith-layouts');
 var markdown    = require('metalsmith-markdown');
 var permalinks  = require('metalsmith-permalinks');
 var less = require('metalsmith-less');
+var sitemap = require('metalsmith-mapsite');
 var handlebars = require('handlebars');
 var pathUtil = require('path');
 var cheerio = require('cheerio');
@@ -72,6 +73,10 @@ Metalsmith(__dirname)
   }))
   .use(less({
     pattern: '**/*.less'
+  }))
+  .use(sitemap({
+    hostname: 'http://norm.im',
+    omitIndex: true
   }))
   .build(function(err) {      // build process
     if (err) throw err;       // error handling is required
