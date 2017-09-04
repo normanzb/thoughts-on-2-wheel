@@ -47,7 +47,7 @@ handlebars.registerHelper('preview', function(content) {
   );
 });
 
-Metalsmith(__dirname)         
+var ms = Metalsmith(__dirname)        
   .metadata({                 
     sitename: 'Thoughts on 2-wheel',
     siteurl: 'http://blog.norm.im/',
@@ -75,17 +75,27 @@ Metalsmith(__dirname)
   }))
   .use(less({
     pattern: '**/*.less'
-  }))
-  .use(imageResizer({
-    glob: "resources/**/*.jpg",
-    width: 1920,
-    height: 1080
-  }))
-  .use(imagemin({
-    optimizationLevel: 3,
-    svgoPlugins: [{ removeViewBox: false }]
-  }))
-  .use(sitemap({
+  }));
+
+  if (process.argv[2] === '--with-images') {
+    ms.use(imageResizer({
+      glob: "resources/**/*.jpg",
+      width: 1920,
+      height: 1080
+    }))
+    .use(imagemin({
+      optimizationLevel: 3,
+      svgoPlugins: [{ removeViewBox: false }]
+    }));
+  }
+  else {
+    ms
+      .ignore('**/*.jpg')
+      .ignore('**/*.png')
+      .ignore('**/*.gif');
+  }
+  
+  ms.use(sitemap({
     hostname: 'http://norm.im',
     omitIndex: true,
     pattern: '**/*.html'
