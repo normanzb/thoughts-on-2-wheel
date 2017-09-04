@@ -7,6 +7,8 @@ var markdown    = require('metalsmith-markdown');
 var permalinks  = require('metalsmith-permalinks');
 var less = require('metalsmith-less');
 var sitemap = require('metalsmith-mapsite');
+var imageResizer = require('metalsmith-image-resizer');
+var imagemin = require('metalsmith-imagemin');
 var handlebars = require('handlebars');
 var pathUtil = require('path');
 var cheerio = require('cheerio');
@@ -73,6 +75,15 @@ Metalsmith(__dirname)
   }))
   .use(less({
     pattern: '**/*.less'
+  }))
+  .use(imageResizer({
+    glob: "resources/**/*.jpg",
+    width: 1920,
+    height: 1080
+  }))
+  .use(imagemin({
+    optimizationLevel: 3,
+    svgoPlugins: [{ removeViewBox: false }]
   }))
   .use(sitemap({
     hostname: 'http://norm.im',
