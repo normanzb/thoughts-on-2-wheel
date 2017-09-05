@@ -6,6 +6,8 @@ keywords: 摩托, 抑郁
 
 最近生活中认识的朋友相续发生了一些事情，都和抑郁症有点联系，刚巧前几天刷reddit的时候无意中看到这么一篇有点让人泪目的贴子：“骑摩托让我找回了自我，治好了我的抑郁症。”
 
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-05.jpg)
+
 以下是翻译（[原帖地址](https://www.reddit.com/r/motorcycles/comments/6q09x4/riding_a_motorcycle_has_allowed_me_to_find_myself/)）：
 
 > 我尽量简单的描述一下我的情况：我在美国的一个国际赛车场工作了大概5年，也就是每周末去工作毕竟我不能让它干扰我那该死的日常工作。每隔一段时间，赛车场里都有有一些骑车的家伙跑来租赛道。我总是目睹这些家伙各种高低摔的西昏八素因此恐惧感让我当时不敢买摩托，然而我骨子里头却总想战胜这种恐惧，因为摩托看起来超有趣的，骑车的气氛也很棒，再加上我的本田雅阁开起来也蛮无聊的。
@@ -89,3 +91,21 @@ keywords: 摩托, 抑郁
 骑行治愈抑郁：<http://www.kawiforums.com/ninja-650r-er6/318962-cure-depression.html>
 
 社会上对摩托车爱好者常常有许多误解，认为我们是不守规矩的群体、或是自讨苦吃、自找没趣的一群人。人们看摩托车常常是带着偏见和不理解去看，然而其实其中真正的快乐只有亲身经历后才能体会。在这帖子里突然发现有很多感同身受的声音，这种被理解的感觉真好😭，希望大家都能找到能够让自己心灵宁静开心的东西。
+
+最后发一组《human》系列采访中，一位大叔对摩托真情流露的发言来结束这篇帖子：
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-01.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-02.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-03.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-04.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-05.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-06.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-07.jpg)
+
+![HUMAN中被采访者对摩托的描述](/resources/motorcycle-and-depression/screen-08.jpg)
