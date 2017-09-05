@@ -50,12 +50,11 @@
         }());
 
         // columns scroll handling
-        var TWEEN = window.TWEEN;
+        // var TWEEN = window.TWEEN;
         var obj = {
             x: container.scrollLeft * 1
         };
-        var tween = new TWEEN.Tween(obj)
-        .start();
+        // var tween = new TWEEN.Tween(obj);
 
         container.addEventListener('mousewheel', function(event){
             var value = event.deltaY; //event.deltaY/Math.abs(event.deltaY) >> 0; //Math.max(event.deltaY, event.deltaX);
@@ -71,17 +70,27 @@
                 return;
             }
 
-            tween
-                .to({
-                    x: obj.x + (value * 5)
-                }, 30);
+            // tween
+            //     .stop()
+            //     .to({
+            //         x: obj.x + (value * 30)
+            //     }, 1000)
+            //     .easing(TWEEN.Easing.Quadratic.In)
+            //     .onUpdate(function(){
+            //         console.log(obj.x);
+            //     })
+            //     .start();
+
+            obj.x += value * 10;
 
             event.preventDefault();
         }, {passive: false, capture: false});
 
-        requestAnimationFrame(function loop(time){
-            tween.update(time);
-            container.scrollLeft = obj.x;
+        requestAnimationFrame(function loop(){
+            // tween.update(time);
+            if (container.scrollLeft !== obj.x) {
+                container.scrollLeft += (obj.x - container.scrollLeft) / 2;
+            }
             requestAnimationFrame(loop);
         });
     })();
