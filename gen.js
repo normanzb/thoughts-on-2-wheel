@@ -15,7 +15,8 @@ var cheerio = require('cheerio');
 
 var folderMapping = {
   'motorbiking-destinations': '摩旅目的地',
-  'highway-code-talks': '交规学习班'
+  'highway-code-talks': '交规学习班',
+  'zen-and-the-art': '摩托车与禅'
 };
 
 handlebars.registerHelper('folder', function(path) {

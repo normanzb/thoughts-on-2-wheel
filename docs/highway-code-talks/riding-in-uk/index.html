@@ -30,6 +30,7 @@
             <article class="post">
                 <div class="inner">
                     <h1>英国摩旅法规指南</h1>
+                    <span class="date">\ Sun Sep 03 2017 01:00:00 GMT+0100 (BST) \</span>
                     <p>如果想要摩旅游览英国的美景，在搞定了资金、护照、签证以后，也不要忘了学习一下英国的交通规则。如果没有学习交规就上路，一不小心犯了错，轻的可能会对给当地居民带来不好的影响或者违规吃罚单，重的可能会造成交通事故，毕竟摩托车如果一旦发生事故，受伤的可能性会比较大，学习交规也是为自己的生命安全负责。</p>
             <p><img src="/resources/hyde-park/ride-thru-hyde-park.gif" alt="人行横道礼让行人"></p>
             <p>地处欧洲最西面的英国，和中国大陆交规真的有很大的不同。这就让老衲来归纳总结一下：</p>
@@ -189,20 +190,26 @@
                         // value = (event.deltaY/Math.abs(event.deltaY)) >> 0; 
                         var dy = Math.abs(event.deltaY);
                         var dx = Math.abs(event.deltaX);
+                        var doNotBlock = false;
+            
                         if (dy > dx) {
                             value = event.deltaY;
                         }
                         else {
                             value = event.deltaX;
+                            doNotBlock = true;
                         }
                         var boundingRect = container.getBoundingClientRect();
             
-                        if (value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+                        if (doNotBlock === false && value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
                             return;
                         }
             
-                        if (boundingRect.top < container.offsetTop || 
-                            (value < 0 && container.scrollLeft <= 0)
+                        if (
+                            doNotBlock === false && (
+                                boundingRect.top < container.offsetTop || 
+                                (value < 0 && container.scrollLeft <= 0)
+                            )
                         ) {
                             return;
                         }

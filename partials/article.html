@@ -1,6 +1,7 @@
 <article class="post">
     <div class="inner">
         <h1>{{title}}</h1>
+        <span class="date">\ {{date}} \</span>
         {{{contents}}}
     </div>
     <script>
@@ -59,20 +60,26 @@
             // value = (event.deltaY/Math.abs(event.deltaY)) >> 0; 
             var dy = Math.abs(event.deltaY);
             var dx = Math.abs(event.deltaX);
+            var doNotBlock = false;
+
             if (dy > dx) {
                 value = event.deltaY;
             }
             else {
                 value = event.deltaX;
+                doNotBlock = true;
             }
             var boundingRect = container.getBoundingClientRect();
 
-            if (value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+            if (doNotBlock === false && value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
                 return;
             }
 
-            if (boundingRect.top < container.offsetTop || 
-                (value < 0 && container.scrollLeft <= 0)
+            if (
+                doNotBlock === false && (
+                    boundingRect.top < container.offsetTop || 
+                    (value < 0 && container.scrollLeft <= 0)
+                )
             ) {
                 return;
             }
