@@ -187,11 +187,21 @@ body
         > .inner 
         {
             font-size: 22px;
-            .column-settings;
+
+            @media (max-width: @res-mobile) 
+            {
+                /* 
+                this is for when there are content stretches over 
+                (such as long link that is not breakable), 
+                the scrolling check of article will consider it hasn't fully scrolled to the end
+                */
+                overflow: hidden;
+            }
             
             @media (min-width: (@res-mobile + 1)) 
             {
                 height: 100%;
+                .column-settings;
             }
 
             > *:first-child

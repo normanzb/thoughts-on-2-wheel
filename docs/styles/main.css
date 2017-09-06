@@ -557,13 +557,23 @@ body .content > .inner > .caption {
 }
 body article.post > .inner {
   font-size: 22px;
-  column-width: calc((100vh - var(--margin-large) * 5) / 3 / 9 * 16);
-  column-gap: var(--margin-large);
-  column-fill: auto;
+}
+@media (max-width: 1226px) {
+  body article.post > .inner {
+    /* 
+                this is for when there are content stretches over 
+                (such as long link that is not breakable), 
+                the scrolling check of article will consider it hasn't fully scrolled to the end
+                */
+    overflow: hidden;
+  }
 }
 @media (min-width: 1227px) {
   body article.post > .inner {
     height: 100%;
+    column-width: calc((100vh - var(--margin-large) * 5) / 3 / 9 * 16);
+    column-gap: var(--margin-large);
+    column-fill: auto;
   }
 }
 body article.post > .inner > *:first-child {
