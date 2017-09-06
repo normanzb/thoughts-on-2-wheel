@@ -216,6 +216,13 @@
             
                         obj.x += value * 10;
             
+                        if (obj.x > container.scrollWidth) {
+                            obj.x = container.scrollWidth;
+                        }
+                        else if (obj.x < 0) {
+                            obj.x = 0;
+                        }
+            
                         event.preventDefault();
                     }, {passive: false, capture: false});
             
