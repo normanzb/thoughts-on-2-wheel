@@ -2,7 +2,7 @@
 <ul class="posts">
     {{#each collections.posts}}
         {{#if title}}
-            <li>
+            <li onclick="window.location.href = '{{path}}'">
                 <h2 class="caption">
                     <a href="{{path}}">{{#folder path}}{{/folder}}: {{title}}</a> <span class="date">\ {{date}} \</span>
                 </h2>

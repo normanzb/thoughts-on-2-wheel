@@ -69,6 +69,11 @@ body
         display: block;
         font-size: .6em;
         color: #999;
+
+        @media (max-width: @res-mobile) 
+        {
+            text-align: center;
+        }
     }
 
     nav.primary
@@ -83,7 +88,6 @@ body
         {
             height: 100%;
             width: var(--nav-primary-thickness);
-            
         }
 
         > .inner 
@@ -293,6 +297,7 @@ body
         {
             display: block;
             position: relative;
+            cursor: pointer;
 
             @media (min-width: (@res-mobile + 1))
             {

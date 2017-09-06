@@ -641,6 +641,11 @@ body article.post > .inner > .date {
   font-size: .6em;
   color: #999;
 }
+@media (max-width: 1226px) {
+  body article.post > .inner > .date {
+    text-align: center;
+  }
+}
 body .comment {
   margin: var(--margin-large) 0;
 }
@@ -658,6 +663,7 @@ body ul.posts {
 body ul.posts > li {
   display: block;
   position: relative;
+  cursor: pointer;
 }
 @media (min-width: 1227px) {
   body ul.posts > li {
@@ -693,6 +699,11 @@ body ul.posts > li > .caption > .date {
   display: block;
   font-size: .6em;
   color: #999;
+}
+@media (max-width: 1226px) {
+  body ul.posts > li > .caption > .date {
+    text-align: center;
+  }
 }
 @media (min-width: 1227px) {
   body ul.posts > li > .image-container {
