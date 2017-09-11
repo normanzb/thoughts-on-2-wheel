@@ -90,6 +90,9 @@ keywords: 摩托, 摩旅, 交规
 
 ![并非停车线😅](/resources/highway-code/stop-light-at-exit-with-strange-solid-line-front.jpg)
 
+额外奖励题：下图中，如果在最左侧公交车道，并且红灯的情况，是否需要停车？
+
+![是否应该红灯停车？](/resources/highway-code/stop-light-with-whatthefuck.jpg)
 
 ### 黄色禁停网格区
 
