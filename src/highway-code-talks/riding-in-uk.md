@@ -8,7 +8,7 @@ keywords: 摩托, 摩旅, 交规
 
 ![人行横道礼让行人](/resources/hyde-park/ride-thru-hyde-park.gif)
 
-地处欧洲最西面的英国，和中国大陆交规真的有很大的不同。这就让老衲来归纳总结一下：
+这里仅针对英国交规中，针对摩托的部分以及容易弄错的部分进行讲解，完整的交规请参考政府网站：[The Highway Code](https://www.gov.uk/guidance/the-highway-code)。另外需要注意的是，英国的highway code并不是用于评判对错的法律标准，highway code是以教育、引导为目的，具体在发生事故时的法律需要参考：[Transport Act 2000](http://www.legislation.gov.uk/ukpga/2000/38/contents)。
 
 ## 驾照
 
