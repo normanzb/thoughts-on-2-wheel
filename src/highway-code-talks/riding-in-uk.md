@@ -4,11 +4,13 @@ date: 2017-09-03
 keywords: 摩托, 摩旅, 交规
 ---
 
-如果想要摩旅游览英国的美景，在搞定了资金、护照、签证以后，也不要忘了学习一下英国的交通规则。如果没有学习交规就上路，一不小心犯了错，轻的可能会对给当地居民带来不好的影响或者违规吃罚单，重的可能会造成交通事故，毕竟摩托车如果一旦发生事故，受伤的可能性会比较大，学习交规也是为自己的生命安全负责。
+在英国骑车从最初的L牌上路到现在完成全英摩旅已经将近四年时间，因此打算借新博开张的机会整理一下在英国骑摩托需要注意的一些交规上的问题。一方面给自己做个总结方便日后回忆，另一方面要是能帮到其他朋友就更好了。
 
 ![人行横道礼让行人](/resources/hyde-park/ride-thru-hyde-park.gif)
 
-本文仅供入门参考作用，并针对英国交规中摩托车以及容易弄错的部分进行讲解，完整的交规请参考政府网站：[The Highway Code](https://www.gov.uk/guidance/the-highway-code)。另外需要注意的是，英国的highway code并不是用于评判对错的法律标准，highway code中的许多规则是根据法律定义的，一般此类型的规则用词上会使用must/must not，而使用do/do not则是建议之行为，因此具体在发生事故时的法律需要参考：[Road Traffic Act 1988](http://www.legislation.gov.uk/ukpga/1988/52/section/192/enacted)，[Road Traffic Regulation Act 1984](http://www.legislation.gov.uk/ukpga/1984/27/contents)，[The Traffic Signs Regulations and General Directions 2002](http://www.legislation.gov.uk/uksi/2002/3113/contents/made)和其他[Traffic Acts](http://www.legislation.gov.uk/all?title=traffic%20act)。
+本文仅供入门参考作用，并针对英国交规中摩托车以及容易弄错的部分进行讲解，完整的交规请参考政府网站：[The Highway Code](https://www.gov.uk/guidance/the-highway-code)。
+
+另外需要注意的是，英国的highway code并不是用于评判对错的法律标准。Highway code中根据法律定义的规则，在用词上会使用must/must not来描述，而使用do/do not则是建议之行为，因此具体的法律需参考：[Road Traffic Act 1988](http://www.legislation.gov.uk/ukpga/1988/52/section/192/enacted)，[Road Traffic Regulation Act 1984](http://www.legislation.gov.uk/ukpga/1984/27/contents)，[The Traffic Signs Regulations and General Directions 2002](http://www.legislation.gov.uk/uksi/2002/3113/contents/made)和其他[Traffic Acts](http://www.legislation.gov.uk/all?title=traffic%20act)。
 
 ## 驾照
 
