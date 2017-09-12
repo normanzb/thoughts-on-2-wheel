@@ -97,7 +97,7 @@ var ms = Metalsmith(__dirname)
   }
   
   ms.use(sitemap({
-    hostname: 'http://norm.im',
+    hostname: 'http://blog.norm.im',
     omitIndex: true,
     pattern: '**/*.html'
   }))
