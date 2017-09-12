@@ -8,7 +8,7 @@ keywords: 摩托, 摩旅, 交规
 
 ![人行横道礼让行人](/resources/hyde-park/ride-thru-hyde-park.gif)
 
-这里仅起到入门作用，并针对英国交规中摩托车以及容易弄错的部分进行讲解，完整的交规请参考政府网站：[The Highway Code](https://www.gov.uk/guidance/the-highway-code)。另外需要注意的是，英国的highway code并不是用于评判对错的法律标准，highway code是以教育、引导为目的，具体在发生事故时的法律需要参考：[Transport Act 2000](http://www.legislation.gov.uk/ukpga/2000/38/contents)。
+这里仅起到入门作用，并针对英国交规中摩托车以及容易弄错的部分进行讲解，完整的交规请参考政府网站：[The Highway Code](https://www.gov.uk/guidance/the-highway-code)。另外需要注意的是，英国的highway code并不是用于评判对错的法律标准，highway code中的许多规则是根据法律定义的，一般此类型的规则用词上会使用must/must not，而使用do/do not则是建议之行为，因此具体在发生事故时的法律需要参考：[Road Traffic Act 1988](http://www.legislation.gov.uk/ukpga/1988/52/section/192/enacted)，[Road Traffic Regulation Act 1984](http://www.legislation.gov.uk/ukpga/1984/27/contents)，[The Traffic Signs Regulations and General Directions 2002](http://www.legislation.gov.uk/uksi/2002/3113/contents/made)和其他[Traffic Acts](http://www.legislation.gov.uk/all?title=traffic%20act)。
 
 ## 驾照
 
@@ -70,13 +70,13 @@ keywords: 摩托, 摩旅, 交规
 
 ### 路口出口红绿灯
 
-有时在路口的出口方向也设有红绿灯，此时如红灯前方有实线（停车线），则代表该处为独立红绿灯，需要**停下**等待：
+有时在路口的出口方向也设有独立的红绿灯（Primary Signal），区分此类交通灯的方法为观察是否有停车线：如红灯前方有实线（停车线），则代表该处为独立红绿灯（Primary Signal），需要**停下**等待，例子见下图：
 
 ![右转离开路口时需注意红灯](/resources/highway-code/stop-light-at-exit.jpg)
 
 ![换一个角度看同一个出口](/resources/highway-code/stop-light-at-exit-front.jpg)
 
-如遇无实线的情况，出口处红灯为侧面车流控制灯，正方向车流不受此灯控制：
+如遇无实线的情况，出口处红灯为辅助的侧面车流控制灯（Secondary Signal），正方向车流不受此灯控制：
 
 ![离开路口时无需等待出口处红灯](/resources/highway-code/stop-light-at-exit-without-solid-line.jpg)
 
@@ -93,6 +93,33 @@ keywords: 摩托, 摩旅, 交规
 额外奖励题：下图中，如果在最左侧公交车道，并且红灯的情况，是否需要停车？
 
 ![是否应该红灯停车？](/resources/highway-code/stop-light-with-whatthefuck.jpg)
+
+Traffic Signs Regulation 中的相应条目：
+
+> Section 5, Rule 43:
+> (3) Where no stop line has been provided in conjunction with light signals or the stop line is not visible, references in relation to those signals to the “stop line” are—
+>   (a) in a case where the sign shown in diagram 7011, 7011.1 or 7027 is placed in conjunction with the light signals, to be treated as references to that sign; and
+>   (b) in any other case, to be treated as references to the post or other structure on which the **primary signals** are mounted.
+> (5) In this regulation—
+>   (a) “primary signals” means light signals erected on or near the carriageway of a road and—
+>       (i) where a stop line is placed in conjunction with the signals, sited beyond that line and near one end or both ends of the line; or
+>       (ii) where there is no stop line, sited at either edge or both edges of the carriageway or part of the carriageway which is in use by traffic approaching and controlled by the signals;
+>   (b) “secondary signals” means light signals erected on or near the carriageway facing traffic approaching from the direction of the primary signals but sited beyond those
+signals as viewed from the direction of travel of such traffic
+
+其他网络源对区别主要红绿灯和辅助红绿灯的引用：
+
+[Traffic Signal Design](http://www.traffic-signal-design.com/terminology_main.htm)
+
+> Primary Signal: A signal head close to the stop line. It is normally located on the nearside of the carriageway. A duplicate primary signal may also be provided on the offside of the carriageway.
+
+> Secondary Signal: A signal head further beyond the stop line which is used to supplement the primary signal.
+
+[Cabbagepatch](http://www.cabbagepatch.biz/secondary.htm)
+
+> How to Deal with Secondary Lights
+> First of all, when you see a set of Traffic Lights make sure you look out for the Stop Line beside the Primary light.  This is particualarly important at complicated junctions where there are several different sets of Traffic Lights, each with their own Stop Line and possibly with many 'secondary' lights as well.
+> Be ready to stop before the line.
 
 ### 黄色禁停网格区
 
