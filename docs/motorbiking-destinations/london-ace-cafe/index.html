@@ -144,7 +144,11 @@
                         }
                         var boundingRect = container.getBoundingClientRect();
             
-                        if (doNotBlock === false && value > 0 && container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+                        if (
+                            doNotBlock === false && 
+                            value > 0 && 
+                            Math.ceil(container.scrollLeft + container.offsetWidth) >= container.scrollWidth
+                        ) {
                             return;
                         }
             
