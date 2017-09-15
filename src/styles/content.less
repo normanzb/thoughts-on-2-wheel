@@ -1,0 +1,39 @@
+@import "src/styles/helpers.less";
+@import "src/styles/rspn.less";
+
+.content
+{
+    .clear;
+    
+    background-color: #EFEFEF;
+    min-height: 100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+
+    .rspn-desktop
+    ({
+        width: ~'calc(100% - var(--nav-primary-thickness))';
+
+        height: 100%;
+        overflow: scroll;
+
+        flex-shrink: 1;
+        flex-grow: 0;
+    });
+
+    > .inner
+    {
+        margin: var(--margin-large);
+        
+        > .caption
+        {
+            margin: var(--margin-large) 0;
+            text-align: center;
+
+            .rspn-desktop
+            ({
+                text-align: left;
+            });
+        }
+    }
+}

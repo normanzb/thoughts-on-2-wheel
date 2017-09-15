@@ -1,0 +1,32 @@
+.content {
+  background-color: #EFEFEF;
+  min-height: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+.content:before,
+.content:after {
+  content: ' ';
+  display: table;
+}
+@media (min-width: 1227px) {
+  .content {
+    width: calc(100% - var(--nav-primary-thickness));
+    height: 100%;
+    overflow: scroll;
+    flex-shrink: 1;
+    flex-grow: 0;
+  }
+}
+.content > .inner {
+  margin: var(--margin-large);
+}
+.content > .inner > .caption {
+  margin: var(--margin-large) 0;
+  text-align: center;
+}
+@media (min-width: 1227px) {
+  .content > .inner > .caption {
+    text-align: left;
+  }
+}

@@ -1,0 +1,97 @@
+@media (min-width: 1227px) {
+  article.post {
+    height: calc(100vh - var(--margin-large) * 2);
+    overflow: hidden;
+  }
+}
+article.post > .inner {
+  font-size: 22px;
+}
+@media (max-width: 1226px) {
+  article.post > .inner {
+    /* 
+            this is for when there are content stretches over 
+            (such as long link that is not breakable), 
+            the scrolling check of article will consider it hasn't fully scrolled to the end
+            */
+    overflow: hidden;
+  }
+}
+@media (min-width: 1227px) {
+  article.post > .inner {
+    height: 100%;
+    column-width: calc((100vh - var(--margin-large) * 5) / 3 / 9 * 16);
+    column-gap: var(--margin-large);
+    column-fill: auto;
+  }
+}
+article.post > .inner > *:first-child {
+  /* 
+            removing margin-collapsing sucks
+            */
+  margin-top: 0;
+}
+article.post > .inner > h1,
+article.post > .inner h2,
+article.post > .inner h3,
+article.post > .inner h4 {
+  line-height: 1.3;
+}
+@media (max-width: 1226px) {
+  article.post > .inner > h1 {
+    text-align: center;
+  }
+}
+article.post > .inner > p {
+  line-height: 1.3;
+}
+article.post > .inner > p > img {
+  margin: var(--margin-large) 0;
+  display: block;
+  width: 100%;
+}
+article.post > .inner > p > code {
+  margin: 0 var(--margin-small);
+  padding: 0.15em var(--margin-default);
+  font-size: .7em;
+  vertical-align: top;
+  background-color: #E1E1E1;
+  color: #000;
+  border-radius: 3px;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+article.post > .inner > p > a {
+  display: inline;
+  word-break: keep-all;
+  background-image: url("data:image/svg+xml;utf8,<svg width=\"21px\" height=\"1px\" viewBox=\"0 0 21 1\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"><path d=\"M0.42578125,0.5 L20.4257812,0.5\" stroke=\"#000000\" stroke-dasharray=\"7,3\"></path></g></svg>");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+}
+article.post > .inner > p > a,
+article.post > .inner > p > a:focus,
+article.post > .inner > p > a:active {
+  text-decoration: none;
+  color: var(--text-color-default);
+}
+article.post > .inner > ul,
+article.post > .inner ol {
+  line-height: 1.3;
+}
+article.post > .inner > blockquote {
+  line-height: 1.3;
+  margin: var(--margin-default);
+  padding: 0 var(--margin-default);
+  font-size: .8em;
+  border-left: 3px dotted #999;
+}
+article.post > .inner > .date {
+  margin: var(--margin-default) 0;
+  display: block;
+  font-size: .6em;
+  color: #999;
+}
+@media (max-width: 1226px) {
+  article.post > .inner > .date {
+    text-align: center;
+  }
+}

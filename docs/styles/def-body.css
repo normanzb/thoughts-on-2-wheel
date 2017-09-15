@@ -1,0 +1,10 @@
+.def-body {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3em;
+}
+@media (min-width: 1227px) {
+  .def-body {
+    flex-direction: row;
+  }
+}

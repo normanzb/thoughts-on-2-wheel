@@ -1,0 +1,16 @@
+@import "src/styles/variables-less";
+
+.rspn-desktop(@rules)
+{
+    @media (min-width: (@res-mobile + 1)) 
+    {
+        @rules();
+    }
+}
+.rspn-mobile(@rules)
+{
+    @media (max-width: @res-mobile) 
+    {
+        @rules();
+    }
+}
