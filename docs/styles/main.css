@@ -608,7 +608,7 @@ body article.post > .inner {
 @media (min-width: 1227px) {
   body article.post > .inner {
     height: 100%;
-    column-width: calc((100vh - var(--margin-large) * 5) / 3 / 9 * 16);
+    column-width: 25vw;
     column-gap: var(--margin-large);
     column-fill: auto;
   }
