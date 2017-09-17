@@ -124,6 +124,10 @@
                     }());
             
                     // columns scroll handling
+                    var articleScrollingInfo = window.articleScrollingInfo = {
+                        handling: false
+                    };
+                    var elContent = document.querySelector('.content');
                     var obj = {
                         x: container.scrollLeft * 1
                     };
@@ -149,6 +153,7 @@
                             value > 0 && 
                             Math.ceil(container.scrollLeft + container.offsetWidth) >= container.scrollWidth
                         ) {
+                            articleScrollingInfo.handling = false;
                             return;
                         }
             
@@ -158,24 +163,28 @@
                                 (value < 0 && container.scrollLeft <= 0)
                             )
                         ) {
+                            articleScrollingInfo.handling = false;
                             return;
                         }
             
+                        articleScrollingInfo.handling = true;
+            
                         obj.x += value * 10;
             
-                        if (obj.x > container.scrollWidth) {
-                            obj.x = container.scrollWidth;
+                        if (obj.x > container.scrollWidth - container.offsetWidth) {
+                            obj.x = container.scrollWidth - container.offsetWidth;
                         }
                         else if (obj.x < 0) {
                             obj.x = 0;
                         }
             
                         event.preventDefault();
+                        event.stopPropagation();
                     }, {passive: false, capture: false});
             
                     requestAnimationFrame(function loop(){
                         if (container.scrollLeft !== obj.x) {
-                            container.scrollLeft += (obj.x - container.scrollLeft) / 2;
+                            container.scrollLeft += Math.ceil((obj.x - container.scrollLeft) / 2);
                         }
                         requestAnimationFrame(loop);
                     });
@@ -192,7 +201,44 @@
                 })();
                 </script>
             </div>    </div>
-</div>    <script>
+</div>    <script src="/scripts/huntun.js"></script>
+    <script>
+        (function(){
+            'use strict';
+            var huntun = window.huntun;
+            var options = {
+                directions: {
+                    bar: 'left'
+                },
+                handlers: {
+                }
+            };
+            var content = document.querySelector('.content');
+            var article = document.querySelector('article.post');
+            if (article) {
+                article.addEventListener('scroll', function(){
+                    scrollbar.handleResize();
+                });
+                options.handlers.resize = function(){
+                    scrollbar.model.length = article.scrollWidth + content.scrollHeight;
+                    scrollbar.model.viewport = article.offsetWidth + content.offsetHeight;
+                    scrollbar.model.position = article.scrollLeft + content.scrollTop;
+                    console.log(scrollbar.model.length, scrollbar.model.viewport, scrollbar.model.position);
+                };
+            }
+            var scrollbar = new huntun.ScrollBar(options);
+            if (typeof options.handlers.resize === 'function') {
+                options.handlers.resize();
+                scrollbar.viewModel.redraw(true);
+            }
+            
+            if (!content) {
+                return;
+            }
+            scrollbar.mount(content);
+        })();
+    </script>
+    <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
