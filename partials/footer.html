@@ -3,6 +3,7 @@
     (function(){
         'use strict';
         var huntun = window.huntun;
+        var mounted = false;
         var options = {
             directions: {
                 bar: 'left'
@@ -11,6 +12,9 @@
             }
         };
         var content = document.querySelector('.content');
+        if (!content) {
+            return;
+        }
         var article = document.querySelector('article.post');
         if (article) {
             article.addEventListener('scroll', function(){
@@ -27,11 +31,24 @@
             options.handlers.resize();
             scrollbar.viewModel.redraw(true);
         }
-        
-        if (!content) {
-            return;
+
+        function handleWindowResize(){
+            if (window.innerWidth <= 1226)  {
+                if (mounted) {
+                    scrollbar.unmount();
+                    mounted = false;
+                }
+            }
+            else {
+                if (!mounted) {
+                    scrollbar.mount(content);
+                    mounted = true;
+                }
+            }
         }
-        scrollbar.mount(content);
+
+        window.addEventListener('resize', handleWindowResize);
+        handleWindowResize();
     })();
 </script>
 <script>
