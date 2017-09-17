@@ -12,6 +12,8 @@ var imagemin = require('metalsmith-imagemin');
 var handlebars = require('handlebars');
 var pathUtil = require('path');
 var cheerio = require('cheerio');
+var LessPluginAutoPrefix = require('less-plugin-autoprefix');
+var autoprefixPlugin = new LessPluginAutoPrefix({browsers: ["last 2 versions"]});
 
 var folderMapping = {
   'motorbiking-destinations': '摩旅目的地',
@@ -75,7 +77,10 @@ var ms = Metalsmith(__dirname)
     partials: 'partials'
   }))
   .use(less({
-    pattern: '**/*.less'
+    pattern: '**/*.less',
+    render: {
+      plugins: [autoprefixPlugin]
+    }
   }));
 
   if (process.argv[2] === '--with-images') {

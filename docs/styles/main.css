@@ -459,27 +459,35 @@ body {
   --margin-default: 10px;
   --margin-large: 30px;
   --text-color-default: #000;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   line-height: 1.3em;
 }
 body .def-body {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   line-height: 1.3em;
 }
 @media (min-width: 1227px) {
   body .def-body {
-    flex-direction: row;
+    -ms-flex-direction: row;
+        flex-direction: row;
   }
 }
 @media (min-width: 1227px) {
   body {
-    flex-direction: row;
+    -ms-flex-direction: row;
+        flex-direction: row;
   }
 }
 body nav.primary {
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -ms-flexbox;
   display: flex;
   height: var(--nav-primary-thickness);
 }
@@ -491,16 +499,23 @@ body nav.primary {
 }
 body nav.primary > .inner {
   margin: var(--margin-default);
-  flex-grow: 1;
-  flex-shrink: 0;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 @media (min-width: 1227px) {
   body nav.primary > .inner {
-    justify-content: flex-start;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
     margin: var(--margin-large) var(--margin-default);
   }
 }
@@ -509,19 +524,26 @@ body nav.primary > .inner > sub {
 }
 @media (min-width: 1227px) {
   body nav.primary > .inner > sub {
-    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+            writing-mode: vertical-rl;
   }
 }
 body .logo {
   font-size: 16px;
   font-weight: 300;
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 @media (min-width: 1227px) {
   body .logo {
     /* blows on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
-    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+            writing-mode: vertical-rl;
   }
 }
 body .logo > .inner {
@@ -530,8 +552,10 @@ body .logo > .inner {
 body .content {
   background-color: #EFEFEF;
   min-height: 100%;
-  flex-shrink: 0;
-  flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
 }
 body .content:before,
 body .content:after {
@@ -544,8 +568,10 @@ body .content:after {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    flex-shrink: 1;
-    flex-grow: 0;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    -ms-flex-positive: 0;
+        flex-grow: 0;
   }
 }
 body .content > .inner {
@@ -624,7 +650,6 @@ body article.post > .inner > p > code {
 }
 body article.post > .inner > p > a {
   display: inline;
-  word-break: keep-all;
   background-image: url("data:image/svg+xml;utf8,<svg width=\"21px\" height=\"1px\" viewBox=\"0 0 21 1\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"><path d=\"M0.42578125,0.5 L20.4257812,0.5\" stroke=\"#000000\" stroke-dasharray=\"7,3\"></path></g></svg>");
   background-repeat: repeat-x;
   background-position: 0 100%;
@@ -663,11 +688,13 @@ body .comment {
 body ul.posts {
   padding: 0;
   margin: var(--margin-large) 0;
+  display: -ms-grid;
   display: grid;
 }
 @media (min-width: 1227px) {
   body ul.posts {
-    grid-template-columns: calc(50% - var(--margin-large) / 2) calc(50% - var(--margin-large) / 2);
+    -ms-grid-columns: calc(50% - var(--margin-large) / 2) calc(50% - var(--margin-large) / 2);
+        grid-template-columns: calc(50% - var(--margin-large) / 2) calc(50% - var(--margin-large) / 2);
     grid-gap: var(--margin-large);
   }
 }
@@ -689,7 +716,6 @@ body ul.posts > li > .caption {
 }
 body ul.posts > li > .caption > a {
   display: inline;
-  word-break: keep-all;
   background-image: url("data:image/svg+xml;utf8,<svg width=\"21px\" height=\"1px\" viewBox=\"0 0 21 1\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"><path d=\"M0.42578125,0.5 L20.4257812,0.5\" stroke=\"#000000\" stroke-dasharray=\"7,3\"></path></g></svg>");
   background-repeat: repeat-x;
   background-position: 0 100%;

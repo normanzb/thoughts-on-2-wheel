@@ -1,8 +1,10 @@
 .content {
   background-color: #EFEFEF;
   min-height: 100%;
-  flex-shrink: 0;
-  flex-grow: 1;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
 }
 .content:before,
 .content:after {
@@ -15,8 +17,10 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    flex-shrink: 1;
-    flex-grow: 0;
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+    -ms-flex-positive: 0;
+        flex-grow: 0;
   }
 }
 .content > .inner {
