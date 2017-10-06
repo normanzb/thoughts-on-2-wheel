@@ -3521,6 +3521,7 @@ var style = new StyleSheet(`
     bottom: 0;
 
     height: 100%;
+    transition: opacity .3s;
 
     > .inner
     {
@@ -3747,6 +3748,7 @@ var view = {
                 },
                 style: `
                     top: ${data.prvt.innerElementPosition}px;
+                    opacity: ${data.prvt.handle >= data.viewport?'0':'1'};
                 `
             }, [
                 el('div.inner', [
@@ -3789,9 +3791,12 @@ class Ctor extends UIBase {
         });
         me.model.handlers = Object.assign({
             mousewheel: function(evt) {
-                var dy = evt.deltaY;
-                me.model.prvt.scrollTop = me.model.prvt.scrollTop + dy * 3;
-                evt.preventDefault();
+                var delta = me.model.directions.scrolling === 'vertical'?evt.deltaY:evt.deltaX;
+                var prop = me.model.directions.scrolling === 'vertical'?'scrollTop':'scrollLeft';
+                me.model.prvt[prop] = me.model.prvt[prop] + delta * 3;
+                if (me.model.prvt[prop] > 0 && me.model.prvt[prop] < me.model.length) {
+                    evt.preventDefault();
+                }
             }
         }, me.model.handlers);
         me.model.directions = Object.assign({
