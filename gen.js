@@ -9,6 +9,7 @@ var less = require('metalsmith-less');
 var sitemap = require('metalsmith-mapsite');
 var imageResizer = require('metalsmith-image-resizer');
 var imagemin = require('metalsmith-imagemin');
+var changed = require('metalsmith-changed');
 var handlebars = require('handlebars');
 var pathUtil = require('path');
 var cheerio = require('cheerio');
@@ -59,6 +60,7 @@ var ms = Metalsmith(__dirname)
   .source('./src')            // source directory
   .destination('./docs')     // destination directory
   .clean(false)                // clean destination before
+  .use(changed())
   .use(collections({          // group all blog posts by internally
     posts: {
       pattern: '**/*.md',
