@@ -25,6 +25,14 @@ article.post > .inner {
     column-fill: auto;
   }
 }
+@media (min-width: 2453px) {
+  article.post > .inner {
+    height: 100%;
+    column-width: 45vw;
+    column-gap: var(--margin-large);
+    column-fill: auto;
+  }
+}
 article.post > .inner > *:first-child {
   /* 
             removing margin-collapsing sucks

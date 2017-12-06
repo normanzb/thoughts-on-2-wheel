@@ -20,7 +20,8 @@
     font-size: .8em;
   }
 }
-.image-container > img {
+.image-container > img,
+.image-container > video {
   margin: 0;
   display: block;
   width: 100%;
