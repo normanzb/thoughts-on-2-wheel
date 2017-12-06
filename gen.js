@@ -60,7 +60,6 @@ var ms = Metalsmith(__dirname)
   .source('./src')            // source directory
   .destination('./docs')     // destination directory
   .clean(false)                // clean destination before
-  .use(changed())
   .use(collections({          // group all blog posts by internally
     posts: {
       pattern: '**/*.md',
@@ -83,10 +82,21 @@ var ms = Metalsmith(__dirname)
     render: {
       plugins: [autoprefixPlugin]
     }
+  }))
+  .use(sitemap({
+    hostname: 'http://blog.norm.im',
+    omitIndex: true,
+    pattern: '**/*.html'
   }));
 
   if (process.argv[2] === '--with-images') {
-    ms.use(imageResizer({
+    ms
+    .use(changed({
+      forcePattern: [
+        '**/index.md',  // always build index files
+      ]
+    }))
+    .use(imageResizer({
       glob: "resources/**/*.jpg",
       width: 1920,
       height: 1080
@@ -103,11 +113,7 @@ var ms = Metalsmith(__dirname)
       .ignore('**/*.gif');
   }
   
-  ms.use(sitemap({
-    hostname: 'http://blog.norm.im',
-    omitIndex: true,
-    pattern: '**/*.html'
-  }))
+  ms
   .build(function(err) {      // build process
     if (err) throw err;       // error handling is required
   });

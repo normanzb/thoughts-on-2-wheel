@@ -20,7 +20,7 @@ article.post > .inner {
 @media (min-width: 1227px) {
   article.post > .inner {
     height: 100%;
-    column-width: 25vw;
+    column-width: 35vw;
     column-gap: var(--margin-large);
     column-fill: auto;
   }
@@ -28,7 +28,7 @@ article.post > .inner {
 @media (min-width: 2453px) {
   article.post > .inner {
     height: 100%;
-    column-width: 45vw;
+    column-width: 25vw;
     column-gap: var(--margin-large);
     column-fill: auto;
   }
