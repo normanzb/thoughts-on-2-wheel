@@ -31,10 +31,17 @@
         wrapElement('img', 'image-container', function(wrap, el){
             wrap.setAttribute('title', el.getAttribute('alt'));
         });
+
         wrapElement(':scope > .inner > iframe', 'iframe-container', function(wrap){
             wrap.addEventListener('click', function(){
                 wrap.classList.add('activated');
-            })
+            });
+        });
+
+        document.querySelectorAll('.iframe-video-container').forEach(function(wrap){
+            wrap.addEventListener('click', function(){
+                wrap.classList.add('activated');
+            });
         });
 
         var requestAnimationFrame = window.requestAnimationFrame;
