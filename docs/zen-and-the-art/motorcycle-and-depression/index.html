@@ -120,18 +120,33 @@
                     'use strict';
                     var script = document.scripts[document.scripts.length - 1];
                     var container = script.parentNode;
+            
                     /* TODO: auto wrap from server side */
-                    var imgs = container.querySelectorAll('img');
-                    var img;
-                    var wrap;
-                    for(var l = imgs.length; l--; ) {
-                        img = imgs[l];
-                        wrap = document.createElement('div');
-                        wrap.classList.add('image-container');
-                        img.parentNode.insertBefore(wrap,img);
-                        wrap.appendChild(img);
-                        wrap.setAttribute('title', img.getAttribute('alt'));
+                    function wrapElement(query, wrapperClass, callback){
+                        var imgs = container.querySelectorAll(query);
+                        var img;
+                        var wrap;
+                        for(var l = imgs.length; l--; ) {
+                            img = imgs[l];
+                            wrap = document.createElement('div');
+                            wrap.classList.add(wrapperClass);
+                            img.parentNode.insertBefore(wrap,img);
+                            wrap.appendChild(img);
+                            if (callback) {
+                                callback(wrap, img);
+                            }
+                        }
+                        return wrap;
                     }
+                    
+                    wrapElement('img', 'image-container', function(wrap, el){
+                        wrap.setAttribute('title', el.getAttribute('alt'));
+                    });
+                    wrapElement(':scope > .inner > iframe', 'iframe-container', function(wrap){
+                        wrap.addEventListener('click', function(){
+                            wrap.classList.add('activated');
+                        })
+                    });
             
                     var requestAnimationFrame = window.requestAnimationFrame;
                     var cancelAnimationFrame = window.cancelAnimationFrame;
@@ -170,7 +185,7 @@
                         x: container.scrollLeft * 1
                     };
             
-                    container.addEventListener('mousewheel', function(event){
+                    container.addEventListener('wheel', function(event){
                         var value = event.deltaY; 
                         // value = (event.deltaY/Math.abs(event.deltaY)) >> 0; 
                         var dy = Math.abs(event.deltaY);

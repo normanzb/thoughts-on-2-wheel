@@ -575,6 +575,7 @@ body .content:after {
   }
 }
 body .content > .inner {
+  position: relative;
   margin: var(--margin-large);
 }
 body .content > .inner > .caption {
@@ -608,7 +609,7 @@ body article.post > .inner {
 @media (min-width: 1227px) {
   body article.post > .inner {
     height: 100%;
-    column-width: 35vw;
+    column-count: 2;
     column-gap: var(--margin-large);
     column-fill: auto;
   }
@@ -616,7 +617,7 @@ body article.post > .inner {
 @media (min-width: 2453px) {
   body article.post > .inner {
     height: 100%;
-    column-width: 25vw;
+    column-count: 3;
     column-gap: var(--margin-large);
     column-fill: auto;
   }
@@ -764,7 +765,6 @@ body ul.posts > li:empty {
 body .image-container {
   margin: var(--margin-large) 0;
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
 }
 body .image-container:after {
@@ -789,10 +789,38 @@ body .image-container > video {
   display: block;
   width: 100%;
 }
+body .iframe-container {
+  margin: var(--margin-large) 0;
+  position: relative;
+  overflow: hidden;
+}
+body .iframe-container:before {
+  content: ' ';
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+body .iframe-container:hover:before {
+  background-color: rgba(0, 0, 0, 0.5);
+  content: 'Click to activate';
+  color: #FFF;
+}
+body .iframe-container.activated:before {
+  display: none;
+}
 body .iframe-video-container {
   margin: var(--margin-large) 0;
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
   padding-top: 56.25%;
   padding-bottom: 0;

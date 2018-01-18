@@ -1,7 +1,6 @@
 .image-container {
   margin: var(--margin-large) 0;
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
 }
 .image-container:after {

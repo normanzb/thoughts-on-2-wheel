@@ -24,6 +24,7 @@
   }
 }
 .content > .inner {
+  position: relative;
   margin: var(--margin-large);
 }
 .content > .inner > .caption {
