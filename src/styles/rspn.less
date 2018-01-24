@@ -10,7 +10,15 @@
 
 .rspn-desktop(@rules)
 {
-    @media (min-width: (@res-mobile + 1)) 
+    @media (min-width: (@res-mobile + 1))
+    {
+        @rules();
+    }
+}
+
+.rspn-desktop-only(@rules)
+{
+    @media (min-width: (@res-mobile + 1)) and (max-width: (@res-mobile * 2)) 
     {
         @rules();
     }

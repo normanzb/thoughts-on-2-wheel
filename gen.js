@@ -78,7 +78,7 @@ var ms = Metalsmith(__dirname)
     partials: 'partials'
   }))
   .use(less({
-    pattern: '**/*.less',
+    pattern: 'styles/main.less',
     render: {
       plugins: [autoprefixPlugin]
     }
@@ -93,7 +93,10 @@ var ms = Metalsmith(__dirname)
     ms
     .use(changed({
       forcePattern: [
-        '**/index.md',  // always build index files
+        '**/*.html',
+        '**/*.md',  
+        '**/*.less',
+        '**/*.js',
       ]
     }))
     .use(imageResizer({

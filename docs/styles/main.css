@@ -587,11 +587,8 @@ body .content > .inner > .caption {
     text-align: left;
   }
 }
-@media (min-width: 1227px) {
-  body article.post {
-    height: calc(100vh - var(--margin-large) * 2);
-    overflow: hidden;
-  }
+body article.post {
+  margin: calc(var(--margin-large) * -1);
 }
 body article.post > .inner {
   font-size: 22px;
@@ -604,50 +601,175 @@ body article.post > .inner {
             the scrolling check of article will consider it hasn't fully scrolled to the end
             */
     overflow: hidden;
+    margin: var(--margin-large);
+  }
+  body article.post > .inner > h1,
+  body article.post > .inner h2,
+  body article.post > .inner h3,
+  body article.post > .inner h4 {
+    line-height: 1.3;
+  }
+  body article.post > .inner > p {
+    line-height: 1.3;
+  }
+  body article.post > .inner > p > img {
+    margin: var(--margin-large) 0;
+    display: block;
+    width: 100%;
+  }
+  body article.post > .inner > p > code {
+    margin: 0 var(--margin-small);
+    padding: 0.15em var(--margin-default);
+    font-size: .7em;
+    vertical-align: top;
+    background-color: #E1E1E1;
+    color: #000;
+    border-radius: 3px;
+    text-shadow: 1px 1px 0 #ffffff;
+  }
+  body article.post > .inner > p > a {
+    display: inline;
+    background-image: url("data:image/svg+xml;utf8,<svg width=\"21px\" height=\"1px\" viewBox=\"0 0 21 1\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"><path d=\"M0.42578125,0.5 L20.4257812,0.5\" stroke=\"#000000\" stroke-dasharray=\"7,3\"></path></g></svg>");
+    background-repeat: repeat-x;
+    background-position: 0 100%;
+  }
+  body article.post > .inner > p > a,
+  body article.post > .inner > p > a:focus,
+  body article.post > .inner > p > a:active {
+    text-decoration: none;
+    color: var(--text-color-default);
+  }
+  body article.post > .inner > ul,
+  body article.post > .inner ol {
+    line-height: 1.3;
+  }
+  body article.post > .inner > blockquote {
+    line-height: 1.3;
+    margin: var(--margin-default);
+    padding: 0 var(--margin-default);
+    font-size: .8em;
+    border-left: 3px dotted #999;
+  }
+  body article.post > .inner > .date {
+    margin: var(--margin-default) 0;
+    display: block;
+    font-size: .6em;
+    color: #999;
   }
 }
-@media (min-width: 1227px) {
-  body article.post > .inner {
-    height: 100%;
-    column-count: 2;
-    column-gap: var(--margin-large);
-    column-fill: auto;
-  }
-}
-@media (min-width: 2453px) {
-  body article.post > .inner {
-    height: 100%;
-    column-count: 3;
-    column-gap: var(--margin-large);
-    column-fill: auto;
-  }
-}
-body article.post > .inner > *:first-child {
-  /* 
-            removing margin-collapsing sucks
-            */
-  margin-top: 0;
-}
-body article.post > .inner > h1,
-body article.post > .inner h2,
-body article.post > .inner h3,
-body article.post > .inner h4 {
-  line-height: 1.3;
-}
-@media (max-width: 1226px) {
+@media (max-width: 1226px) and (max-width: 1226px) {
   body article.post > .inner > h1 {
     text-align: center;
   }
 }
-body article.post > .inner > p {
+@media (max-width: 1226px) and (max-width: 1226px) {
+  body article.post > .inner > .date {
+    text-align: center;
+  }
+}
+body article.post > .inner > .road-book > .inner {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--margin-large) 0;
+}
+@media (min-width: 2453px) {
+  body article.post > .inner > .road-book > .inner {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+body article.post > .inner > .road-book > .inner > .page {
+  height: calc(100vh - var(--margin-large) * 2);
+  position: relative;
+  word-break: break-word;
+}
+body article.post > .inner > .road-book > .inner > .page:before {
+  content: attr(data-number);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  font-size: .7em;
+  text-align: center;
+}
+@media (min-width: 1227px) and (max-width: 2452px) {
+  body article.post > .inner > .road-book > .inner > .page:nth-child(odd)::after {
+    content: ' ';
+    position: absolute;
+    top: var(--margin-large);
+    bottom: var(--margin-large);
+    right: -2px;
+    width: 1px;
+    background-color: #DDD;
+    background-clip: content-box;
+  }
+  body article.post > .inner > .road-book > .inner > .page:nth-last-child(1) > .inner:after,
+  body article.post > .inner > .road-book > .inner > .page:nth-last-child(2):nth-child(odd) > .inner:after {
+    display: none;
+  }
+}
+@media (min-width: 2453px) {
+  body article.post > .inner > .road-book > .inner > .page:nth-child(3n + 1)::after,
+  body article.post > .inner > .road-book > .inner > .page:nth-child(3n + 2)::after {
+    content: ' ';
+    position: absolute;
+    top: var(--margin-large);
+    bottom: var(--margin-large);
+    right: -2px;
+    width: 1px;
+    background-color: #DDD;
+    background-clip: content-box;
+  }
+  body article.post > .inner > .road-book > .inner > .page:nth-last-child(1) > .inner:after,
+  body article.post > .inner > .road-book > .inner > .page:nth-last-child(2):nth-child(3n + 1) > .inner:after,
+  body article.post > .inner > .road-book > .inner > .page:nth-last-child(2):nth-child(3n + 2) > .inner:after,
+  body article.post > .inner > .road-book > .inner > .page:nth-last-child(3):nth-child(3n + 1) > .inner:after {
+    display: none;
+  }
+}
+body article.post > .inner > .road-book > .inner > .page > .inner {
+  margin: var(--margin-large);
+}
+body article.post > .inner > .road-book > .inner > .page > .inner:after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12px;
+  height: 1px;
+  width: 90%;
+  padding: 0 5%;
+  background-color: #DDD;
+  background-clip: content-box;
+}
+body article.post > .inner > .road-book > .inner > .page > .inner > *:first-child {
+  /* 
+                            removing margin-collapsing sucks
+                            */
+  margin-top: 0;
+}
+body article.post > .inner > .road-book > .inner > .page > .inner > h1,
+body article.post > .inner > .road-book > .inner > .page > .inner h2,
+body article.post > .inner > .road-book > .inner > .page > .inner h3,
+body article.post > .inner > .road-book > .inner > .page > .inner h4 {
   line-height: 1.3;
 }
-body article.post > .inner > p > img {
+@media (max-width: 1226px) {
+  body article.post > .inner > .road-book > .inner > .page > .inner > h1 {
+    text-align: center;
+  }
+}
+body article.post > .inner > .road-book > .inner > .page > .inner > p {
+  line-height: 1.3;
+}
+body article.post > .inner > .road-book > .inner > .page > .inner > p > img {
   margin: var(--margin-large) 0;
   display: block;
   width: 100%;
 }
-body article.post > .inner > p > code {
+body article.post > .inner > .road-book > .inner > .page > .inner > p > code {
   margin: 0 var(--margin-small);
   padding: 0.15em var(--margin-default);
   font-size: .7em;
@@ -657,42 +779,39 @@ body article.post > .inner > p > code {
   border-radius: 3px;
   text-shadow: 1px 1px 0 #ffffff;
 }
-body article.post > .inner > p > a {
+body article.post > .inner > .road-book > .inner > .page > .inner > p > a {
   display: inline;
   background-image: url("data:image/svg+xml;utf8,<svg width=\"21px\" height=\"1px\" viewBox=\"0 0 21 1\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"><path d=\"M0.42578125,0.5 L20.4257812,0.5\" stroke=\"#000000\" stroke-dasharray=\"7,3\"></path></g></svg>");
   background-repeat: repeat-x;
   background-position: 0 100%;
 }
-body article.post > .inner > p > a,
-body article.post > .inner > p > a:focus,
-body article.post > .inner > p > a:active {
+body article.post > .inner > .road-book > .inner > .page > .inner > p > a,
+body article.post > .inner > .road-book > .inner > .page > .inner > p > a:focus,
+body article.post > .inner > .road-book > .inner > .page > .inner > p > a:active {
   text-decoration: none;
   color: var(--text-color-default);
 }
-body article.post > .inner > ul,
-body article.post > .inner ol {
+body article.post > .inner > .road-book > .inner > .page > .inner > ul,
+body article.post > .inner > .road-book > .inner > .page > .inner ol {
   line-height: 1.3;
 }
-body article.post > .inner > blockquote {
+body article.post > .inner > .road-book > .inner > .page > .inner > blockquote {
   line-height: 1.3;
   margin: var(--margin-default);
   padding: 0 var(--margin-default);
   font-size: .8em;
   border-left: 3px dotted #999;
 }
-body article.post > .inner > .date {
+body article.post > .inner > .road-book > .inner > .page > .inner > .date {
   margin: var(--margin-default) 0;
   display: block;
   font-size: .6em;
   color: #999;
 }
 @media (max-width: 1226px) {
-  body article.post > .inner > .date {
+  body article.post > .inner > .road-book > .inner > .page > .inner > .date {
     text-align: center;
   }
-}
-body .comment {
-  margin: var(--margin-large) 0;
 }
 body ul.posts {
   padding: 0;
@@ -765,6 +884,7 @@ body ul.posts > li:empty {
 body .image-container {
   margin: var(--margin-large) 0;
   position: relative;
+  border-radius: 5px;
   overflow: hidden;
 }
 body .image-container:after {
@@ -816,6 +936,7 @@ body .has-activation-layer.activated:before {
 body .iframe-container {
   margin: var(--margin-large) 0;
   position: relative;
+  border-radius: 5px;
   overflow: hidden;
 }
 body .iframe-container:before {
@@ -845,6 +966,7 @@ body .iframe-container.activated:before {
 body .iframe-video-container {
   margin: var(--margin-large) 0;
   position: relative;
+  border-radius: 5px;
   overflow: hidden;
   padding-top: 56.25%;
   padding-bottom: 0;

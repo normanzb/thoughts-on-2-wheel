@@ -5,45 +5,11 @@
 
 article.post
 {
-    .rspn-desktop
-    ({
-        height: ~'calc(100vh - var(--margin-large) * 2)';
-        overflow: hidden; 
-    });
+    margin: ~'calc(var(--margin-large) * -1)';
 
-    > .inner 
+    .post-internal()
     {
-        font-size: 22px;
-
-        .rspn-mobile
-        ({
-            /* 
-            this is for when there are content stretches over 
-            (such as long link that is not breakable), 
-            the scrolling check of article will consider it hasn't fully scrolled to the end
-            */
-            overflow: hidden;
-        });
-        
-        .rspn-desktop
-        ({
-            height: 100%;
-            .def-column;
-        });
-
-        .rspn-supertop
-        ({
-            height: 100%;
-            .def-column-super;
-        });
-
-        > *:first-child
-        {
-            /* 
-            removing margin-collapsing sucks
-            */
-            margin-top: 0;
-        }
+        margin: var(--margin-large);
 
         > h1, h2, h3, h4
         {
@@ -101,6 +67,144 @@ article.post
         > .date
         {
             .date-def;
+        }
+    }
+
+    > .inner 
+    {
+        font-size: 22px;
+
+        .rspn-mobile
+        ({
+            /* 
+            this is for when there are content stretches over 
+            (such as long link that is not breakable), 
+            the scrolling check of article will consider it hasn't fully scrolled to the end
+            */
+            overflow: hidden;
+            .post-internal();
+        });
+
+        > .road-book
+        {
+            > .inner 
+            {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: var(--margin-large) 0;
+
+                .rspn-supertop
+                ({
+                    grid-template-columns: repeat(3, 1fr);
+                });
+
+                > .page 
+                {
+                    
+                    height: ~'calc(100vh - var(--margin-large) * 2)';
+                    position: relative;
+                    word-break: break-word;
+
+                    &:before 
+                    {
+                        content: attr(data-number);
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: 6px;
+                        font-size: .7em;
+                        text-align: center;
+                    }
+
+                    .rspn-desktop-only
+                    ({
+
+                        &:nth-child(odd)::after,
+                        {
+                            content: ' ';
+                            position: absolute;
+                            top: var(--margin-large);
+                            bottom: var(--margin-large);
+                            right: -2px;
+                            width: 1px;
+
+                            background-color: #DDD;
+                            background-clip: content-box;
+                        }
+
+                        &:nth-last-child(1),
+                        &:nth-last-child(2):nth-child(odd)
+                        {
+                            > .inner 
+                            {
+                                &:after 
+                                {
+                                    display: none;
+                                }
+                            }
+                        }
+                    });
+
+                    .rspn-supertop
+                    ({
+
+                        &:nth-child(3n + 1)::after,
+                        &:nth-child(3n + 2)::after 
+                        {
+                            content: ' ';
+                            position: absolute;
+                            top: var(--margin-large);
+                            bottom: var(--margin-large);
+                            right: -2px;
+                            width: 1px;
+
+                            background-color: #DDD;
+                            background-clip: content-box;
+                        }
+
+                        &:nth-last-child(1),
+                        &:nth-last-child(2):nth-child(3n + 1),
+                        &:nth-last-child(2):nth-child(3n + 2),
+                        &:nth-last-child(3):nth-child(3n + 1)
+                        {
+                            > .inner 
+                            {
+                                &:after 
+                                {
+                                    display: none;
+                                }
+                            }
+                        }
+                    });
+
+                    > .inner 
+                    {
+                        &:after 
+                        {
+                            content: ' ';
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: -12px;
+                            height: 1px;
+                            width: 90%;
+                            padding: 0 5%;
+                            background-color: #DDD;
+                            background-clip: content-box;
+                        }
+
+                        > *:first-child
+                        {
+                            /* 
+                            removing margin-collapsing sucks
+                            */
+                            margin-top: 0;
+                        }
+
+                        .post-internal();
+                    }
+                }
+            }
         }
     }
 }

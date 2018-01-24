@@ -2,6 +2,7 @@
 window.huntun = {
     ScrollBar: require('./src/ScrollBar')
 };
+module.exports = huntun;
 },{"./src/ScrollBar":7}],2:[function(require,module,exports){
 /*
  * JavaScript MD5
