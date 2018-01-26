@@ -66,7 +66,7 @@ date: 2017-11-27
 
 ![敦刻尔克港口博物馆](/resources/euro-france-belgium-netherland/dunkirk-museeportuaire.jpg)
 
-不得不说法国人盖房子比英国人好看多了，看着各种歪来扭去东倒西歪的建筑设计，时间一晃就到了再出发的时间。
+不得不说法国人盖房子比英国人好看多了，看着各种歪来扭去东倒西歪的建筑设计，一晃就到了再出发的时间。
 
 ![敦刻尔克港口附近的豪宅](/resources/euro-france-belgium-netherland/houses-dunkirk-bank.jpg)
 
