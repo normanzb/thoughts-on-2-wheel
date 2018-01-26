@@ -589,6 +589,7 @@ body .content > .inner > .caption {
 }
 body article.post {
   margin: calc(var(--margin-large) * -1);
+  margin-bottom: 0;
 }
 body article.post > .inner {
   font-size: 22px;
