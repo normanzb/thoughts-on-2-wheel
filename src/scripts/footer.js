@@ -6,6 +6,8 @@ define(['scripts/huntun'], function (huntun) {
             return;
         }
 
+        return;
+
         var mounted = false;
         var options = {
             directions: {

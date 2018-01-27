@@ -1,4 +1,4 @@
-define([], function () {
+define(function () {
     var requestAnimationFrame = window.requestAnimationFrame;
     var cancelAnimationFrame = window.cancelAnimationFrame;
 
@@ -26,4 +26,9 @@ define([], function () {
                 clearTimeout(id);
             };
     }());
-})
+
+    return {
+        request: requestAnimationFrame,
+        cancel: cancelAnimationFrame
+    };
+});

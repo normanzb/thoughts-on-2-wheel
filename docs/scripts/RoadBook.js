@@ -1,6 +1,44 @@
-define(function() {
+define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animationFrame) {
+    'use strict';
 
-    function pageSqueeze(node, parent) {
+    async function asyncRequestFrame() {
+        return new Promise(function(rs){
+            animationFrame.request(rs);
+        });
+    }
+
+    function eventOnce(el, name, handler) {
+        el.addEventListener(name, function handlerWrapper() {
+            el.removeEventListener(name, handlerWrapper);
+            handler();
+        });
+    }
+
+    async function imgReady(img) {
+        return new Promise(function(rs, rj){
+            if (img.complete) {
+                rs();
+            }
+            else {
+                imageMetaReady(img).then(rs, rj);
+                eventOnce(img, 'load', rs);
+            }
+        });
+    }
+
+    async function videoReady(video) {
+        return new Promise(function(rs){
+            if (video.readyState >= 1) {
+                rs();
+            }
+            else {
+                eventOnce(video, 'loadedmetadata', rs);
+                eventOnce(video, 'load', rs);
+            }
+        });
+    }
+
+    async function pageSqueeze(node, parent) {
         var me = this;
         var cloned;
 
@@ -36,6 +74,15 @@ define(function() {
             }
         }
         else {
+            if (cloned.tagName === 'IMG') {
+                console.log('waiting for image to be ready...');
+                await imgReady(cloned);
+            }
+            else if (cloned.tagName === 'VIDEO') {
+                console.log('waiting for video to be ready...');
+                await videoReady(cloned);
+            }
+
             if (!me.isFit()) {
                 if (cloned.clientHeight > me.book.limits.height) {
                     throw new Error('Smallest element is even larger than limit');
@@ -60,7 +107,7 @@ define(function() {
                 return null;
             }
 
-            let leftOver = pageSqueeze.call(me, lastNode, cloned);
+            let leftOver = await pageSqueeze.call(me, lastNode, cloned);
 
             if (leftOver) {
                 node.insertBefore(leftOver, node.childNodes[0]);
@@ -81,9 +128,10 @@ define(function() {
 
     Page.prototype.isFit = function() {
         var me = this;
+        var height;
         me.root.style.height = 'auto';
         var style = window.getComputedStyle(me.root);
-        var height = me.root.clientHeight + parseInt(style.marginTop);
+        height = me.root.clientHeight + parseInt(style.marginTop);
         me.root.style.height = '';
         if (height > me.book.limits.height) {
             return false;
@@ -91,29 +139,30 @@ define(function() {
         return true;
     };
 
-    Page.prototype.squeeze = function(node) {
+    Page.prototype.squeeze = async function(node) {
         var me = this;
-        return pageSqueeze.call(me, node, me.inner);
+        return await pageSqueeze.call(me, node, me.inner);
     };
 
     Page.prototype.setNumber = function(number) {
         this.root.setAttribute('data-number', number);
     };
 
-    function roadBookCreatePage() {
+    async function roadBookCreatePage() {
         var me = this;
         var page = new Page(me);
+        await asyncRequestFrame;
         return page;
     }
 
-    function roadBookDisposePage() {
+    // function roadBookDisposePage() {
 
-    }
+    // }
 
-    function roadBookFitItemsIntoPage(fragment, page) {
+    async function roadBookFitItemsIntoPage(fragment, page) {
         while (fragment.children.length > 0) {
             let el = fragment.children[0];
-            let leftOver = page.squeeze(el);
+            let leftOver = await page.squeeze(el);
             if (leftOver) {
                 fragment.insertBefore(leftOver, fragment.children[0]);
                 return true;
@@ -141,6 +190,7 @@ define(function() {
 
         this.pagePool = [];
         this.pages = [];
+        
         var fragment = this.fragment = document.createDocumentFragment();
         var container = this.opts.el;
 
@@ -156,7 +206,7 @@ define(function() {
         container.appendChild(this.root);
     }
 
-    RoadBook.prototype.render = function (){
+    RoadBook.prototype.render = async function (){
         var me = this;
         
         var fragment = this.fragment;
@@ -169,12 +219,12 @@ define(function() {
         }
 
         do {
-            page = roadBookCreatePage.call(me);
+            page = await roadBookCreatePage.call(me);
             this.pages.push(page);
             page.setNumber(this.pages.length);
             this.inner.appendChild(page.root);
         }
-        while (roadBookFitItemsIntoPage.call(me, cloned, page));
+        while (await roadBookFitItemsIntoPage.call(me, cloned, page));
     };
 
     return RoadBook;

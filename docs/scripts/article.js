@@ -22,7 +22,7 @@ define(['/scripts/RoadBook'], function(RoadBook) {
                 clearTimeout(scheduled);
             }
             scheduled = setTimeout(function(){
-                console.log('render...')
+                console.log('render...');
                 engine.render();
                 scheduled = false;
             }, 300);
