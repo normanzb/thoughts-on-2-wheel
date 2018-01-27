@@ -7,7 +7,7 @@ var markdown    = require('metalsmith-markdown');
 var permalinks  = require('metalsmith-permalinks');
 var less = require('metalsmith-less');
 var sitemap = require('metalsmith-mapsite');
-var imageResizer = require('metalsmith-image-resizer');
+var sharp = require('metalsmith-sharp');
 var imagemin = require('metalsmith-imagemin');
 var changed = require('metalsmith-changed');
 var handlebars = require('handlebars');
@@ -99,10 +99,12 @@ var ms = Metalsmith(__dirname)
         '**/*.js',
       ]
     }))
-    .use(imageResizer({
-      glob: "resources/**/*.jpg",
-      width: 1920,
-      height: 1080
+    .use(sharp({
+      src: "resources/**/*.jpg",
+      methods: [{
+        name: 'resize',
+        args: [ 1920, 1080 ]
+      }]
     }))
     .use(imagemin({
       optimizationLevel: 3,
