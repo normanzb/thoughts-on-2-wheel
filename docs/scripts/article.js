@@ -4,6 +4,7 @@ define(['/scripts/RoadBook'], function(RoadBook) {
     var container = document.querySelector('article.post');
     var engine;
     var postInner;
+    var currentStatus = '';
 
     function isMobile() {
         return document.documentElement.clientWidth <= 1226;
@@ -11,6 +12,7 @@ define(['/scripts/RoadBook'], function(RoadBook) {
 
     function switchEngine() {
         if (!isMobile()) {
+            currentStatus = 0;
             if (!engine) {
                 engine = new RoadBook({
                     el: postInner,
@@ -30,6 +32,7 @@ define(['/scripts/RoadBook'], function(RoadBook) {
             return Promise.resolve();
         }
         else {
+            currentStatus = 1;
             if (engine) {
                 return engine.destroy()
                     .then(function () {
@@ -49,7 +52,9 @@ define(['/scripts/RoadBook'], function(RoadBook) {
             if (scheduled) {
                 clearTimeout(scheduled);
             }
-            container.classList.remove('ready');
+            if (currentStatus !== 1 || !isMobile()) {
+                container.classList.remove('ready');
+            }
             scheduled = setTimeout(function(){
                 switchEngine()
                     .then(function(){
