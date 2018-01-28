@@ -448,7 +448,6 @@ template {
 
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif, '微软雅黑';
@@ -495,6 +494,9 @@ body nav.primary {
   body nav.primary {
     height: 100%;
     width: var(--nav-primary-thickness);
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 }
 body nav.primary > .inner {
@@ -565,9 +567,7 @@ body .content:after {
 @media (min-width: 1227px) {
   body .content {
     width: calc(100% - var(--nav-primary-thickness));
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    margin-left: var(--nav-primary-thickness);
     -ms-flex-negative: 1;
         flex-shrink: 1;
     -ms-flex-positive: 0;
@@ -590,6 +590,33 @@ body .content > .inner > .caption {
 body article.post {
   margin: calc(var(--margin-large) * -1);
   margin-bottom: 0;
+  visibility: hidden;
+}
+body article.post:after {
+  content: 'Rendering ...';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - var(--nav-primary-thickness));
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  visibility: visible;
+}
+@media (min-width: 1227px) {
+  body article.post:after {
+    height: 100vh;
+  }
+}
+body article.post.ready {
+  visibility: visible;
+}
+body article.post.ready:after {
+  display: none;
 }
 body article.post > .inner {
   font-size: 22px;

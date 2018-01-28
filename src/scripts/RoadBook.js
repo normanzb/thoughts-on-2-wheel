@@ -148,16 +148,27 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         this.root.setAttribute('data-number', number);
     };
 
+    Page.prototype.clean = function() {
+        this.inner.innerHTML = '';
+    };
+
     async function roadBookCreatePage() {
         var me = this;
-        var page = new Page(me);
+        var page;
+        if (me.pagePool.length > 0) {
+            page = me.pagePool.shift();
+        }
+        else {
+            page = new Page(me);
+        }
         await asyncRequestFrame;
         return page;
     }
 
-    // function roadBookDisposePage() {
-
-    // }
+    function roadBookDisposePage(page) {
+        page.clean();
+        this.pagePool.push(page);
+    }
 
     async function roadBookFitItemsIntoPage(fragment, page) {
         while (fragment.children.length > 0) {
@@ -172,6 +183,33 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         return false;
     }
 
+    async function roadBookRender(){
+        var me = this;
+        var fragment = this.fragment;
+        var page;
+        var cloned;
+
+        this.inner.innerHTML = '';
+        while(me.pages.length > 0) {
+            let page = me.pages.pop();
+            await roadBookDisposePage.call(me, page);
+        }
+
+        cloned = document.createDocumentFragment();
+
+        for(var i = 0; i < fragment.children.length; i++) {
+            cloned.appendChild(fragment.children[i].cloneNode(true));
+        }
+
+        do {
+            page = await roadBookCreatePage.call(me);
+            this.pages.push(page);
+            page.setNumber(this.pages.length);
+            this.inner.appendChild(page.root);
+        }
+        while (await roadBookFitItemsIntoPage.call(me, cloned, page));
+    }
+
     function RoadBook(options) {
         this.opts = options;
         
@@ -183,6 +221,7 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         this.limits = Object.assign({}, {
             height: 0
         }, this.opts.limits);
+        this.isRendering = null;
 
         if (this.limits.height <= 0) {
             throw new Error('No limit is set');
@@ -206,25 +245,33 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         container.appendChild(this.root);
     }
 
-    RoadBook.prototype.render = async function (){
+    RoadBook.prototype.render = async function() {
         var me = this;
-        
+        if (me.isRendering) {
+            await me.isRendering;
+        }
+
+        me.isRendering = roadBookRender.call(me);
+        var ret = await me.isRendering;
+        me.isRendering = null;
+        return ret;
+    };
+
+    RoadBook.prototype.destroy = async function() {
+        var container = this.opts.el;
         var fragment = this.fragment;
-        var page;
 
-        var cloned = document.createDocumentFragment();
+        container.removeChild(this.root);
 
-        for(var i = 0; i < fragment.children.length; i++) {
-            cloned.appendChild(fragment.children[i].cloneNode(true));
+        while (fragment.children.length > 0) {
+            let el = fragment.children[0];
+            container.appendChild(el);
         }
 
-        do {
-            page = await roadBookCreatePage.call(me);
-            this.pages.push(page);
-            page.setNumber(this.pages.length);
-            this.inner.appendChild(page.root);
-        }
-        while (await roadBookFitItemsIntoPage.call(me, cloned, page));
+        this.pages.length = 0;
+        this.pagePool.length = 0;
+
+        return Promise.resolve();
     };
 
     return RoadBook;

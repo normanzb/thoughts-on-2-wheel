@@ -2,32 +2,63 @@ define(['/scripts/RoadBook'], function(RoadBook) {
     'use strict';
 
     var container = document.querySelector('article.post');
+    var engine;
+    var postInner;
+
+    function isMobile() {
+        return document.documentElement.clientWidth <= 1226;
+    }
+
+    function switchEngine() {
+        if (!isMobile()) {
+            if (!engine) {
+                engine = new RoadBook({
+                    el: postInner,
+                    limits: {
+                        height: document.documentElement.clientHeight - 30 * 2
+                    }
+                });
+            }
+
+            engine.render();
+            return Promise.resolve();
+        }
+        else {
+            if (engine) {
+                return engine.destroy()
+                    .then(function () {
+                        engine = null;
+                    });
+            }
+            else {
+                return Promise.resolve();
+            }
+        }
+    }
 
     function initRoadBook() {
-        var isMobile = document.documentElement.clientWidth <= 1226;
-        if (isMobile) {
-            return;
-        }
-        var el = document.querySelector('.post > .inner');
-        var engine = new RoadBook({
-            el: el,
-            limits: {
-                height: document.documentElement.clientHeight - 30 * 2
-            }
-        });
-        engine.render();
+        postInner = document.querySelector('.post > .inner');
         var scheduled = null;
         window.addEventListener('resize', function(){
             if (scheduled) {
                 clearTimeout(scheduled);
             }
+            container.classList.remove('ready');
             scheduled = setTimeout(function(){
-                console.log('render...');
-                engine.render();
+                switchEngine()
+                    .then(function(){
+                        container.classList.add('ready');
+                    });
                 scheduled = false;
-            }, 300);
+            }, 600);
             scheduled = true;
         });
+
+        switchEngine()
+            .then(function(){
+                container.classList.add('ready');
+            });
+
     }
 
     /* TODO: auto wrap from server side */
@@ -69,4 +100,4 @@ define(['/scripts/RoadBook'], function(RoadBook) {
             initRoadBook();
         }
     };
-})
+});

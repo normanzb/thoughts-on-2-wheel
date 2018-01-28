@@ -1,5 +1,4 @@
 @import "src/styles/def-date.less";
-@import "src/styles/def-column.less";
 @import "src/styles/has-anchor.less";
 @import "src/styles/rspn.less";
 
@@ -7,6 +6,36 @@ article.post
 {
     margin: ~'calc(var(--margin-large) * -1)';
     margin-bottom: 0;
+    visibility: hidden;
+
+    &:after 
+    {
+        content: 'Rendering ...';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: ~'calc(100vh - var(--nav-primary-thickness))';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: visible;
+
+        .rspn-desktop
+        ({
+            height: 100vh;
+        });
+    }
+
+    &.ready 
+    {
+        visibility: visible;
+
+        &:after 
+        {
+            display: none;
+        }
+    }
 
     .post-internal()
     {
