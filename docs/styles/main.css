@@ -593,7 +593,7 @@ body article.post {
   visibility: hidden;
 }
 body article.post:after {
-  content: 'Rendering ...';
+  content: '渲染中...';
   position: absolute;
   top: 0;
   left: 0;
@@ -951,12 +951,15 @@ body .has-activation-layer:before {
   bottom: 0;
   left: 0;
   z-index: 2;
+  opacity: 0;
   cursor: pointer;
+  transition: opacity .3s;
 }
 body .has-activation-layer:hover:before {
   background-color: rgba(0, 0, 0, 0.5);
-  content: 'Click to activate';
+  content: '点击激活';
   color: #FFF;
+  opacity: 1;
 }
 body .has-activation-layer.activated:before {
   display: none;
@@ -981,12 +984,15 @@ body .iframe-container:before {
   bottom: 0;
   left: 0;
   z-index: 2;
+  opacity: 0;
   cursor: pointer;
+  transition: opacity .3s;
 }
 body .iframe-container:hover:before {
   background-color: rgba(0, 0, 0, 0.5);
-  content: 'Click to activate';
+  content: '点击激活';
   color: #FFF;
+  opacity: 1;
 }
 body .iframe-container.activated:before {
   display: none;
@@ -1022,12 +1028,15 @@ body .iframe-video-container:before {
   bottom: 0;
   left: 0;
   z-index: 2;
+  opacity: 0;
   cursor: pointer;
+  transition: opacity .3s;
 }
 body .iframe-video-container:hover:before {
   background-color: rgba(0, 0, 0, 0.5);
-  content: 'Click to activate';
+  content: '点击激活';
   color: #FFF;
+  opacity: 1;
 }
 body .iframe-video-container.activated:before {
   display: none;

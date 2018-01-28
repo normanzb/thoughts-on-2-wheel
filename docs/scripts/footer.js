@@ -6,31 +6,28 @@ define(['scripts/huntun'], function (huntun) {
             return;
         }
 
-        return;
-
         var mounted = false;
         var options = {
             directions: {
-                bar: 'left'
+                bar: 'right'
             },
             handlers: {
+                mousewheel: function () { }
             }
         };
-        var content = document.querySelector('.content');
-        if (!content) {
+        var html = document.documentElement;
+        var primary = document.querySelector('.primary');
+        if (!primary) {
             return;
         }
-        var article = document.querySelector('article.post');
-        if (article) {
-            article.addEventListener('scroll', function(){
-                scrollbar.handleResize();
-            });
-            options.handlers.resize = function(){
-                scrollbar.model.length = article.scrollWidth + content.scrollHeight;
-                scrollbar.model.viewport = article.offsetWidth + content.offsetHeight;
-                scrollbar.model.position = article.scrollLeft + content.scrollTop;
-            };
-        }
+        window.addEventListener('scroll', function(){
+            scrollbar.handleResize();
+        });
+        options.handlers.resize = function(){
+            scrollbar.model.length = html.scrollHeight;
+            scrollbar.model.viewport = html.clientHeight;
+            scrollbar.model.position = html.scrollTop;
+        };
         var scrollbar = new huntun.ScrollBar(options);
         if (typeof options.handlers.resize === 'function') {
             options.handlers.resize();
@@ -46,7 +43,7 @@ define(['scripts/huntun'], function (huntun) {
             }
             else {
                 if (!mounted) {
-                    scrollbar.mount(content);
+                    scrollbar.mount(primary);
                     mounted = true;
                 }
             }
@@ -60,5 +57,5 @@ define(['scripts/huntun'], function (huntun) {
         init: function(){
             return initScrollBar();
         }
-    }
+    };
 });

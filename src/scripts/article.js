@@ -20,7 +20,13 @@ define(['/scripts/RoadBook'], function(RoadBook) {
                 });
             }
 
-            engine.render();
+            engine.render()
+                .then(function () {
+                    var videos = container.querySelectorAll('video[autoplay]');
+                    for(var l = videos.length; l--;) {
+                        videos[l].play();
+                    }
+                });
             return Promise.resolve();
         }
         else {
@@ -79,23 +85,54 @@ define(['/scripts/RoadBook'], function(RoadBook) {
         return wrap;
     }
 
+    function matchSelector(element, selector) {
+        if (element.matches) {
+            return element.matches(selector);
+        }
+        else if(element.msMatchesSelector) {
+            return element.msMatchesSelector(selector);
+        }
+        return false;
+    }
+
+    function isInside(element, ancestorSelector) {
+        var cur = element;
+        while(cur.parentNode) {
+            if (matchSelector(cur, ancestorSelector)) {
+                return cur;
+            }
+
+            cur = cur.parentNode;
+        }
+
+        return false;
+    }
+
     return {
         init: function () {
+            var monitorElements = [];
+            container.addEventListener('click', function(event){
+                var target = false;
+                for(var l = monitorElements.length; l--; ) {
+                    let selector = monitorElements[l];
+                    target = isInside(event.target, selector);
+                    if (target) {
+                        break;
+                    }
+                }
+                if (target) {
+                    target.classList.add('activated');
+                }
+            });
             wrapElement('img', 'image-container', function(wrap, el){
                 wrap.setAttribute('title', el.getAttribute('alt'));
             });
 
-            wrapElement(':scope > .inner > iframe', 'iframe-container', function(wrap){
-                wrap.addEventListener('click', function(){
-                    wrap.classList.add('activated');
-                });
-            });
+            wrapElement(':scope > .inner > iframe', 'iframe-container');
+            monitorElements.push('.iframe-container');
 
-            document.querySelectorAll('.iframe-video-container').forEach(function(wrap){
-                wrap.addEventListener('click', function(){
-                    wrap.classList.add('activated');
-                });
-            });
+            document.querySelectorAll('.iframe-video-container');
+            monitorElements.push('.iframe-video-container');
 
             initRoadBook();
         }

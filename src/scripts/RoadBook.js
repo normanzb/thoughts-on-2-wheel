@@ -81,6 +81,9 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
             else if (cloned.tagName === 'VIDEO') {
                 console.log('waiting for video to be ready...');
                 await videoReady(cloned);
+                if (cloned.attributes['autoplay']) {
+                    cloned.play();
+                }
             }
 
             if (!me.isFit()) {

@@ -3728,7 +3728,7 @@ var view = {
                         vm._handleFrameRequest = handleFrameRequest;
                         vm._resizeSensor = new ResizeSensor(parent, handleResize);
                         parent.addEventListener('scroll', handleResize, {passive: false});
-                        parent.addEventListener('mousewheel', data.handlers.mousewheel, {passive: false});
+                        parent.addEventListener('wheel', data.handlers.mousewheel, {passive: false});
                         animationFrame.request(handleFrameRequest);
                         handleResize();
                     },
@@ -3740,7 +3740,7 @@ var view = {
                         vm._resizeSensor.detach();
                         vm._resizeSensor = null;
                         parent.removeEventListener('scroll', vm.__container.handleResize);
-                        parent.removeEventListener('mousewheel', data.handlers.mousewheel);
+                        parent.removeEventListener('wheel', data.handlers.mousewheel);
                         animationFrame.cancel(vm._handleFrameRequest);
                         vm.__container.handleResize = null;
                         vm._handleFrameRequest = null;
