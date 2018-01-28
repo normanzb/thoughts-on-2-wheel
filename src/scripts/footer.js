@@ -20,9 +20,6 @@ define(['scripts/huntun'], function (huntun) {
         if (!primary) {
             return;
         }
-        window.addEventListener('scroll', function(){
-            scrollbar.handleResize();
-        });
         options.handlers.resize = function(){
             scrollbar.model.length = html.scrollHeight;
             scrollbar.model.viewport = html.clientHeight;
@@ -33,7 +30,11 @@ define(['scripts/huntun'], function (huntun) {
             options.handlers.resize();
             scrollbar.viewModel.redraw(true);
         }
-
+        window.addEventListener('scroll', function(){
+            if (scrollbar && typeof scrollbar.handleResize === 'function') {
+                scrollbar.handleResize();    
+            }
+        });
         function handleWindowResize(){
             if (window.innerWidth <= 1226)  {
                 if (mounted) {
