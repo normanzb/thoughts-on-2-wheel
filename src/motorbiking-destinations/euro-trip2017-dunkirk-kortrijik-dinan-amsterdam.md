@@ -221,7 +221,7 @@ A16高速进入比利时界后改叫E40，此时汽车牌照中带比利时首�
 
 在这个小镇短暂做了停留，买了巧克力和纪念品，就又踏上了回家的归途。在回家的路上看见了一座红色藤蔓爬满的老宅子，隐约耳边回响起周杰伦的威廉古堡……
 
-![左边比利时人家，右边荷兰房子](/resources/euro-france-belgium-netherland/red-ivy-big-house.jpg)
+![红色藤蔓爬满墙面](/resources/euro-france-belgium-netherland/red-ivy-big-house.jpg)
 
 完。
 
