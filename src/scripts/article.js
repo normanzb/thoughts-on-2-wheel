@@ -27,6 +27,7 @@ define(['/scripts/RoadBook'], function(RoadBook) {
                     var videos = container.querySelectorAll('video[autoplay]');
                     for(var l = videos.length; l--;) {
                         videos[l].play();
+                        videos[l].muted = true;
                     }
                 });
             return Promise.resolve();
