@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node gen.js --with-images"
+    "build": "node gen.js --with-images",
+    "preversion": "node preversion.js",
+    "version": "node version.js && npm run build && git commit -am 'bump version in package.json'",
+    "postversion": "git push && git push --tags"
   },
   "author": "",
   "license": "ISC",
