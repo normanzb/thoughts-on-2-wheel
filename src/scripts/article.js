@@ -7,7 +7,7 @@ define(['/scripts/RoadBook'], function(RoadBook) {
     var currentStatus = '';
 
     function isMobile() {
-        return document.documentElement.clientWidth <= 1226;
+        return window.innerWidth <= 1226;
     }
 
     function switchEngine() {
