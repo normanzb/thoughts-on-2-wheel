@@ -580,7 +580,12 @@ body .links > .inner > *:last-child {
   margin-bottom: 0;
 }
 body .links > .inner > ul {
-  display: block;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   padding: 0;
   margin: 1em 0;
   -ms-flex-negative: 1;
@@ -588,9 +593,16 @@ body .links > .inner > ul {
   -ms-flex-positive: 0;
       flex-grow: 0;
 }
+body .links > .inner > ul > li:first-child {
+  margin-left: 0;
+}
+body .links > .inner > ul > li:first-child {
+  margin-right: 0;
+}
 body .links > .inner > ul > li {
   display: block;
   position: relative;
+  margin: 0 20px;
 }
 body .links > .inner > ul > li > a {
   color: #000;
@@ -620,6 +632,7 @@ body .links > .inner > ul > li > .desc {
   border: 1px solid #000;
   padding: 1em;
   transition: opacity .3s;
+  z-index: 3;
 }
 body .links > .inner > ul > li:hover > .desc {
   display: block;
