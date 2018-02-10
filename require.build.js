@@ -1,5 +1,6 @@
 ({
-    baseUrl: ".",
+    baseUrl: '.',
     include: ['scripts/article', 'scripts/footer'],
-    out: 'src/scripts/bundle.js'
+    out: 'src/scripts/bundle.js',
+    optimize: 'none'
 })
