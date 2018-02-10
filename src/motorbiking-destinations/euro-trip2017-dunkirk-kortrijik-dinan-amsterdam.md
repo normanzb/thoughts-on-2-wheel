@@ -124,7 +124,7 @@ A16高速进入比利时界后改叫E40，此时汽车牌照中带比利时首�
 
 迪南附近必去的另外一个景点就是Meuse河畔的Freyr城堡（Château et Jardins de Freÿr）了，是比利时由于当天要赶路到阿姆斯特丹，于是在城堡附近的山路上骑行了几圈，游览了一下Wallonia山区的风景便上高速一路向北了。
 
-<div class="image-container" title="从山上俯瞰Freyr城堡"><video src="/resources/euro-france-belgium-netherland/castle-freyr.mp4" alt="从山上俯瞰Freyr城堡" playsinline muted autoplay loop /></div>
+<div class="image-container" title="从山上俯瞰Freyr城堡"><video src="/resources/euro-france-belgium-netherland/castle-freyr.mp4" alt="从山上俯瞰Freyr城堡" playsinline muted autoplay loop preload="none" /></div>
 
 比利时吃喝推荐：
 
@@ -161,7 +161,7 @@ A16高速进入比利时界后改叫E40，此时汽车牌照中带比利时首�
 
 荷兰的消费比来之前想象的要高很多，假日酒店的价格比伦敦假日酒店还要贵，看来靠近北欧的地区经济状况都很不错。吃完早饭第一站就是梵高博物馆，跟着Google Map走，因为是在荷兰市区骑行因此需要格外小心。
 
-<div class="image-container" title="阿姆斯特丹的小巷"><video src="/resources/euro-france-belgium-netherland/house-amsterdam.mp4" alt="阿姆斯特丹的小巷" playsinline muted autoplay loop /></div>
+<div class="image-container" title="阿姆斯特丹的小巷"><video src="/resources/euro-france-belgium-netherland/house-amsterdam.mp4" alt="阿姆斯特丹的小巷" playsinline muted autoplay loop preload="none" /></div>
 
 一是因为荷兰是自行车王国，这里交通上最牛逼的就是自行车和各种Moped（小型踏板摩托），他们可以合法的在人行道上分配的非机动车道上行驶，而且速度很快，因此行走在人行道时要格外注意安全。
 

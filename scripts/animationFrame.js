@@ -28,7 +28,7 @@ define(function () {
     }());
 
     return {
-        request: requestAnimationFrame,
-        cancel: cancelAnimationFrame
+        request: requestAnimationFrame.bind(window),
+        cancel: cancelAnimationFrame.bind(window)
     };
 });

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node gen.js --with-images",
+    "build": "node ./node_modules/requirejs/bin/r.js -o require.build.js && node gen.js --with-images",
     "preversion": "node preversion.js",
     "version": "node version.js && npm run build && git commit -am 'bump version in package.json'",
     "postversion": "git push && git push --tags"
@@ -31,6 +31,7 @@
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "requirejs": "^2.3.5"
   }
 }

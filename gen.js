@@ -14,7 +14,7 @@ var handlebars = require('handlebars');
 var pathUtil = require('path');
 var cheerio = require('cheerio');
 var LessPluginAutoPrefix = require('less-plugin-autoprefix');
-var autoprefixPlugin = new LessPluginAutoPrefix({browsers: ["last 2 versions"]});
+var autoprefixPlugin = new LessPluginAutoPrefix({browsers: ['last 2 versions']});
 
 var folderMapping = {
   'motorbiking-destinations': '摩旅目的地',
@@ -100,7 +100,7 @@ var ms = Metalsmith(__dirname)
       ]
     }))
     .use(sharp({
-      src: "resources/**/*.jpg",
+      src: 'resources/**/*.jpg',
       methods: [{
         name: 'resize',
         args: [ 1920, 1080 ]

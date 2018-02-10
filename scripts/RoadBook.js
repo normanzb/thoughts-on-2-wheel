@@ -7,6 +7,12 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         });
     }
 
+    // async function asyncWait(timeout) {
+    //     return new Promise(function(rs){
+    //         setTimeout(rs, timeout);
+    //     });
+    // }
+
     function eventOnce(el, name, handler) {
         el.addEventListener(name, function handlerWrapper() {
             el.removeEventListener(name, handlerWrapper);
@@ -38,21 +44,56 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         });
     }
 
+    async function wait4Element(element) {
+        if (element.tagName === 'IMG') {
+            element.style.height = '';
+            // console.log(`Waiting for image (${element.src}) to be ready...`);
+            await imgReady(element);
+            element.style.height = Math.round(element.clientWidth / element.naturalWidth * element.naturalHeight) + 'px';
+            // console.log('Image ready', element);
+        }
+        else if (element.tagName === 'VIDEO') {
+            console.log(`Waiting for video (${element.src}) to be ready...`);
+            element.muted = true;
+            await videoReady(element);
+            console.log('Video ready', element);
+        }
+        else if (element.children && element.children.length > 0)  {
+            for(var i = 0; i < element.children.length; i++) {
+                await wait4Element(element.children[i]);
+            }
+        }
+    }
+
+    function videoElementMutingWorkaround(element) {
+        if (element.tagName === 'VIDEO') {
+            element.muted = true;
+        }
+        else if (element.children && element.children.length > 0)  {
+            for(var i = 0; i < element.children.length; i++) {
+                videoElementMutingWorkaround(element.children[i]);
+            }
+        }
+    }
+
     async function pageSqueeze(node, parent) {
         var me = this;
         var cloned;
 
         parent.appendChild(node);
+        await wait4Element(node);
+
         if (me.isFit()){
             return null;
         }
 
         parent.removeChild(node);
-        cloned = node.cloneNode(false);
-        parent.appendChild(cloned);
 
         if (node.nodeType === node.TEXT_NODE) {
             let lastChar = null, allIn = true;
+
+            cloned = node.cloneNode(false);
+            parent.appendChild(cloned);
 
             cloned.nodeValue = '';
             for (var i = 0; i < node.nodeValue.length; i++) {
@@ -73,18 +114,11 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
                 return null;
             }
         }
-        else {
-            if (cloned.tagName === 'IMG') {
-                console.log('waiting for image to be ready...');
-                await imgReady(cloned);
-            }
-            else if (cloned.tagName === 'VIDEO') {
-                console.log('waiting for video to be ready...');
-                await videoReady(cloned);
-                if (cloned.attributes['autoplay']) {
-                    cloned.play();
-                }
-            }
+        else if(node.childNodes.length > 0) {
+            cloned = node.cloneNode(false);
+            parent.appendChild(cloned);
+
+            await wait4Element(cloned);            
 
             if (!me.isFit()) {
                 if (cloned.clientHeight > me.book.limits.height) {
@@ -94,23 +128,17 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
                 return node;
             }
 
-            let lastNode, allIn = true;
+            let lastNode, leftOver;
 
             while (node.childNodes.length > 0) {
+                await asyncRequestFrame;
                 lastNode = node.childNodes[0];
-                cloned.appendChild(lastNode);
-                if (!me.isFit()) {
-                    allIn = false;
-                    cloned.removeChild(lastNode);
+                leftOver = await pageSqueeze.call(me, lastNode, cloned);
+
+                if (leftOver) {
                     break;
                 }
             }
-
-            if (allIn) {
-                return null;
-            }
-
-            let leftOver = await pageSqueeze.call(me, lastNode, cloned);
 
             if (leftOver) {
                 node.insertBefore(leftOver, node.childNodes[0]);
@@ -164,7 +192,6 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         else {
             page = new Page(me);
         }
-        await asyncRequestFrame;
         return page;
     }
 
@@ -173,16 +200,25 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
         this.pagePool.push(page);
     }
 
+    function triggerProgress(curent) {
+        if (typeof this.onProgress === 'function') {
+            var total = this.fragment.children.length; 
+            this.onProgress(Math.round((1 - curent / total) * 100));
+        }
+    }
+
     async function roadBookFitItemsIntoPage(fragment, page) {
         while (fragment.children.length > 0) {
             let el = fragment.children[0];
             let leftOver = await page.squeeze(el);
             if (leftOver) {
                 fragment.insertBefore(leftOver, fragment.children[0]);
+                triggerProgress.call(this, fragment.children.length);
                 return true;
             }
         }
 
+        triggerProgress.call(this, fragment.children.length);
         return false;
     }
 
@@ -204,7 +240,10 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
             cloned.appendChild(fragment.children[i].cloneNode(true));
         }
 
+        videoElementMutingWorkaround(cloned);
+
         do {
+            await asyncRequestFrame;
             page = await roadBookCreatePage.call(me);
             this.pages.push(page);
             page.setNumber(this.pages.length);

@@ -1,7 +1,8 @@
-define(['/scripts/RoadBook'], function(RoadBook) {
+define(['./RoadBook'], function(RoadBook) {
     'use strict';
 
     var container = document.querySelector('article.post');
+    var progressBar = container.querySelector('.progress-bar');
     var engine;
     var postInner;
     var currentStatus = '';
@@ -22,13 +23,21 @@ define(['/scripts/RoadBook'], function(RoadBook) {
                 });
             }
 
+            progressBar.style.height = '2px';
+            engine.onProgress = function (percentage) {
+                progressBar.style.width = percentage + '%';
+            };
             engine.render()
                 .then(function () {
-                    var videos = container.querySelectorAll('video[autoplay]');
-                    for(var l = videos.length; l--;) {
-                        videos[l].muted = true;
-                        videos[l].play();
-                    }
+                    // get animation sometime to finish
+                    setTimeout(function () {
+                        progressBar.style.height = '0';
+                    }, 1000);
+                    // var videos = container.querySelectorAll('video[autoplay]');
+                    // for(var l = videos.length; l--;) {
+                    //     videos[l].muted = true;
+                    //     videos[l].play();
+                    // }
                 });
             return Promise.resolve();
         }
