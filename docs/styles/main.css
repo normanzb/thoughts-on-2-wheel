@@ -529,6 +529,8 @@ body nav.primary > .inner > sub {
     -webkit-writing-mode: vertical-rl;
         -ms-writing-mode: tb-rl;
             writing-mode: vertical-rl;
+    width: 1em;
+    line-height: 1em;
   }
 }
 body .logo {
@@ -542,10 +544,11 @@ body .logo {
 }
 @media (min-width: 1227px) {
   body .logo {
-    /* blows on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
     -webkit-writing-mode: vertical-rl;
         -ms-writing-mode: tb-rl;
             writing-mode: vertical-rl;
+    /* workaround on firefox because of https://bugzilla.mozilla.org/show_bug.cgi?id=1223180 */
+    width: 1em;
   }
 }
 body .logo > .inner {
