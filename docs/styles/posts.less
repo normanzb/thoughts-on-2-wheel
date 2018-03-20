@@ -22,7 +22,10 @@ ul.posts
 
         .rspn-desktop
         ({
-            padding-bottom: ~'calc(100% / 16 * 9 + var(--margin-large) * 2)'; 
+            // it could be much simpler for just supporting webkit based browser
+            // padding-bottom: ~'calc(100% / 16 * 9 + var(--margin-large) * 2)';
+            // firefox doesn't calculate 100% correctly here as of version 56
+            padding-bottom: ~'calc((100vw - var(--nav-primary-thickness) - var(--margin-large) * 3) / 2 / 16 * 9 + var(--margin-large) * 2)';
         });
 
         > .caption

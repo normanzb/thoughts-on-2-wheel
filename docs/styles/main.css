@@ -959,7 +959,7 @@ body ul.posts > li {
 }
 @media (min-width: 1227px) {
   body ul.posts > li {
-    padding-bottom: calc(100% / 16 * 9 + var(--margin-large) * 2);
+    padding-bottom: calc((100vw - var(--nav-primary-thickness) - var(--margin-large) * 3) / 2 / 16 * 9 + var(--margin-large) * 2);
   }
 }
 body ul.posts > li > .caption {
