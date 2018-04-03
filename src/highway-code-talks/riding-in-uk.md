@@ -170,6 +170,7 @@ signals as viewed from the direction of travel of such traffic
 * 如目标出口为第一出口，则在进入环岛前站左侧左转车道，打左转灯进入并离开。
 * 如目标出口在入口的1点-6点区间，则在进入环岛前必须占右转车道打右转灯，在出口前查看左后方并打左转灯离开环岛。
 * 如目标出口在入口的12点钟方向，则在进入环岛时可以占任何非左转或右转车道，进入环岛前无需打转向灯。
+* 如目标出口在入口的12点-6点钟方向，则在进入环岛时需要占右侧或右转车道，进入环岛前打右转灯，并保持右转灯直到离开环岛前，打左转灯离开环岛。
 
 ![环岛交规示意图](/resources/highway-code/roundabout-rules.jpg)
 ![进入环岛前的提示牌](/resources/highway-code/roundabout-sign.jpg)
