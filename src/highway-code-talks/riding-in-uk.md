@@ -147,7 +147,7 @@ signals as viewed from the direction of travel of such traffic
 * 郊区以及高速的情况：
     * 双向单车道，默认限速60英里。
     * 双车道以上，并道路两方向有分隔时，默认限速70英里。
-* 以下标识表示National Speed Limit，即依据情况使用默认规定限速：
+* 需要额外注意的是以下标识表示National Speed Limit，即依据情况使用默认规定限速：
 
 ![单车道双向则限速60](/resources/highway-code/national-speed-limit.jpg)
 
