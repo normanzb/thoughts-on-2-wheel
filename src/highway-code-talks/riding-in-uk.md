@@ -155,6 +155,8 @@ signals as viewed from the direction of travel of such traffic
 
 * 转弯让直行
 * 辅路让主路
+* 道路出口方有双虚线的需要让行
+* 在路口右转进入右侧入口时，需要给对向左转进入我方右侧路口的车辆让行。
 * 任何对方有优先权的情况，如因我方转向造成对方刹车减速的，都属于转向失败。
 
 ### 交通环岛（Roundabout）
