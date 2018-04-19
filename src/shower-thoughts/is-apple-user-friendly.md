@@ -8,7 +8,7 @@ Who hasn't broke a few gadgets in the past? Lots of us out there have the experi
 
 ![Apple=User friendly?](/resources/is-apple-user-friendly/macbookpro.jpg)
 
-Even the one decided to get a new one, as you can't flush it into the pipe because nowadays the phones are usually gigantic so I guess it ended up with putting hands in the hole.
+Even the one decided to get a new one at the end, as you can't flush it into the pipe because nowadays the phones are usually gigantic, I guess most of the times it ended up with putting hands in the hole anyway.
 
 When the gadget gets damaged, we all hoped there is an easy way to fix it. However here is this unlucky guy who broke his iMac, got a decline from apple for supplying parts to fix it themselves:
 
