@@ -19,7 +19,8 @@ var autoprefixPlugin = new LessPluginAutoPrefix({browsers: ['last 2 versions']})
 var folderMapping = {
   'motorbiking-destinations': '摩旅目的地',
   'highway-code-talks': '交规学习班',
-  'zen-and-the-art': '摩托车与禅'
+  'zen-and-the-motorcycles': '摩托车与禅',
+  'shower-thoughts': '脑洞'
 };
 
 handlebars.registerHelper('folder', function(path) {
