@@ -4,7 +4,7 @@ date: 2018-04-19
 keywords: apple, user friendly
 ---
 
-Who hasn't broke a few gadgets in the past? Lots of people out there have the experience of dropping mobile phone into the toilet and was in the dilimma of putting hands into the shit hole to get it out or just pay and other 700 quids to get a new one. 
+Who hasn't broke a few gadgets in the past? Lots of us out there have the experience of dropping mobile phone into the toilet and was in the dilimma of putting hands into the shit hole to get it out or just pay another 700 quids to get a new one. 
 
 ![Apple=User friendly?](/resources/is-apple-user-friendly/macbookpro.jpg)
 
