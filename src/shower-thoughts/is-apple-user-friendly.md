@@ -28,6 +28,6 @@ Also the glare reflective screen is bloody difficult to use if you are sitting n
 
 Apple knows as long as its products have the style that people want then them will follow. When we look at beautiful stuffs the nerves relaxed and we forgot about being vigilant and can't see the evilness hides underneath, human beings quite often are too obsessed to good looking things and this is coded inside our genes, and this has became the most powerful weapon since civilisation emerge. You find similiar concept everywhere -- Russian spys, red sparrows, succubus, snake fairy... Even when you are riding the motorbike on a scenary mountain top, you look aside, watch through the ridges, you amazed by the endless curves that seem to be built for eternity and forgot about the dangerous side of motorcycle riding completely.
 
-I wish I have the "golden-gaze fiery-eyes" the Monkey King has, without the ability to seeing the truth you are going to ended up with either have no one to trust or being a slaved by the master of deception.
+I wish I have the "golden-gaze fiery-eyes" the Monkey King has, without the ability to seeing the truth you are going to ended up with either have no one to trust or being slaved by the master of deception.
 
 Tang Sanzang the Tripiṭaka, who has greatest determine, without the help from the fiery-eyes, would have failed the task million times before returning the scroll to east.
