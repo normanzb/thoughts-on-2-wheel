@@ -49,7 +49,7 @@ keywords: 摩托, 汽车, 刹车, 距离
 
 ![铝的摩擦系数，随着压力改变而减弱](/resources/can-motorcycles-brake-faster-than-cars/coefficient-of-friction-decrease.png)
 
-（参考这篇paper：https://file.norm.im/$/fcypu）
+（参考这篇paper：<https://file.norm.im/$/fcypu>）
 
 轮胎也是这样，随着载重质量的增大，摩擦系数减小。因此上面的计算中，因为增加重量所增长的摩擦力，并没有预计中那么大，无法完全中和质量增长带来的动能。
 
