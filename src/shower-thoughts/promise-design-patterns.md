@@ -10,7 +10,7 @@ TLDR: Use `throw PromiseResult(result)` to break a promise `then` callback chain
 
 # Breakable `then` callback chain
 
-Basically, with `promise()` it allows you to keep chaining async calls with infinite `then()`s, this is very useful as it helps to avoid writing deeply nested callbacks, make the logic much pleasant to look at. 
+One virtue of `promise()` is it allows you to keep chaining async calls with infinite `then()`s, this is very useful as it helps to avoid writing deeply nested callbacks, make the logic much pleasant to look at. 
 
 For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do `postProcess(data)`, if not, try fetch data from source 2 and check again if that is what we want, if it is again, do `postProcess(data)` and so on and on...
 
