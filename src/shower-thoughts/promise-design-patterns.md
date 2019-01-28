@@ -76,7 +76,7 @@ Promise
 
 It looks much better now except it DOES NOT work.
 
-If `dataFromSource1` is the data we want, the `postProcess()` will return a resolved `promise`, which causes `secondCallback` to be called and `postProcess`ed again, do does the `secondCallback` in `thirdCallback`.
+If `dataFromSource1` is the data we want, the `postProcess()` will return a resolved `promise`, which causes `secondCallback()` and `postProcess()` to be called again, so does the `thirdCallback()`.
 
 So in order to solve that, we make postProcess return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:
 

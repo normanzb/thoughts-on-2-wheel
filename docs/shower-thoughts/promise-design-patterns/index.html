@@ -98,7 +98,7 @@
     })
 </code></pre>
 <p>It looks much better now except it DOES NOT work.</p>
-<p>If <code>dataFromSource1</code> is the data we want, the <code>postProcess()</code> will return a resolved <code>promise</code>, which causes <code>secondCallback</code> to be called and <code>postProcess</code>ed again, do does the <code>secondCallback</code> in <code>thirdCallback</code>.</p>
+<p>If <code>dataFromSource1</code> is the data we want, the <code>postProcess()</code> will return a resolved <code>promise</code>, which causes <code>secondCallback()</code> and <code>postProcess()</code> to be called again, so does the <code>thirdCallback()</code>.</p>
 <p>So in order to solve that, we make postProcess return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:</p>
 <pre><code class="lang-javascript">const abort = {};
 function postProcess(data) {
