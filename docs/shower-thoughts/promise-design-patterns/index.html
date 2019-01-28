@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css?b=1.0.5"><meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" />
+    <meta name="description" content="这是一个记录骑摩托时、站在山顶时、躺在小溪旁、坐在公园的长椅上时，大脑放空却突然冒出的各种脑洞的博客。有时候也会聊一聊计算机技术，或是英国以及整个欧洲值得骑车去的一些地方，分享一些粗浅的骑行经验。">
+    <script src='/scripts/amdshim.js'></script>
+    <script>
+        window.amdShim.config({
+            baseUrl: '/'
+        });
+    </script></head>
+<body>
+    <nav class="primary">
+        <div class="inner">
+            <div class="logo">
+                <div class="inner">
+                    \\<span class="thoughts">THOUGHTS</span>&nbsp;ON&nbsp;2-WHEEL\\
+                </div>
+                <script>
+                (function(){
+                    'use strict';
+                    var script = document.scripts[document.scripts.length - 1];
+                    var container = script.parentNode;
+                    container.onclick = function(){
+                        window.location.href = '/';
+                    };
+                })();
+                </script>
+            </div>        <sub>记录骑摩托时突然冒出的各种脑洞</sub>
+        </div>
+    </nav><div class="content">
+    <div class="inner">
+            <article class="post">
+                <div class="inner">
+                    <h1></h1>
+                    <span class="date">\  \</span>
+                    <p>I realised recently that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise invovled. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did, I think it would be even nicer to make these patterns into a promise-belt utlity library but I don&#39;t have time fully go through it yet... so here we go:</p>
+            <p>TLDR: Use <code>throw PromiseResult(result)</code> to break a promise <code>then</code> callback chain, is much easier than checking the resolved value in each <code>then</code> callback.</p>
+            <h1 id="breakable-then-callback-chain">Breakable <code>then</code> callback chain</h1>
+            <p>Basically, with <code>promise()</code> it allows you to keep chaining async calls with infinite <code>then()</code>s, this is very useful as it helps to avoid writing deeply nested callbacks, make the logic much pleasant to look at. </p>
+            <p>For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do <code>postProcess(data)</code> if not try fetch data from source 2 and check again if that is what we want, if it is again, do <code>postProcess(data)</code> and so on and on...</p>
+            <p>it often ends up with code like this:</p>
+            <pre><code class="lang-javascript">fetchFromSource1()
+                .then(function(dataFromSource1){
+                    if (isItWhatWeWant(dataFromSource1)) {
+                        return postProcess(dataFromSource1)
+                    }
+            
+                    return fetchFromSource2()
+                        .then(function(dataFromSource2){
+                            if (isItWhatWeWant(dataFromSource2)) {
+                                return postProcess(dataFromSource2)
+                            }
+            
+                            return fetchFromSource3()
+                                .then(function(dataFromSource3){
+                                    if (isItWhatWeWant(dataFromSource3)) {
+                                        return postProcess(dataFromSource2)
+                                    }
+            
+                                    return doSomethingElse()
+                                }) 
+                        })
+                })
+            </code></pre>
+            <p>As you can see from above, as the number of data source goes up, the code gradually developed into some deeply nested callback hell, it is not just unpleasant to look at, it is also very difficult to understand the logic and you need a very wide screen to see the whole piece of code 🤦.</p>
+            <p>So I wanted to pull out those nested blocks above by using <code>then</code> callback chain to flatten the whole piece, and it goes well at the beginning:</p>
+            <pre><code class="lang-javascript">Promise
+                .resolve()
+                .then(function(){
+                    return fetchFromSource1();
+                })
+                .then(function firstCallback(dataFromSource1){
+                    if (isItWhatWeWant(dataFromSource1)) {
+                        return postProcess(dataFromSource1)
+                    }
+            
+                    return fetchFromSource2()
+                })
+                .then(function secondCallback(dataFromSource2){
+                    if (isItWhatWeWant(dataFromSource2)) {
+                        return postProcess(dataFromSource2)
+                    }
+            
+                    return fetchFromSource3()
+                })
+                .then(function thirdCallback(dataFromSource3){
+                    if (isItWhatWeWant(dataFromSource3)) {
+                        return postProcess(dataFromSource2)
+                    }
+            
+                    return doSomethingElse()
+                })
+            </code></pre>
+            <p>It looks much better now except it DOES NOT work.</p>
+            <p>If <code>dataFromSource1</code> is the data we want, the <code>postProcess()</code> will return a resolved <code>promise</code>, which causes <code>secondCallback</code> to be called and <code>postProcess</code>ed again, do does the <code>secondCallback</code> in <code>thirdCallback</code>.</p>
+            <p>So in order to solve that, we make postProcess return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:</p>
+            <pre><code class="lang-javascript">const abort = {};
+            function postProcess(data) {
+                ...
+            
+                return abort;
+            }
+            Promise
+                .resolve()
+                .then(function(){
+                    return fetchFromSource1();
+                })
+                .then(function firstCallback(dataFromSource1){
+                    if (isItWhatWeWant(dataFromSource1)) {
+                        return postProcess(dataFromSource1)
+                    }
+            
+                    return fetchFromSource2()
+                })
+                .then(function secondCallback(dataFromSource2){
+                    if (dataFromSource2 === abort) {
+                        return abort;
+                    }
+                    if (isItWhatWeWant(dataFromSource2)) {
+                        return postProcess(dataFromSource2)
+                    }
+            
+                    return fetchFromSource3()
+                })
+                .then(function thirdCallback(dataFromSource3){
+                    if (dataFromSource2 === abort) {
+                        return abort;
+                    }
+                    if (isItWhatWeWant(dataFromSource3)) {
+                        return postProcess(dataFromSource2)
+                    }
+            
+                    return doSomethingElse()
+                })
+            </code></pre>
+            <p>This time it is working, and it is much friendly to the eyes, but it does come with a downside: for every callback the dev needs to remember checking the resolved value against <code>abort</code> object. It is error prone, and later dev who joins the project may not notice it they need to do so.</p>
+            <p>To make the code less error prone. The pattern I usually use in the project does the opposite, rather than checking the <code>abort</code> object in every callback, it throws or reject a <code>PromiseResult</code> object, which is the holder of the true resolved value. This way we can use early <code>rejection</code> to skip the callback and process the data at the end of the callback chain:</p>
+            <pre><code class="lang-javascript">function PromiseResult(result) {
+                this.result = result;
+            }
+            
+            Promise
+                .resolve()
+                .then(function(){
+                    return fetchFromSource1();
+                })
+                .then(function firstCallback(dataFromSource1){
+                    if (isItWhatWeWant(dataFromSource1)) {
+                        throw new PromiseResult(dataFromSource1)
+                    }
+            
+                    return fetchFromSource2()
+                })
+                .then(function secondCallback(dataFromSource2){
+                    if (isItWhatWeWant(dataFromSource1)) {
+                        throw new PromiseResult(dataFromSource1)
+                    }
+            
+                    return fetchFromSource3()
+                })
+                .then(function thirdCallback(dataFromSource3){
+                    if (isItWhatWeWant(dataFromSource1)) {
+                        throw new PromiseResult(dataFromSource1)
+                    }
+                })
+                .then(function(){
+                    return doSomethingElse()
+                }, function(errOrResult){
+                    if (errOrResult instanceof PromiseResult) {
+                        return postProcess(errOrResult.result)
+                    }
+            
+                    throw errOrResult
+                });
+            </code></pre>
+            <p>Now that is much better, I know some of you might not like the bits where it <code>throw</code>s, as it comes with performance penalties, but you can always substitute them into <code>return Promise.reject</code>.</p>
+            
+                </div>
+                <div class="progress-bar"></div>
+                <script>
+                require(['scripts/article'], function(article){
+                    article.init();
+                });
+                </script>
+            </article>            <div class="comment">
+                <div id="disqus_thread"></div>
+                <script>
+                (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://thoughts-on-2-wheel.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+                </script>
+            </div>    </div>
+</div>    <script>
+        require(['scripts/footer'], function(footer){
+            footer.init();
+        });
+    </script>
+    <script src='/scripts/bundle.js?b=1.0.5'></script></body>
+</html>
