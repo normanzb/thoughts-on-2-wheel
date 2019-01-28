@@ -78,7 +78,7 @@ It looks much better now except it DOES NOT work.
 
 If `dataFromSource1` is the data we want, the `postProcess()` will return a resolved `promise`, which causes `secondCallback()` and `postProcess()` to be called again, so does the `thirdCallback()`.
 
-So in order to solve that, we make postProcess return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:
+So in order to make it works, the most straight forward solution is to make `postProcess()` return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:
 
 ```javascript
 const abort = {};
@@ -121,7 +121,7 @@ Promise
     }) 
 ```
 
-This time it is working, and it is much friendly to the eyes, but it does come with a downside: for every callback the dev needs to remember checking the resolved value against `abort` object. It is error prone, and later dev who joins the project may not notice it they need to do so.
+This time it is working, and it is much friendly to the eyes, but it does come with a downside: for every callback the dev needs to remember checking the resolved value against `abort` object. It is error prone, and later joined devs might not notice that they need to do so.
 
 To make the code less error prone. The pattern I usually use in the project does the opposite, rather than checking the `abort` object in every callback, it throws or reject a `PromiseResult` object, which is the holder of the true resolved value. This way we can use early `rejection` to skip the callback and process the data at the end of the callback chain:
 

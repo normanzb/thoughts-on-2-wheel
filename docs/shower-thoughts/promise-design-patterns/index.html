@@ -99,7 +99,7 @@
 </code></pre>
 <p>It looks much better now except it DOES NOT work.</p>
 <p>If <code>dataFromSource1</code> is the data we want, the <code>postProcess()</code> will return a resolved <code>promise</code>, which causes <code>secondCallback()</code> and <code>postProcess()</code> to be called again, so does the <code>thirdCallback()</code>.</p>
-<p>So in order to solve that, we make postProcess return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:</p>
+<p>So in order to make it works, the most straight forward solution is to make <code>postProcess()</code> return a special object and check that object in each callback to avoid unnecessary processing, here is the updated code:</p>
 <pre><code class="lang-javascript">const abort = {};
 function postProcess(data) {
     ...
@@ -139,7 +139,7 @@ Promise
         return doSomethingElse()
     })
 </code></pre>
-<p>This time it is working, and it is much friendly to the eyes, but it does come with a downside: for every callback the dev needs to remember checking the resolved value against <code>abort</code> object. It is error prone, and later dev who joins the project may not notice it they need to do so.</p>
+<p>This time it is working, and it is much friendly to the eyes, but it does come with a downside: for every callback the dev needs to remember checking the resolved value against <code>abort</code> object. It is error prone, and later joined devs might not notice that they need to do so.</p>
 <p>To make the code less error prone. The pattern I usually use in the project does the opposite, rather than checking the <code>abort</code> object in every callback, it throws or reject a <code>PromiseResult</code> object, which is the holder of the true resolved value. This way we can use early <code>rejection</code> to skip the callback and process the data at the end of the callback chain:</p>
 <pre><code class="lang-javascript">function PromiseResult(result) {
     this.result = result;

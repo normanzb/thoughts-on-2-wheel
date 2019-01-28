@@ -754,7 +754,7 @@ body article.post > .inner {
     padding-top: 0;
   }
   body article.post > .inner > pre > code {
-    font-size: .7em;
+    font-size: .8em;
     max-width: 100%;
     overflow: visible;
     white-space: pre;
@@ -947,7 +947,7 @@ body article.post > .inner > .road-book > .inner > .page > .inner > pre.road-boo
   padding-top: 0;
 }
 body article.post > .inner > .road-book > .inner > .page > .inner > pre > code {
-  font-size: .7em;
+  font-size: .8em;
   max-width: 100%;
   overflow: visible;
   white-space: pre;
