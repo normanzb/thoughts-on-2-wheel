@@ -746,15 +746,22 @@ body article.post > .inner {
     display: block;
     width: 100%;
   }
+  body article.post > .inner > p > pre > code,
   body article.post > .inner > p > code {
-    margin: 0 var(--margin-small);
     padding: 0.15em var(--margin-default);
     font-size: .7em;
-    vertical-align: top;
     background-color: #E1E1E1;
     color: #000;
     border-radius: 3px;
     text-shadow: 1px 1px 0 #ffffff;
+  }
+  body article.post > .inner > p > pre {
+    width: 90%;
+    overflow: scroll;
+  }
+  body article.post > .inner > p > code {
+    margin: 0 var(--margin-small);
+    vertical-align: middle;
   }
   body article.post > .inner > p > a {
     display: inline;
@@ -898,15 +905,22 @@ body article.post > .inner > .road-book > .inner > .page > .inner > p > img {
   display: block;
   width: 100%;
 }
+body article.post > .inner > .road-book > .inner > .page > .inner > p > pre > code,
 body article.post > .inner > .road-book > .inner > .page > .inner > p > code {
-  margin: 0 var(--margin-small);
   padding: 0.15em var(--margin-default);
   font-size: .7em;
-  vertical-align: top;
   background-color: #E1E1E1;
   color: #000;
   border-radius: 3px;
   text-shadow: 1px 1px 0 #ffffff;
+}
+body article.post > .inner > .road-book > .inner > .page > .inner > p > pre {
+  width: 90%;
+  overflow: scroll;
+}
+body article.post > .inner > .road-book > .inner > .page > .inner > p > code {
+  margin: 0 var(--margin-small);
+  vertical-align: middle;
 }
 body article.post > .inner > .road-book > .inner > .page > .inner > p > a {
   display: inline;

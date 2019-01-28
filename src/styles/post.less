@@ -66,16 +66,31 @@ article.post
                 width: 100%;
             }
 
+            > pre > code,
             > code 
             {
-                margin: 0 var(--margin-small);
                 padding: .15em var(--margin-default);
                 font-size: .7em;
-                vertical-align: top;
                 background-color: #E1E1E1;
                 color: #000;
                 border-radius: 3px;
                 text-shadow: 1px 1px 0 rgba(255,255,255,1);
+            }
+
+            > pre
+            {
+                width: 90%;
+                overflow: scroll;
+                 > code
+                {
+                    
+                }
+            }
+
+            > code 
+            {
+                margin: 0 var(--margin-small);
+                vertical-align: middle;
             }
             
             .has-anchor();

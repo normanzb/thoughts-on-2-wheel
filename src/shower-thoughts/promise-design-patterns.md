@@ -4,7 +4,7 @@ date: 2019-01-28
 keywords: javascript, promise, patterns
 ---
 
-I realised recently that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise invovled. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did, I think it would be even nicer to make these patterns into a promise-belt utlity library but I don't have time fully go through it yet... so here we go:
+I realised recently that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise invovled. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did, I think it would be even nicer to make these patterns into a promise-belt utlity library but I don't have time to fully go through it yet... so here we go:
 
 TLDR: Use `throw PromiseResult(result)` to break a promise `then` callback chain, is much easier than checking the resolved value in each `then` callback.
 
@@ -12,7 +12,7 @@ TLDR: Use `throw PromiseResult(result)` to break a promise `then` callback chain
 
 Basically, with `promise()` it allows you to keep chaining async calls with infinite `then()`s, this is very useful as it helps to avoid writing deeply nested callbacks, make the logic much pleasant to look at. 
 
-For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do `postProcess(data)` if not try fetch data from source 2 and check again if that is what we want, if it is again, do `postProcess(data)` and so on and on...
+For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do `postProcess(data)`, if not, try fetch data from source 2 and check again if that is what we want, if it is again, do `postProcess(data)` and so on and on...
 
 it often ends up with code like this:
 
