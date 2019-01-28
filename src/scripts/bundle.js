@@ -130,6 +130,20 @@ define('scripts/RoadBook',['./imageMetaReady', './animationFrame'], function(ima
         }
     }
 
+    function isUnseparatableChar(char) {
+        var code = char.charCodeAt(0);
+        if (
+            (code >= 33 && code <= 126) ||
+            (code >= 160 && code <= 591) || 
+            (code >= 647 && code <= 669) ||
+            (code >= 668 && code <= 767) ||
+            (code >= 880 && code <= 1023)
+        ) {
+            return true;
+        }
+        return false;
+    }
+
     async function pageSqueeze(node, parent) {
         var me = this;
         var cloned;
@@ -145,23 +159,34 @@ define('scripts/RoadBook',['./imageMetaReady', './animationFrame'], function(ima
 
         if (node.nodeType === node.TEXT_NODE) {
             let lastChar = null, allIn = true;
+            let i = 0;
 
             cloned = node.cloneNode(false);
             parent.appendChild(cloned);
 
             cloned.nodeValue = '';
-            for (var i = 0; i < node.nodeValue.length; i++) {
-                lastChar = node.nodeValue[i];
-                cloned.nodeValue += lastChar;
+            while (i < node.nodeValue.length) {
+                var squeezedChars = '';
+                do {
+                    lastChar = node.nodeValue[i + squeezedChars.length];
+                    squeezedChars += lastChar;
+                }
+                while (isUnseparatableChar(lastChar));
+                cloned.nodeValue += squeezedChars;
                 if (!me.isFit()) {
                     if (i === 0 && cloned.parentNode.clientHeight > me.book.limits.height) {
                         throw new Error('Smallest element is even larger than limit');
                     }
                     allIn = false;
-                    cloned.nodeValue = cloned.nodeValue.substr(0, cloned.nodeValue.length - 1);
-                    node.nodeValue = node.nodeValue.substring(i, node.length);
+                    cloned.nodeValue = cloned.nodeValue.substr(
+                        0, cloned.nodeValue.length - squeezedChars.length
+                    );
+                    node.nodeValue = node.nodeValue.substring(
+                        i, node.length
+                    );
                     break;
                 }
+                i += squeezedChars.length;
             }
 
             if (allIn) {
