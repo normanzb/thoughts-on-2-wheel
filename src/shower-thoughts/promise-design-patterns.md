@@ -10,9 +10,9 @@ TLDR: Use `throw PromiseResult(result)` to break a promise `then` callback chain
 
 # Breakable `then` callback chain
 
-One virtue of `promise()` is it allows you to keep chaining async calls with infinite `then()` functions, this is very useful as it helps to avoid writing deeply nested callbacks, make the logic much pleasant to look at. 
+One virtue of `promise()` is it allows you to keep chaining async calls with infinite `then()` functions, this is very useful as it helps to avoid writing deeply nested callbacks, it makes the business logic much pleasant to look at. 
 
-For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do `postProcess(data)`, if not, try fetch data from source 2 and check again if that is what we want, if it is again, do `postProcess(data)` and so on and on...
+For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do `postProcess(data)`, if not, try fetch data from source 2 and check again if that is what we want, if it is, do `postProcess(data)` as always and so on and on...
 
 it often ends up with code like this:
 
@@ -41,7 +41,7 @@ fetchFromSource1()
     })
 ```
 
-As you can see from above, as the number of data source goes up, the code gradually developed into some deeply nested callback hell, it is not just unpleasant to look at, it is also very difficult to understand the logic and you need a very wide screen to see the whole piece of code 🤦.
+As you can see from above, as the number of data source increase, the code gradually developed into some deeply nested callback hell, it is not just unpleasant to look at, it is also very difficult to understand the logic and you need a very wide screen to see the whole piece of code 🤦.
 
 So I wanted to pull out those nested blocks above by using `then` callback chain to flatten the whole piece, and it goes well at the beginning:
 

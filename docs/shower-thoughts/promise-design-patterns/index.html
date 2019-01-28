@@ -42,8 +42,8 @@
 <p>I realised recently that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise invovled. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did, I think it would be even nicer to make these patterns into a promise-belt utlity library but I don&#39;t have time to fully go through it yet... so here we go:</p>
 <p>TLDR: Use <code>throw PromiseResult(result)</code> to break a promise <code>then</code> callback chain, is much easier than checking the resolved value in each <code>then</code> callback.</p>
 <h1 id="breakable-then-callback-chain">Breakable <code>then</code> callback chain</h1>
-<p>One virtue of <code>promise()</code> is it allows you to keep chaining async calls with infinite <code>then()</code> functions, this is very useful as it helps to avoid writing deeply nested callbacks, make the logic much pleasant to look at. </p>
-<p>For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do <code>postProcess(data)</code>, if not, try fetch data from source 2 and check again if that is what we want, if it is again, do <code>postProcess(data)</code> and so on and on...</p>
+<p>One virtue of <code>promise()</code> is it allows you to keep chaining async calls with infinite <code>then()</code> functions, this is very useful as it helps to avoid writing deeply nested callbacks, it makes the business logic much pleasant to look at. </p>
+<p>For example, it is quite often for me to do something like this: fetch data from source 1, if it is what we want then do <code>postProcess(data)</code>, if not, try fetch data from source 2 and check again if that is what we want, if it is, do <code>postProcess(data)</code> as always and so on and on...</p>
 <p>it often ends up with code like this:</p>
 <pre><code class="lang-javascript">fetchFromSource1()
     .then(function(dataFromSource1){
@@ -68,7 +68,7 @@
             })
     })
 </code></pre>
-<p>As you can see from above, as the number of data source goes up, the code gradually developed into some deeply nested callback hell, it is not just unpleasant to look at, it is also very difficult to understand the logic and you need a very wide screen to see the whole piece of code 🤦.</p>
+<p>As you can see from above, as the number of data source increase, the code gradually developed into some deeply nested callback hell, it is not just unpleasant to look at, it is also very difficult to understand the logic and you need a very wide screen to see the whole piece of code 🤦.</p>
 <p>So I wanted to pull out those nested blocks above by using <code>then</code> callback chain to flatten the whole piece, and it goes well at the beginning:</p>
 <pre><code class="lang-javascript">Promise
     .resolve()
