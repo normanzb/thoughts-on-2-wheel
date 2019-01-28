@@ -770,7 +770,7 @@ body article.post > .inner {
     color: #333;
     pointer-events: null;
   }
-  body article.post > .inner > pre > code.road-book--post:after {
+  body article.post > .inner > pre > code.road-book--post:before {
     position: absolute;
     bottom: 100%;
     left: 0;
@@ -963,7 +963,7 @@ body article.post > .inner > .road-book > .inner > .page > .inner > pre > code.r
   color: #333;
   pointer-events: null;
 }
-body article.post > .inner > .road-book > .inner > .page > .inner > pre > code.road-book--post:after {
+body article.post > .inner > .road-book > .inner > .page > .inner > pre > code.road-book--post:before {
   position: absolute;
   bottom: 100%;
   left: 0;
