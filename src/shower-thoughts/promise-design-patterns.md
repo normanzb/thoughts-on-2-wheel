@@ -1,5 +1,5 @@
 ---
-title: Promise() design patterns - Breakable then callback chain
+title: 'Promise()' design patterns - Breakable 'then()' callback chain
 date: 2019-01-28
 keywords: javascript, promise, patterns
 ---
