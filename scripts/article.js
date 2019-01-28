@@ -1,4 +1,4 @@
-define(['./RoadBook'], function(RoadBook) {
+define(['./RoadBook', './highlight'], function(RoadBook, highlight) {
     'use strict';
 
     var container = document.querySelector('article.post');
@@ -29,7 +29,7 @@ define(['./RoadBook'], function(RoadBook) {
             };
             engine.render()
                 .then(function () {
-                    // get animation sometime to finish
+                    // give animation sometime to finish
                     setTimeout(function () {
                         progressBar.style.height = '0';
                     }, 1000);
@@ -57,6 +57,10 @@ define(['./RoadBook'], function(RoadBook) {
 
     function initRoadBook() {
         postInner = document.querySelector('.post > .inner');
+        postInner.querySelectorAll('pre > code')
+            .forEach((block) => {
+                highlight.highlightBlock(block);
+            });
         var scheduled = null;
         window.addEventListener('resize', function(){
             if (scheduled) {
@@ -72,7 +76,6 @@ define(['./RoadBook'], function(RoadBook) {
                     });
                 scheduled = false;
             }, 600);
-            scheduled = true;
         });
 
         switchEngine()

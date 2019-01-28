@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <title>摩托刹车的距离与汽车比更短吗？</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css?b=1.0.5"><meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" />
+    <link rel="stylesheet" href="/styles/main.css?b=1.0.5">
+    <link rel="stylesheet" href="/styles/highlight/nord.css?b=1.0.5"><meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" />
     <meta name="description" content="这是一个记录骑摩托时、站在山顶时、躺在小溪旁、坐在公园的长椅上时，大脑放空却突然冒出的各种脑洞的博客。有时候也会聊一聊计算机技术，或是英国以及整个欧洲值得骑车去的一些地方，分享一些粗浅的骑行经验。">
     <script src='/scripts/amdshim.js'></script>
     <script>
@@ -34,67 +35,67 @@
         </div>
     </nav><div class="content">
     <div class="inner">
-            <article class="post">
-                <div class="inner">
-                    <h1>摩托刹车的距离与汽车比更短吗？</h1>
-                    <span class="date">\ Tue Mar 20 2018 00:00:00 GMT+0000 (GMT) \</span>
-                    <p>最近了解到了一个mind blowing的车辆物理的特性，进而发现之前对这个问题的理解一直是有错误的。</p>
-            <p><img src="/resources/can-motorcycles-brake-faster-than-cars/title.jpg" alt="刹车距离谁短？"></p>
-            <p>（之前理解的有错，原帖子已经删除）</p>
-            <p>这家叫做“骑行建议”的网站： <a href="http://www.therideadvice.com/can-motorcycle-brake-faster-car/">http://www.therideadvice.com/can-motorcycle-brake-faster-car/</a> 。在这篇两年前的文章，尝试了从“物理学”的角度去证明“车重和刹车距离没有关系，只和摩擦力有关”。</p>
-            <p>其实许多汽车驾驶员也有这样的看法，认为自己的车子有四个轮子，接触面积大，于是刹车上占优势。</p>
-            <p>如果文章所述是真的，那么这里有两个矛盾的点：</p>
-            <ol>
-            <li><p>根据文章里头提到的摩擦力公式 <code>f&lt;sub&gt;static&lt;/sub&gt; = μ * m * g</code>，轮胎的摩擦力理论上和接触面积没什么关系。
-            但是这其实本身是反常识的，因为日常生活中我们接触到的车辆，为了应付因为载重量增大而带来的刹车问题，通常都会增加轮胎的接触地面积。</p>
-            </li>
-            <li><p>另外一个反常识的地方在于，我们都有过这样的体验：同一辆车子，如果载满了人的时候，刹车距离会大大高于空负载的刹车距离。</p>
-            </li>
-            </ol>
-            <p>那么让我们用动能公式的角度来看看这个问题，验证以下是否真是如：</p>
-            <p>由于机械刹车（除去人为因素）距离的长短，是由动能Kinetic Energy和刹车力Force决定的：</p>
-            <p>公式： <code>力 = 动能 / 距离</code></p>
-            <p>所以：<code>距离 = 动能 / 力</code></p>
-            <p>而动能本身是这样计算的：</p>
-            <p><code>动能 = 0.5 * 质量 Mass * 速度 Velocity * 速度 Velocity</code></p>
-            <p>因此：<code>距离 = 0.5 * 质量 * 速度^2 / 刹车力</code></p>
-            <p>而 <code>摩擦力（即不打滑前提下，可以应用的最大刹车力） = 摩擦系数μ * 重量</code> 并且 <code>重量 = 质量 * 重力加速度</code></p>
-            <p>因此：<code>（轮胎摩擦力极限所能提供的）最短不打滑刹车距离 = 质量 * 速度^2 / (轮胎摩擦系数μ * 质量 * 9.8)</code></p>
-            <p>推出：<code>（轮胎摩擦力极限所能提供的）最短不打滑刹车距离 = 速度^2 / (轮胎摩擦系数μ * 9.8)</code></p>
-            <p>咦！？质量确实在等式中被约掉了。究其原因，是因为质量的增加虽然增加了动能，但同时增加了轮胎的静摩擦力。考虑到现代车的刹车系统都足够锁死轮胎，因此，有理由相信轮胎的摩擦力极限是能够轻松达到的。</p>
-            <p>然而我们的高中物理和上面文章里头，对于摩擦系数μ的理解不够全面。</p>
-            <p>高中的书本里通常针对不同的材料，提供了一个固定的静摩擦系数。然而现实中，许多材料的摩擦系数，随着负载增大，其实是会降低的。比如铝：</p>
-            <p><img src="/resources/can-motorcycles-brake-faster-than-cars/coefficient-of-friction-decrease.png" alt="铝的摩擦系数，随着压力改变而减弱"></p>
-            <p>（参考这篇paper：<a href="https://file.norm.im/$/fcypu">https://file.norm.im/$/fcypu</a>）</p>
-            <p>轮胎也是这样，随着载重质量的增大，摩擦系数减小。因此上面的计算中，因为增加重量所增长的摩擦力，并没有预计中那么大，无法完全中和质量增长带来的动能。</p>
-            <p>因此，质量增加仍然会有效的增加刹车距离。</p>
-            <p>出于同样的原因，重负载的车子也更容易锁死轮胎。所以增加轮胎面积来减少单位面积内轮胎的压力，从而让摩擦系数的降低不那么影响刹车，也就是理所当然的方案了。</p>
-            <p>References:</p>
-            <p><a href="http://www.gcsescience.com/pfm29.htm">http://www.gcsescience.com/pfm29.htm</a>
-            <a href="http://www.gcsescience.com/pfm-momentum.htm">http://www.gcsescience.com/pfm-momentum.htm</a>
-            <a href="http://www.gcsescience.com/pen28-kinetic-energy.htm">http://www.gcsescience.com/pen28-kinetic-energy.htm</a>
-            <a href="http://www.gcsescience.com/pen33-work-energy-calculations.htm">http://www.gcsescience.com/pen33-work-energy-calculations.htm</a>
-            <a href="https://www.cycleworld.com/2013/12/27/ask-kevin-does-a-larger-motorcycle-tire-footprint-increase-grip">https://www.cycleworld.com/2013/12/27/ask-kevin-does-a-larger-motorcycle-tire-footprint-increase-grip</a>
-            <a href="https://www.stevemunden.com/frictiontopics.html">https://www.stevemunden.com/frictiontopics.html</a></p>
-            
-                </div>
-                <div class="progress-bar"></div>
-                <script>
-                require(['scripts/article'], function(article){
-                    article.init();
-                });
-                </script>
-            </article>            <div class="comment">
-                <div id="disqus_thread"></div>
-                <script>
-                (function() {
-                var d = document, s = d.createElement('script');
-                s.src = 'https://thoughts-on-2-wheel.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-                </script>
-            </div>    </div>
+<article class="post">
+    <div class="inner">
+        <h1>摩托刹车的距离与汽车比更短吗？</h1>
+        <span class="date">\ Tue Mar 20 2018 00:00:00 GMT+0000 (GMT) \</span>
+<p>最近了解到了一个mind blowing的车辆物理的特性，进而发现之前对这个问题的理解一直是有错误的。</p>
+<p><img src="/resources/can-motorcycles-brake-faster-than-cars/title.jpg" alt="刹车距离谁短？"></p>
+<p>（之前理解的有错，原帖子已经删除）</p>
+<p>这家叫做“骑行建议”的网站： <a href="http://www.therideadvice.com/can-motorcycle-brake-faster-car/">http://www.therideadvice.com/can-motorcycle-brake-faster-car/</a> 。在这篇两年前的文章，尝试了从“物理学”的角度去证明“车重和刹车距离没有关系，只和摩擦力有关”。</p>
+<p>其实许多汽车驾驶员也有这样的看法，认为自己的车子有四个轮子，接触面积大，于是刹车上占优势。</p>
+<p>如果文章所述是真的，那么这里有两个矛盾的点：</p>
+<ol>
+<li><p>根据文章里头提到的摩擦力公式 <code>f&lt;sub&gt;static&lt;/sub&gt; = μ * m * g</code>，轮胎的摩擦力理论上和接触面积没什么关系。
+但是这其实本身是反常识的，因为日常生活中我们接触到的车辆，为了应付因为载重量增大而带来的刹车问题，通常都会增加轮胎的接触地面积。</p>
+</li>
+<li><p>另外一个反常识的地方在于，我们都有过这样的体验：同一辆车子，如果载满了人的时候，刹车距离会大大高于空负载的刹车距离。</p>
+</li>
+</ol>
+<p>那么让我们用动能公式的角度来看看这个问题，验证以下是否真是如：</p>
+<p>由于机械刹车（除去人为因素）距离的长短，是由动能Kinetic Energy和刹车力Force决定的：</p>
+<p>公式： <code>力 = 动能 / 距离</code></p>
+<p>所以：<code>距离 = 动能 / 力</code></p>
+<p>而动能本身是这样计算的：</p>
+<p><code>动能 = 0.5 * 质量 Mass * 速度 Velocity * 速度 Velocity</code></p>
+<p>因此：<code>距离 = 0.5 * 质量 * 速度^2 / 刹车力</code></p>
+<p>而 <code>摩擦力（即不打滑前提下，可以应用的最大刹车力） = 摩擦系数μ * 重量</code> 并且 <code>重量 = 质量 * 重力加速度</code></p>
+<p>因此：<code>（轮胎摩擦力极限所能提供的）最短不打滑刹车距离 = 质量 * 速度^2 / (轮胎摩擦系数μ * 质量 * 9.8)</code></p>
+<p>推出：<code>（轮胎摩擦力极限所能提供的）最短不打滑刹车距离 = 速度^2 / (轮胎摩擦系数μ * 9.8)</code></p>
+<p>咦！？质量确实在等式中被约掉了。究其原因，是因为质量的增加虽然增加了动能，但同时增加了轮胎的静摩擦力。考虑到现代车的刹车系统都足够锁死轮胎，因此，有理由相信轮胎的摩擦力极限是能够轻松达到的。</p>
+<p>然而我们的高中物理和上面文章里头，对于摩擦系数μ的理解不够全面。</p>
+<p>高中的书本里通常针对不同的材料，提供了一个固定的静摩擦系数。然而现实中，许多材料的摩擦系数，随着负载增大，其实是会降低的。比如铝：</p>
+<p><img src="/resources/can-motorcycles-brake-faster-than-cars/coefficient-of-friction-decrease.png" alt="铝的摩擦系数，随着压力改变而减弱"></p>
+<p>（参考这篇paper：<a href="https://file.norm.im/$/fcypu">https://file.norm.im/$/fcypu</a>）</p>
+<p>轮胎也是这样，随着载重质量的增大，摩擦系数减小。因此上面的计算中，因为增加重量所增长的摩擦力，并没有预计中那么大，无法完全中和质量增长带来的动能。</p>
+<p>因此，质量增加仍然会有效的增加刹车距离。</p>
+<p>出于同样的原因，重负载的车子也更容易锁死轮胎。所以增加轮胎面积来减少单位面积内轮胎的压力，从而让摩擦系数的降低不那么影响刹车，也就是理所当然的方案了。</p>
+<p>References:</p>
+<p><a href="http://www.gcsescience.com/pfm29.htm">http://www.gcsescience.com/pfm29.htm</a>
+<a href="http://www.gcsescience.com/pfm-momentum.htm">http://www.gcsescience.com/pfm-momentum.htm</a>
+<a href="http://www.gcsescience.com/pen28-kinetic-energy.htm">http://www.gcsescience.com/pen28-kinetic-energy.htm</a>
+<a href="http://www.gcsescience.com/pen33-work-energy-calculations.htm">http://www.gcsescience.com/pen33-work-energy-calculations.htm</a>
+<a href="https://www.cycleworld.com/2013/12/27/ask-kevin-does-a-larger-motorcycle-tire-footprint-increase-grip">https://www.cycleworld.com/2013/12/27/ask-kevin-does-a-larger-motorcycle-tire-footprint-increase-grip</a>
+<a href="https://www.stevemunden.com/frictiontopics.html">https://www.stevemunden.com/frictiontopics.html</a></p>
+
+    </div>
+    <div class="progress-bar"></div>
+    <script>
+    require(['scripts/article'], function(article){
+        article.init();
+    });
+    </script>
+</article><div class="comment">
+    <div id="disqus_thread"></div>
+    <script>
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://thoughts-on-2-wheel.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+</div>    </div>
 </div>    <script>
         require(['scripts/footer'], function(footer){
             footer.init();

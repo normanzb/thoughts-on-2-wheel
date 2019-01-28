@@ -11,7 +11,7 @@ article.post
 
     &:after 
     {
-        content: '渲染中...';
+        content: '渲染中 Rendering...';
         position: absolute;
         top: 0;
         left: 0;
@@ -39,12 +39,9 @@ article.post
     }
 
     .code() {
-        padding: .15em var(--margin-default);
-        font-size: .7em;
-        background-color: #E1E1E1;
-        color: #000;
         border-radius: 3px;
-        text-shadow: 1px 1px 0 rgba(255,255,255,1);
+        background-color: #E1E1E1;
+        font-size: .7em;
     }
 
     .post-internal()
@@ -66,14 +63,54 @@ article.post
 
         > pre
         {
-            width: 90%;
-            overflow: scroll;
+            overflow: visible;
             white-space: normal;
             display: block;
+            padding: 1em;
             .code();
+
+            &.road-book--pre
+            {
+                padding-bottom: 0;
+            }
+
+            &.road-book--post
+            {
+                padding-top: 0;
+            }
+
             > code
             {
-                white-space: pre;    
+                font-size: .7em;
+                max-width: 100%;
+                overflow: visible;
+                white-space: pre;
+                padding: 0;
+                position: relative;
+                &.road-book--pre 
+                {
+                    &:after {
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        content: 'continue on next page...';
+                        text-align: right;
+                        color: #333;
+                        pointer-events: null;
+                    }
+                }
+                &.road-book--post 
+                {
+                    &:after {
+                        position: absolute;
+                        bottom: 100%;
+                        left: 0;
+                        content: '...continued from previous page';
+                        text-align: right;
+                        color: #333;
+                        pointer-events: null;
+                    }
+                }
             }
         }
         
@@ -86,14 +123,15 @@ article.post
                 margin: var(--margin-large) 0;
                 display: block;
                 width: 100%;
-            }
-
-            
+            }            
 
             > code 
             {
                 margin: 0 var(--margin-small);
                 vertical-align: middle;
+                text-shadow: 1px 1px 0 rgba(255,255,255,1);
+                padding: .15em var(--margin-default);
+                color: #000;
                 .code();
             }
             

@@ -5,12 +5,12 @@
 </head>
 <body>
     {{> nav }}
-    {{#> content}}
-        {{#*inline "actual-content"}}
-            {{> article }}
-            {{> comment }}
-        {{/inline}}
-    {{/content}}
+{{#> content}}
+{{#*inline "actual-content"}}
+{{> article }}
+{{> comment }}
+{{/inline}}
+{{/content}}
     {{> footer }}
 </body>
 </html>

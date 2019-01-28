@@ -136,11 +136,13 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
                 leftOver = await pageSqueeze.call(me, lastNode, cloned);
 
                 if (leftOver) {
+                    cloned.classList.add('road-book--pre');
                     break;
                 }
             }
 
             if (leftOver) {
+                node.classList.add('road-book--post');
                 node.insertBefore(leftOver, node.childNodes[0]);
             }
         }
