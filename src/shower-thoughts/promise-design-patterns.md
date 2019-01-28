@@ -1,10 +1,14 @@
 ---
-title: Promise() patterns - Breakable then() chain
+title: Promise pattern - Breakable then() chain
 date: 2019-01-28
 keywords: javascript, promise, patterns
 ---
 
-I realised recently that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise invovled. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did, I think it would be even nicer to make these patterns into a promise-belt utlity library but I don't have time to fully go through it yet... so here we go:
+Recently I realised that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise involved. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did.
+
+![Break the callback chain](/resources/promise-design-patterns/throw-result.png)
+
+I think it would be even nicer to make these patterns into a promise-belt utility library but I don't have time to fully go through it yet... so here we go:
 
 TLDR: Use `throw PromiseResult(result)` to break a promise `then` callback chain, is much easier than checking the resolved value in each `then` callback.
 
