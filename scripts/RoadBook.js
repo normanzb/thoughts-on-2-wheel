@@ -113,11 +113,15 @@ define(['./imageMetaReady', './animationFrame'], function(imageMetaReady, animat
             cloned.nodeValue = '';
             while (i < node.nodeValue.length) {
                 var squeezedChars = '';
+                var nodeValueLength = node.nodeValue.length;
                 do {
                     lastChar = node.nodeValue[i + squeezedChars.length];
                     squeezedChars += lastChar;
                 }
-                while (isUnseparatableChar(lastChar));
+                while (
+                    isUnseparatableChar(lastChar) && 
+                    (i + squeezedChars.length) < nodeValueLength
+                );
                 cloned.nodeValue += squeezedChars;
                 if (!me.isFit()) {
                     if (i === 0 && cloned.parentNode.clientHeight > me.book.limits.height) {
