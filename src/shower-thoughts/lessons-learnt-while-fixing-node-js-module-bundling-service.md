@@ -4,7 +4,7 @@ date: 2019-02-06
 keywords: javascript, promise, nodejs, node.js, macrotask, microtask, blockage
 ---
 
-A few month ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.
+A few months ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.
 
 ![inside node js event loop](/resources/lessons-learnt-event-loop/event-loop.jpg)
 
