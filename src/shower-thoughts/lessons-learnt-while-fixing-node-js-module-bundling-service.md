@@ -6,7 +6,7 @@ keywords: javascript, promise, nodejs, node.js, macrotask, microtask, blockage
 
 A few month ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http response it back to client side.
 
-![inside node js event loop](/resources/lessons-learnt-event-loop/event-loop.png)
+![inside node js event loop](/resources/lessons-learnt-event-loop/event-loop.jpg)
 
 The reason we need this service is because our marketing team uses something similar to wix or squarespace which allows marketing people to change the webpage the way they wanted. For example they are allowed to not only change the copies on the webpage but also allowed to rearrange the 'components' and even test and target partial of the page.
 
