@@ -4,17 +4,17 @@ date: 2019-02-06
 keywords: javascript, promise, nodejs, node.js, macrotask, microtask, blockage
 ---
 
-A few month ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http response it back to client side.
+A few month ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.
 
 ![inside node js event loop](/resources/lessons-learnt-event-loop/event-loop.jpg)
 
-The reason we need this service is because our marketing team uses something similar to wix or squarespace which allows marketing people to change the webpage the way they wanted. For example they are allowed to not only change the copies on the webpage but also allowed to rearrange the 'components' and even test and target partial of the page.
+The reason we need this service is because our marketing team uses a system which quite similar to wix or squarespace, it allows marketing people to change the webpage the way they wanted. For example they are allowed to not only change the copies on the webpage but also allowed to re-arrange the 'components', and even test and target selected part of the page.
 
 As a result each web page ends up with different combination of 'components' and there is no way to determine what component will be used by which page at the time of building the project, its totally at the marketing personel's hand.
 
-So what we planned to do is to use the client side AMD module system to collect the 'needs' at certain webpage life cycle, such as `ondomready`, then send out the 'needs' to above mentioned bundling service to get a tailored bundle made specifically to that page. 
+So what we planned to do is to use the client side AMD module system to collect the 'needs' at certain webpage life cycle, such as `ondomready`, then send out the 'needs' to above mentioned bundling service to get a tailored Javascript bundle that made specifically to the particular page. 
 
-At the beginning this service just works fine, it is behind the CDN and has its own cache layer, so it only takes a while to warm up and then most of the time the requests from client side are done in a blink of eyes. 
+At the beginning this service works fine, it is behind the CDN and has its own cache layer, so it only takes a while to warm up and then most of the time the requests from client side are done in a blink of eyes. 
 
 However a few weeks later we release new version of the 'components', which forces the service to pull the source code and redo the initial warm up bundling again. Large amount of traffic goes there and put it under heavy load.
 
