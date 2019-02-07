@@ -97,7 +97,7 @@ vWrpWB9rvfhBNgF591SeB7 25:07 Code delivered
 <p>But what really interested me is, even though r.js is blocking, between &quot;r.js is done&quot; and next &quot;Start r.js bundling&quot;, in theory, there should be some gap for the I/O to pick up so the quick health check request can squeeze into somewhere between the bundling, but it never happens, in fact, when I deliberately send a health check request, after first bundling starts, the health check only gets respond after all the bundling tasks are done.</p>
 <p>So what makes event driven node js to be completely blocked for so long.</p>
 <p>After reading <a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a> try to make sense the node js event loop, and reading our source code I finally realise there is a mistake in our code.</p>
-<p>Here is roughly how the code generates log:</p>
+<p>Here is roughly how the it generates the logs:</p>
 <pre><code class="lang-javascript">pullSource(context)
     .then(function(){
         return new Promise(function(resolve, reject){

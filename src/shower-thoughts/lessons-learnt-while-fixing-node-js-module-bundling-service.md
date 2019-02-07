@@ -80,7 +80,7 @@ So what makes event driven node js to be completely blocked for so long.
 
 After reading <https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/> try to make sense the node js event loop, and reading our source code I finally realise there is a mistake in our code.
 
-Here is roughly how the code generates log:
+Here is roughly how the it generates the logs:
 
 ```javascript
 pullSource(context)
