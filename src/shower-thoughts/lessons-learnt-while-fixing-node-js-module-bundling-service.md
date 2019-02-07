@@ -151,11 +151,11 @@ Below diagram is copied from the node js event loop guide.
    └───────────────────────────┘
 ```
 
-Basic the `poll` phase is the phase for handling most of the IO callbacks, without allowing poll phase to be executed the request will not be responded. our `pullSource` was executed in `poll` phase, and it spawn a bunch of cpu intensive tasks within the poll phase itself which blocks the event loop going any further.
+Basic the `poll` phase is the phase for handling most of the IO callbacks, without allowing poll phase to be executed the upcoming requests will never be responded. Our `pullSource` was executed in `poll` phase, and it spawns a bunch of cpu intensive tasks within the poll phase itself which prevent the event loop from going any further.
 
-There was a `process.maxTickDepth` in node js, that prevents too many next ticks so the I/O is blocked, but for some reason they removed it from node js.
+There was a `process.maxTickDepth` in node js, it was there to that prevents too many "next ticks" blocks the I/O, but for some reason they removed it from node js.
 
-So, the fix is to use `setImmediate()` between the `pullSource()` and bundling task. The question is where to put it.
+So to fix it, we need to schedule and spread out the cpu intensive tasks into different iteration of event queue. To achieve this we can use `setImmediate()` between the `pullSource()` and bundling task. The question is where to put it.
 
 I tried to simply put a `setImmediate()` right after `pullSource()`:
 

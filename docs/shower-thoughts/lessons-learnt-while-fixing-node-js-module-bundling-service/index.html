@@ -150,9 +150,9 @@ function pullSource() {
 │  ┌─────────────┴─────────────┐
 └──┤      close callbacks      │
    └───────────────────────────┘
-</code></pre><p>Basic the <code>poll</code> phase is the phase for handling most of the IO callbacks, without allowing poll phase to be executed the request will not be responded. our <code>pullSource</code> was executed in <code>poll</code> phase, and it spawn a bunch of cpu intensive tasks within the poll phase itself which blocks the event loop going any further.</p>
-<p>There was a <code>process.maxTickDepth</code> in node js, that prevents too many next ticks so the I/O is blocked, but for some reason they removed it from node js.</p>
-<p>So, the fix is to use <code>setImmediate()</code> between the <code>pullSource()</code> and bundling task. The question is where to put it.</p>
+</code></pre><p>Basic the <code>poll</code> phase is the phase for handling most of the IO callbacks, without allowing poll phase to be executed the upcoming requests will never be responded. Our <code>pullSource</code> was executed in <code>poll</code> phase, and it spawns a bunch of cpu intensive tasks within the poll phase itself which prevent the event loop from going any further.</p>
+<p>There was a <code>process.maxTickDepth</code> in node js, it was there to that prevents too many &quot;next ticks&quot; blocks the I/O, but for some reason they removed it from node js.</p>
+<p>So to fix it, we need to schedule and spread out the cpu intensive tasks into different iteration of event queue. To achieve this we can use <code>setImmediate()</code> between the <code>pullSource()</code> and bundling task. The question is where to put it.</p>
 <p>I tried to simply put a <code>setImmediate()</code> right after <code>pullSource()</code>:</p>
 <pre><code>pullSource(context)
     .then(function(){
