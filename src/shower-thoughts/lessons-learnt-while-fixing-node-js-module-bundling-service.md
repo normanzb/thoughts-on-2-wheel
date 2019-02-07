@@ -4,25 +4,25 @@ date: 2019-02-06
 keywords: javascript, promise, nodejs, node.js, macrotask, microtask, blockage
 ---
 
-A few months ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.
+A few months ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from query string, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.
 
 ![inside node js event loop](/resources/lessons-learnt-event-loop/event-loop.jpg)
 
-The reason we need this service is because our marketing team uses a system which quite similar to wix or squarespace, it allows marketing people to change the webpage the way they wanted. For example they are allowed to not only change the copies on the webpage but also allowed to re-arrange the 'components', and even test and target selected part of the page.
+The reason we need this service is that our marketing team uses a system which is quite similar to wix or squarespace, it allows marketing people to change the webpage the way they wanted. For example, they are allowed to not only change the copies on the webpage but also allowed to re-arrange the 'components', and even test and target selected part of the page.
 
-As a result each web page ends up with different combination of 'components' and there is no way to determine what component will be used by which page at the time of building the project, its totally at the marketing personel's hand.
+As a result each web page ends up with different combination of 'components' and there is no way to determine what component will be used by which page at the time of building the project, it's totally at the marketing personnel's hand.
 
-So what we planned to do is to use the client side AMD module system to collect the 'needs' at certain webpage life cycle, such as `ondomready`, then send out the 'needs' to above mentioned bundling service to get a tailored Javascript bundle that made specifically to the particular page. 
+So what we planned to do is to use the client side AMD module system to collect the 'needs' at certain web page life cycle, such as 'ondomready', then send out the 'needs' to above mentioned bundling service to get a tailored JavaScript bundle that made specifically to the particular page.
 
-At the beginning this service works fine, it is behind the CDN and has its own cache layer, so it only takes a while to warm up and then most of the time the requests from client side are done in a blink of eyes. 
+At the beginning this service works fine, it is behind the CDN and has its own cache layer, so it only takes a while to warm up and then most of the time the requests from client side are done in a blink of eyes.
 
-However a few weeks later we release new version of the 'components', which forces the service to pull the source code and redo the initial warm up bundling again. Large amount of traffic goes there and put it under heavy load.
+However, a few weeks later we release new version of the 'components', which forces the service to pull the source code and redo the initial warm up bundling again. Large amount of traffic goes there and put it under heavy load.
 
 Then what happened was the k8s pod that hosts the service got killed because of readiness probe failed to probe it, and it lost all the cache that previous had made and made the situation even worse because the service now need to regenerate the cache and that put it into even higher CPU usage.
 
-The service never come back no matter how long you wait and it simply be killed by k8s again and again.
+The service never come back no matter how long you wait and it simply is killed by k8s again and again.
 
-As a result we make our webpage fallback to static bundle, which is usually 2 times larger than tailored version.
+As a result we make our web page fallback to static bundle, which is usually 2 times larger than tailored version.
 
 A few days ago I finally got some time to look back at this issue. I have to say I learnt a lot about node js from this issue, it turns out the main causes of this are:
 
