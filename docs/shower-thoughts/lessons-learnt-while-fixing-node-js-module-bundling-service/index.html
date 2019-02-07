@@ -40,7 +40,7 @@
         <h1>Lessons learnt while fixing node.js based dynamic module bundling service</h1>
         <span class="date">\ Wed Feb 06 2019 00:00:00 GMT+0000 (GMT) \</span>
 <p>A few month ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from querystring, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http response it back to client side.</p>
-<p><img src="/resources/lesson-learnt-event-loop/event-loop.png" alt="inside node js event loop"></p>
+<p><img src="/resources/lessons-learnt-event-loop/event-loop.png" alt="inside node js event loop"></p>
 <p>The reason we need this service is because our marketing team uses something similar to wix or squarespace which allows marketing people to change the webpage the way they wanted. For example they are allowed to not only change the copies on the webpage but also allowed to rearrange the &#39;components&#39; and even test and target partial of the page.</p>
 <p>As a result each web page ends up with different combination of &#39;components&#39; and there is no way to determine what component will be used by which page at the time of building the project, its totally at the marketing personel&#39;s hand.</p>
 <p>So what we planned to do is to use the client side AMD module system to collect the &#39;needs&#39; at certain webpage life cycle, such as <code>ondomready</code>, then send out the &#39;needs&#39; to above mentioned bundling service to get a tailored bundle made specifically to that page. </p>
