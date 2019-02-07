@@ -34,7 +34,7 @@ A few days ago I finally got some time to look back at this issue. I have to say
 
 I didn't really expect point 1.2 to happen for a node js app, node js is built to be able to handle large amount of concurrent traffic. 
 
-The first thing we check is the tool we use. The bundling tool r.js, it is not designed to be used in web service to handle multiple concurrent traffic, but at its worst, it takes 3 seconds to bundles all the files. And 3 seconds blockage shouldn't cause the service to be completed blocked. In theory there should be some gap to allow the network i/o to catch up the breath between the bundlings.
+The first thing we check is the tool we use. The bundling tool r.js, it is not designed to be used in web service to handle multiple concurrent traffic, but at its worst, it takes 3 seconds to bundles all the files. And 3 seconds blockage shouldn't cause the service to be completed blocked. In theory there should be some gaps to allow the network I/O to catch up the breath between the bundlings.
 
 So after trying reproduce it in a smaller scale and checking the logs something interesting turns up:
 
