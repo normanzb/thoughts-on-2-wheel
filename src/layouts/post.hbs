@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head }}
+</head>
+<body>
+    {{> nav }}
+{{#> content}}
+{{#*inline "actual-content"}}
+{{> article }}
+{{> comment }}
+{{/inline}}
+{{/content}}
+    {{> footer }}
+</body>
+</html>

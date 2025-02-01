@@ -38,7 +38,7 @@
 <article class="post">
     <div class="inner">
         <h1>Lessons learnt while fixing node.js based dynamic module bundling service</h1>
-        <span class="date">\ Wed Feb 06 2019 00:00:00 GMT+0000 (GMT) \</span>
+        <span class="date">\ Wed Feb 06 2019 00:00:00 GMT+0000 (Greenwich Mean Time) \</span>
 <p>A few months ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from query string, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.</p>
 <p><img src="/resources/lessons-learnt-event-loop/event-loop.jpg" alt="inside node js event loop"></p>
 <p>The reason we need this service is that our marketing team uses a system which is quite similar to wix or squarespace, it allows marketing people to change the webpage the way they wanted. For example, they are allowed to not only change the copies on the webpage but also allowed to re-arrange the &#39;components&#39;, and even test and target selected part of the page.</p>
@@ -52,7 +52,7 @@
 <p>A few days ago I finally got some time to look back at this issue. I have to say I learnt a lot about node js from this issue, it turns out the main causes of this are:</p>
 <ol>
 <li>Readiness probe failed so the pod gets killed, and the causes of readiness probe problem are:<ol>
-<li>CPU usage too high (not the main reason) </li>
+<li>CPU usage too high (not the main reason) </li>
 <li>App code was done in a blocking manner (main reason)</li>
 </ol>
 </li>
@@ -93,12 +93,13 @@ heG6zRQgBLWD6oKEBjZBdc 25:07 Code delivered
 vWrpWB9rvfhBNgF591SeB7 25:07 Code delivered
 4iyUwREJk5AGBKSJbRFbh7 25:07 Code delivered
 ...
-</code></pre><p>There are 2 things worth looking at here, the first is from &quot;start r.js bundling&quot; to &quot;R.js is done&quot; they always run in series. This is very apparently due to r.js is not design to be used in web service and it is blocking the main thread as mentioned above, this can be easily fixed by fork new process for bundling and it fixes all the issues we have.</p>
+</code></pre>
+<p>There are 2 things worth looking at here, the first is from &quot;start r.js bundling&quot; to &quot;R.js is done&quot; they always run in series. This is very apparently due to r.js is not design to be used in web service and it is blocking the main thread as mentioned above, this can be easily fixed by fork new process for bundling and it fixes all the issues we have.</p>
 <p>But what really interested me is, even though r.js is blocking, between &quot;r.js is done&quot; and next &quot;Start r.js bundling&quot;, in theory, there should be some gap for the I/O to pick up so the quick health check request can squeeze into somewhere between the bundling, but it never happens, in fact, when I deliberately send a health check request, after first bundling starts, the health check only gets respond after all the bundling tasks are done.</p>
 <p>So what makes event driven node js to be completely blocked for so long.</p>
 <p>After reading <a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a> try to make sense the node js event loop, and reading our source code I finally realise there is a mistake in our code.</p>
 <p>Here is roughly how the it generates the logs:</p>
-<pre><code class="lang-javascript">pullSource(context)
+<pre><code class="language-javascript">pullSource(context)
     .then(function(){
         return new Promise(function(resolve, reject){
             logger.verbose(`Start r.js bundling...`);
@@ -128,7 +129,8 @@ function pullSource() {
     }
     ...
 }
-</code></pre><p>A quick explanation to the problem here is, when that global promise resolves, it triggers all the <code>then</code> callbacks, and because promise triggers the <code>then</code> callbacks by using a <code>microtask</code>, which is something similar to <code>nextTick</code>. All the upcoming <code>then</code> callbacks are executed immediately after current pullSource is finished, one after the other without allowing the event loop to advance to next iteration. </p>
+</code></pre>
+<p>A quick explanation to the problem here is, when that global promise resolves, it triggers all the <code>then</code> callbacks, and because promise triggers the <code>then</code> callbacks by using a <code>microtask</code>, which is something similar to <code>nextTick</code>. All the upcoming <code>then</code> callbacks are executed immediately after current pullSource is finished, one after the other without allowing the event loop to advance to next iteration. </p>
 <p>According to above linked node js event loop guide, <code>nextTick</code> executes the callback immediately after current c++ to Javascript <code>operation</code> finishes. While <code>setImmediate</code> executes the callback in the next event loop iteration.</p>
 <p>And they say: &quot;In essence, the names should be swapped. <code>process.nextTick()</code> fires more immediately than <code>setImmediate()</code>, but this is an artifact of the past which is unlikely to change. Making this switch would break a large percentage of the packages on npm&quot;</p>
 <p>Below diagram is copied from the node js event loop guide.</p>
@@ -150,7 +152,8 @@ function pullSource() {
 │  ┌─────────────┴─────────────┐
 └──┤      close callbacks      │
    └───────────────────────────┘
-</code></pre><p>Basic the <code>poll</code> phase is the phase for handling most of the IO callbacks, without allowing poll phase to be executed the upcoming requests will never be responded. Our <code>pullSource</code> was executed in <code>poll</code> phase, and it spawns a bunch of cpu intensive tasks within the poll phase itself which prevent the event loop from going any further.</p>
+</code></pre>
+<p>Basic the <code>poll</code> phase is the phase for handling most of the IO callbacks, without allowing poll phase to be executed the upcoming requests will never be responded. Our <code>pullSource</code> was executed in <code>poll</code> phase, and it spawns a bunch of cpu intensive tasks within the poll phase itself which prevent the event loop from going any further.</p>
 <p>There was a <code>process.maxTickDepth</code> in node js, it was there to that prevents too many &quot;next ticks&quot; blocks the I/O, but for some reason they removed it from node js.</p>
 <p>So to fix it, we need to schedule and spread out the cpu intensive tasks into different iteration of event queue. To achieve this we can use <code>setImmediate()</code> between the <code>pullSource()</code> and bundling task. The question is where to put it.</p>
 <p>I tried to simply put a <code>setImmediate()</code> right after <code>pullSource()</code>:</p>
@@ -163,7 +166,8 @@ function pullSource() {
     .then(() =&gt; {
         ... doing bundling
     })
-</code></pre><p>This does not solve the issue, what it does is simply schedule all the bundling tasks into next iteration of event loop, and then blocks it there again</p>
+</code></pre>
+<p>This does not solve the issue, what it does is simply schedule all the bundling tasks into next iteration of event loop, and then blocks it there again</p>
 <p>After scratching my head for a while, it turns out the simply solution is to change the bit where the problem was created, inside <code>pullSource</code> the global promise should be handled this way:</p>
 <pre><code>var promiseOfPulling;
 
@@ -178,7 +182,8 @@ function pullSource() {
     }
     ...
 }
-</code></pre><p>This way it makes sure between the bundling tasks, there will always be a iteration of event loop, so the I/O can be handled there in the new <code>poll</code> phase.</p>
+</code></pre>
+<p>This way it makes sure between the bundling tasks, there will always be a iteration of event loop, so the I/O can be handled there in the new <code>poll</code> phase.</p>
 <p>And here is the logs after the improvement</p>
 <pre><code>e9VLLPWvi8XS5xKQFNjNk1 48:57 Source has pulled
 keDxfzv4hwKp8yw3CXRAFi 48:57 Source has pulled
@@ -230,7 +235,8 @@ nAVS9MyvbLQpWghXsVtdCZ 50:02 R.js is done
 nAVS9MyvbLQpWghXsVtdCZ 50:02 Updating source map path...
 fjqUXbACv68cNABeyWNA2N 50:02 Source has pulled
 oFSyi27wpciHjE94gFvLpv 50:02 Code delivered
-</code></pre><p>Much better, as you see from above, the health checks get squeezed into between the bundlings. </p>
+</code></pre>
+<p>Much better, as you see from above, the health checks get squeezed into between the bundlings. </p>
 <p>To make faster service and solve the issue properly, there are a few other improvement that need to be done here, such as forking the bundling and return static bundle when dynamic bundle is not ready to client side. But for now this is great lesson learnt about node js event loop: Be careful about centralised waiting in node js app.</p>
 
     </div>
