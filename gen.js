@@ -64,7 +64,7 @@ var ms = Metalsmith(__dirname)
   .clean(false)                // clean destination before
   .use(collections({          // group all blog posts by internally
     posts: {
-      pattern: '**/*.html',
+      pattern: '**/*.md',
       sortBy: 'date',
       reverse: true
     }
