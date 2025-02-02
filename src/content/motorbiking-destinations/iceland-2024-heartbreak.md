@@ -5,7 +5,7 @@ date: 2025-01-31
 
 2024年6月底，本应该是期待已久的Once in a lifetime的冰岛之旅，用了大半年计划和准备，却因为生活的中的意外，变成一段煎熬的旅行。
 
-![Kriega Addictive](/resources/euro-france-belgium-netherland/packed-up.jpg)
+![Over a volcano crater](/resources/2024-iceland/me-alone-with-husky.jpg)
 
 一路上，我都没办法把注意力集中在冰岛的风景上，而是不断在想，为什么会是这样，有什么办法能挽回。大脑想幻灯片一样，不断回放着过去的点点滴滴，试图找到一个合理的解释。没有办法开心起来，没有办法停止思考。虽然我努力的尝试不去想，但摩旅的队友对我的状态感到厌烦，也让旅行过程变得不那么愉快。
 
@@ -15,3 +15,5 @@ date: 2025-01-31
 2. 天气/路况
 3. 住宿
 4. 意外状况
+
+TBD
