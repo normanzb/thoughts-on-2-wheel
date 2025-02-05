@@ -1,9 +1,11 @@
 ---
-title: 冰岛高地心碎之旅
+title: A person with nothing went to nowhere - 冰岛高地摩旅
 date: 2025-01-31
 ---
 
-2024年6月底，本应该是期待已久的Once in a lifetime的冰岛之旅，用了大半年计划和准备，却因为生活的中的意外，变成一段煎熬的旅行。
+With nothing, it goes nowhere。没有点东西你啥也办不成。但是我不怕，我没有了家，没有了工作，我就是nothing，说人话就是“不是个东西”，根据上诉定理可证我可以go nowhere，那么哪儿是nowhere呢？所以我来了这里，一片荒芜的地方，但站在这里，却觉得更孤单了。一个什么都没有的人，去了一个什么人都没有的地方。
+
+2024年6月底，本应该是期待已久的Once in a lifetime的冰岛之旅，用了大半年计划和准备的摩旅大招，却变成了煎熬。
 
 ![Over a volcano crater](/resources/2024-iceland/me-alone-with-husky.jpg)
 
