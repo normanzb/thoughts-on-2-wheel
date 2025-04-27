@@ -38,7 +38,7 @@
 <article class="post">
     <div class="inner">
         <h1>远离Google和Chrome?</h1>
-        <span class="date">\ Wed Feb 06 2019 00:00:00 GMT+0000 (Greenwich Mean Time) \</span>
+        <span class="date">\ Sun Apr 27 2025 01:00:00 GMT+0100 (British Summer Time) \</span>
 <p>最近我发现我的 Google Map Timeline 数据被 google 清除了。</p>
 <p>我的 Google Map Timeline 记录了我过去所有的摩旅路线 —— 苏格兰，西班牙，瑞士，欧洲大陆，冰岛，还有不计其数的非摩旅的路线。</p>
 <p><img src="/resources/google-crl/google-crl.png" alt="是否应该远离Google和Chrome?"></p>
@@ -71,7 +71,7 @@
 <blockquote>
 <p>CRLs on the list are fetched infrequently (at most once every few hours) and verified against the correct signing certificate for that CRL. A subset of the certificates identified as revoked on these CRLs are included in the current CRLSet.</p>
 </blockquote>
-<p>而 Chrome 和 Edge 选择关闭 OCSP 的原因是，OCSP 其实也不靠谱。根据<a href="https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/">Mozilla 的这篇文章</a>和<a href="https://www.gradenegger.eu/en/google-chrome-does-not-check-revocation-status-of-certificates/">这篇文章</a>，7% OCSP 请求会超时，总共 10%的 OCSP 请求无效。而使用非 Stapling 的 OCSP 请求，还会导致浏览器性能问题，因为在 OCSP 请求的时候，浏览器都不能做，只能干等。在 OCSP 无效请求后，所有浏览器都会使用 soft fail 策略，也就是默认认为证书是有效的。</p>
+<p>而 Chrome 和 Edge 选择关闭 OCSP 的原因是，OCSP 其实也不靠谱。根据<a href="https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/">Mozilla 的这篇文章</a>和<a href="https://www.gradenegger.eu/en/google-chrome-does-not-check-revocation-status-of-certificates/">这篇文章</a>：7% OCSP 请求会超时，总共 10%的 OCSP 请求无效。而使用非 Stapling 的 OCSP 请求，还会导致浏览器性能问题，因为在 OCSP 请求的时候，浏览器都不能做，只能干等。在 OCSP 无效请求后，所有浏览器都会使用 soft fail 策略，也就是默认认为证书是有效的。</p>
 <p>下面 👇 是 google 的说法：</p>
 <blockquote>
 <p>In light of the fact that soft-fail, online revocation checks provide no effective security benefit, they are disabled by default in Google Chrome version 19 and later. By setting this policy to true, the previous behavior is restored and online OCSP/CRL checks will be performed.

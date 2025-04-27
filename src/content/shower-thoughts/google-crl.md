@@ -1,7 +1,7 @@
 ---
 title: 远离Google和Chrome?
-date: 2019-02-06
-keywords: javascript, promise, nodejs, node.js, macrotask, microtask, blockage
+date: 2025-04-27
+keywords: google, google map, timeline, crl, certificate revocation list, chrome, edge, safari, firefox, ocsp, ocsp stapling, crlsets
 ---
 
 最近我发现我的 Google Map Timeline 数据被 google 清除了。
@@ -46,7 +46,7 @@ Chrome 之前被人诟病的主要原因，是因为 Chrome 在 version 19 的�
 
 > CRLs on the list are fetched infrequently (at most once every few hours) and verified against the correct signing certificate for that CRL. A subset of the certificates identified as revoked on these CRLs are included in the current CRLSet.
 
-而 Chrome 和 Edge 选择关闭 OCSP 的原因是，OCSP 其实也不靠谱。根据[Mozilla 的这篇文章](https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/)和[这篇文章](https://www.gradenegger.eu/en/google-chrome-does-not-check-revocation-status-of-certificates/)，7% OCSP 请求会超时，总共 10%的 OCSP 请求无效。而使用非 Stapling 的 OCSP 请求，还会导致浏览器性能问题，因为在 OCSP 请求的时候，浏览器都不能做，只能干等。在 OCSP 无效请求后，所有浏览器都会使用 soft fail 策略，也就是默认认为证书是有效的。
+而 Chrome 和 Edge 选择关闭 OCSP 的原因是，OCSP 其实也不靠谱。根据[Mozilla 的这篇文章](https://blog.mozilla.org/security/2020/01/09/crlite-part-1-all-web-pki-revocations-compressed/)和[这篇文章](https://www.gradenegger.eu/en/google-chrome-does-not-check-revocation-status-of-certificates/)：7% OCSP 请求会超时，总共 10%的 OCSP 请求无效。而使用非 Stapling 的 OCSP 请求，还会导致浏览器性能问题，因为在 OCSP 请求的时候，浏览器都不能做，只能干等。在 OCSP 无效请求后，所有浏览器都会使用 soft fail 策略，也就是默认认为证书是有效的。
 
 下面 👇 是 google 的说法：
 
