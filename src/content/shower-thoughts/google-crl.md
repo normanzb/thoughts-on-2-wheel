@@ -16,7 +16,11 @@ keywords: google, google map, timeline, crl, certificate revocation list, chrome
 
 当时真的非常非常生气，给 google map 发了 feedback，但并不对恢复数据抱什么希望。
 
-碰巧刚才又看了 Knowledge Noise 的视频：https://www.youtube.com/watch?v=XfEYE4wgnzw
+碰巧刚才又看了 [Knowledge Noise 的视频](https://www.youtube.com/watch?v=XfEYE4wgnzw)：
+
+<div class="iframe-video-container">
+    <iframe src="https://www.youtube.com/watch?v=XfEYE4wgnzw" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+</div>
 
 视频在 25:48 说到“避免使用 Chrome 和 Opera 这类对抗追踪比较弱的浏览器”，我其实不太明白这里的“对抗追踪”具体指什么，为何 Chrome 会比较弱，以及为何会和视频的主题有联系。但视频在 21:49 提到 Chrome 其实过去有个问题，那就是但一个网站的 certificate 被 revoke 后，它貌似更长一段时间都反应不过来。甚至[视频里面的引用的文章](https://www.schrauger.com/the-story-of-how-wosign-gave-me-an-ssl-certificate-for-github-com)提到，一年以后还能继续访问证书被 revoke 的网站。
 
