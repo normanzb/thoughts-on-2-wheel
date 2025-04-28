@@ -505,27 +505,33 @@ body .links > .inner {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (max-width: 1226px) {
+  body .links > .inner {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
 }
 body .links > .inner > *:last-child {
   margin-bottom: 0;
 }
 body .links > .inner > strong {
-  position: absolute;
+  max-height: 130px;
+  text-align: end;
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
           writing-mode: vertical-lr;
-  left: 0;
 }
 @media (max-width: 1226px) {
   body .links > .inner > strong {
+    text-align: start;
     -webkit-writing-mode: unset;
         -ms-writing-mode: unset;
             writing-mode: unset;
-    position: static;
-    left: auto;
   }
 }
 body .links > .inner > ul {

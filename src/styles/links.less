@@ -19,22 +19,26 @@
     margin: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+
+    .rspn-mobile
+    ({
+      align-items: flex-start;
+    });;
 
     > *:last-child {
       margin-bottom: 0;
     }
 
     > strong {
-      position: absolute;
+      max-height: 130px;
+      text-align: end;
       writing-mode: vertical-lr;
-      left: 0;
 
       .rspn-mobile
       ({
+        text-align: start;
         writing-mode: unset;
-        position: static;
-        left: auto;
       });;
     }
 
