@@ -483,6 +483,7 @@ body .links {
   font-size: 0.75em;
   background: #eaeaea;
   max-width: 120px;
+  position: relative;
 }
 body .links:before,
 body .links:after {
@@ -511,6 +512,22 @@ body .links > .inner {
 body .links > .inner > *:last-child {
   margin-bottom: 0;
 }
+body .links > .inner > strong {
+  position: absolute;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  left: 0;
+}
+@media (max-width: 1226px) {
+  body .links > .inner > strong {
+    -webkit-writing-mode: unset;
+        -ms-writing-mode: unset;
+            writing-mode: unset;
+    position: static;
+    left: auto;
+  }
+}
 body .links > .inner > ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -523,7 +540,7 @@ body .links > .inner > ul {
       -ms-flex-pack: start;
           justify-content: flex-start;
   padding: 0;
-  margin: 1em 0;
+  margin: 1em;
   -ms-flex-negative: 1;
       flex-shrink: 1;
   -webkit-box-flex: 0;

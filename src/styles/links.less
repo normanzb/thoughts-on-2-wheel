@@ -6,6 +6,8 @@
   font-size: 0.75em;
   background: #eaeaea;
   max-width: 120px;
+  position: relative;
+
   .clear;
 
   .rspn-mobile
@@ -23,12 +25,25 @@
       margin-bottom: 0;
     }
 
+    > strong {
+      position: absolute;
+      writing-mode: vertical-lr;
+      left: 0;
+
+      .rspn-mobile
+      ({
+        writing-mode: unset;
+        position: static;
+        left: auto;
+      });;
+    }
+
     > ul {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       padding: 0;
-      margin: 1em 0;
+      margin: 1em;
 
       flex-shrink: 1;
       flex-grow: 0;
