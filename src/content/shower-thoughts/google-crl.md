@@ -8,7 +8,7 @@ keywords: google, google map, timeline, crl, certificate revocation list, chrome
 
 我的 Google Map Timeline 记录了我过去所有的摩旅路线 —— 苏格兰，西班牙，瑞士，欧洲大陆，冰岛，还有不计其数的非摩旅的路线。
 
-![是否应该远离Google和Chrome?](/resources/google-crl/google-crl.png)
+![是否应该远离Google和Chrome?](/resources/google-crl/google-crl.jpg)
 
 当时真的没有想到过 Google 能做出如此不专业的行为，我一直是 Google 各种服务的付费用户。以我以往的经验，Google 每次 shutdown 服务，都会提供 Data Takeout 功能，让用户下载，比如之前的 google code。
 
