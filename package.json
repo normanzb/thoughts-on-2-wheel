@@ -8,7 +8,8 @@
     "build-without-image": "node ./node_modules/requirejs/bin/r.js -o require.build.js && node gen.js",
     "preversion": "node preversion.js",
     "version": "node version.js && npm run build && git commit -am 'bump version in package.json'",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "dev": "vite --port 3123"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1",
-    "requirejs": "^2.3.5"
+    "requirejs": "^2.3.5",
+    "vite": "^6.3.3"
   }
 }

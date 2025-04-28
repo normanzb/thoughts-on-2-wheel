@@ -1,17 +1,21 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     {{#> head }}
-        {{#*inline "actual-title"}}Thoughts on 2-wheel{{/inline}}
+    {{#*inline "actual-title"}}Thoughts on 2-wheel{{/inline}}
     {{/head}}
 </head>
+
 <body>
     {{> nav }}
     {{#> content}}
-        {{#*inline "actual-content"}}
-            {{> list }}
-        {{/inline}}
+    {{#*inline "actual-content"}}
+    {{> list }}
+    {{/inline}}
     {{/content}}
+    {{> links }}
     {{> footer }}
 </body>
+
 </html>
