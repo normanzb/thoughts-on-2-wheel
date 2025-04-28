@@ -356,7 +356,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif, '微软雅黑';
+  font-family: "Roboto", sans-serif, "微软雅黑";
 }
 body {
   --nav-primary-thickness: 80px;
@@ -492,7 +492,7 @@ body .links:after {
 }
 @media (max-width: 1226px) {
   body .links {
-    display: none;
+    max-width: 100%;
   }
 }
 body .links > .inner {
@@ -512,7 +512,13 @@ body .links > .inner > *:last-child {
   margin-bottom: 0;
 }
 body .links > .inner > ul {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -523,6 +529,17 @@ body .links > .inner > ul {
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
+}
+@media (max-width: 1226px) {
+  body .links > .inner > ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 body .links > .inner > ul > li:first-child {
   margin-left: 0;
@@ -540,6 +557,11 @@ body .links > .inner > ul > li {
           flex-direction: column;
   position: relative;
   margin: 20px 0;
+}
+@media (max-width: 1226px) {
+  body .links > .inner > ul > li {
+    margin: 0 20px;
+  }
 }
 body .links > .inner > ul > li > a {
   display: -webkit-box;
@@ -582,6 +604,13 @@ body .links > .inner > ul > li > .desc {
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   z-index: 3;
+}
+@media (max-width: 1226px) {
+  body .links > .inner > ul > li > .desc {
+    bottom: calc(100% + 10px);
+    right: auto;
+    top: auto;
+  }
 }
 body .links > .inner > ul > li:hover > .desc {
   display: block;
