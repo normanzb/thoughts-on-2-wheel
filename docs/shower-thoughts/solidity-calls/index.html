@@ -40,8 +40,8 @@
         <h1>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, and &#x60;.staticcall&#x60;</h1>
         <span class="date">\ Tue Apr 29 2025 01:00:00 GMT+0100 (British Summer Time) \</span>
 <p>In Solidity, different ways of calling contracts represent different behaviors at the EVM level. Understanding their differences is critical to writing secure and efficient smart contracts.</p>
-<p><img src="/resources/solidity-calls/thumb.png" alt="4 different ways of calling contracts"></p>
-<h1 id="🔥-tldr">🔥 TL;DR</h1>
+<p><img src="/resources/solidity-calls/thumb.jpg" alt="4 different ways of calling contracts"></p>
+<h1 id="🤷♂️-tldr">🤷‍♂️ TL;DR</h1>
 <ul>
 <li><code>.call</code>: Flexible but dangerous low-level call.</li>
 <li>Member call: Safe and easy Solidity wrapper around <code>.call</code>.</li>
@@ -95,68 +95,6 @@
 <pre><code class="language-solidity">(bool success, bytes memory data) = targetAddress.staticcall(data);
 </code></pre>
 <p>✅ Used for safely calling <strong>view</strong> and <strong>pure</strong> functions across contracts.<br>✅ Enforces strict immutability: no writes, no events, no state changes.</p>
-<hr>
-<h1 id="🧠-summary-table">🧠 Summary Table</h1>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th><code>.call</code></th>
-<th>High-Level Call</th>
-<th><code>.delegatecall</code></th>
-<th><code>.staticcall</code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Code runs from</td>
-<td>Target contract</td>
-<td>Target contract</td>
-<td>Target contract</td>
-<td>Target contract</td>
-</tr>
-<tr>
-<td>Storage used</td>
-<td>Target contract</td>
-<td>Target contract</td>
-<td><strong>Calling contract</strong></td>
-<td>Target contract</td>
-</tr>
-<tr>
-<td>Context (msg.sender, msg.value)</td>
-<td>Forwarded</td>
-<td>Forwarded</td>
-<td><strong>Calling contract’s</strong></td>
-<td>Forwarded</td>
-</tr>
-<tr>
-<td>Can send ETH?</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>Type safety</td>
-<td>❌ Manual</td>
-<td>✅ Automatic</td>
-<td>❌ Manual</td>
-<td>❌ Manual</td>
-</tr>
-<tr>
-<td>Mutates state?</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌ (view/pure only)</td>
-</tr>
-<tr>
-<td>Common use cases</td>
-<td>Low-level flexible call, fallback functions</td>
-<td>Normal safe contract interaction</td>
-<td>Proxy contracts, plugins</td>
-<td>View-only cross-contract reads</td>
-</tr>
-</tbody></table>
 <hr>
 <h1 id="bonus-how-uniswap-make-calls-to-other-contracts">Bonus: How uniswap make calls to other contracts</h1>
 <p>Uniswap uses <code>.call</code> to removes the overhead to make gas-efficient calls.</p>

@@ -6,9 +6,9 @@ keywords: solidity, call, delegatecall, staticcall
 
 In Solidity, different ways of calling contracts represent different behaviors at the EVM level. Understanding their differences is critical to writing secure and efficient smart contracts.
 
-![4 different ways of calling contracts](/resources/solidity-calls/thumb.png)
+![4 different ways of calling contracts](/resources/solidity-calls/thumb.jpg)
 
-# 🔥 TL;DR
+# 🤷‍♂️ TL;DR
 
 - `.call`: Flexible but dangerous low-level call.
 - Member call: Safe and easy Solidity wrapper around `.call`.
@@ -80,20 +80,6 @@ Think of `.delegatecall` as "**borrowing the target’s code and running it as i
 
 ✅ Used for safely calling **view** and **pure** functions across contracts.  
 ✅ Enforces strict immutability: no writes, no events, no state changes.
-
----
-
-# 🧠 Summary Table
-
-| Feature                         | `.call`                                     | High-Level Call                  | `.delegatecall`          | `.staticcall`                  |
-| ------------------------------- | ------------------------------------------- | -------------------------------- | ------------------------ | ------------------------------ |
-| Code runs from                  | Target contract                             | Target contract                  | Target contract          | Target contract                |
-| Storage used                    | Target contract                             | Target contract                  | **Calling contract**     | Target contract                |
-| Context (msg.sender, msg.value) | Forwarded                                   | Forwarded                        | **Calling contract’s**   | Forwarded                      |
-| Can send ETH?                   | ✅                                          | ✅                               | ❌                       | ❌                             |
-| Type safety                     | ❌ Manual                                   | ✅ Automatic                     | ❌ Manual                | ❌ Manual                      |
-| Mutates state?                  | ✅                                          | ✅                               | ✅                       | ❌ (view/pure only)            |
-| Common use cases                | Low-level flexible call, fallback functions | Normal safe contract interaction | Proxy contracts, plugins | View-only cross-contract reads |
 
 ---
 
