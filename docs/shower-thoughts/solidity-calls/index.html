@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, and &#x60;.staticcall&#x60;</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css?b=1.0.11">
+    <link rel="stylesheet" href="/styles/highlight/nord.css?b=1.0.11"><meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" />
+    <meta name="description" content="这是一个记录骑摩托时、站在山顶时、躺在小溪旁、坐在公园的长椅上时，大脑放空却突然冒出的各种脑洞的博客。有时候也会聊一聊计算机技术，或是英国以及整个欧洲值得骑车去的一些地方，分享一些粗浅的骑行经验。">
+    <script src='/scripts/amdshim.js'></script>
+    <script>
+        window.amdShim.config({
+            baseUrl: '/'
+        });
+    </script></head>
+<body>
+    <nav class="primary">
+        <div class="inner">
+            <div class="logo">
+                <div class="inner">
+                    \\<span class="thoughts">THOUGHTS</span>&nbsp;ON&nbsp;2-WHEEL\\
+                </div>
+                <script>
+                (function(){
+                    'use strict';
+                    var script = document.scripts[document.scripts.length - 1];
+                    var container = script.parentNode;
+                    container.onclick = function(){
+                        window.location.href = '/';
+                    };
+                })();
+                </script>
+            </div>        <sub>记录骑摩托时突然冒出的各种脑洞</sub>
+        </div>
+    </nav><div class="content">
+    <div class="inner">
+<article class="post">
+    <div class="inner">
+        <h1>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, and &#x60;.staticcall&#x60;</h1>
+        <span class="date">\ Tue Apr 29 2025 01:00:00 GMT+0100 (British Summer Time) \</span>
+<p>In Solidity, different ways of calling contracts represent different behaviors at the EVM level. Understanding their differences is critical to writing secure and efficient smart contracts.</p>
+<p><img src="/resources/solidity-calls/thumb.png" alt="4 different ways of calling contracts"></p>
+<h1 id="🔥-tldr">🔥 TL;DR</h1>
+<ul>
+<li><code>.call</code>: Flexible but dangerous low-level call.</li>
+<li>Member call: Safe and easy Solidity wrapper around <code>.call</code>.</li>
+<li><code>.delegatecall</code>: Borrow another contract&#39;s logic but operate on <strong>your own storage</strong>.</li>
+<li><code>.staticcall</code>: Safe read-only call, guaranteed no state modification.</li>
+</ul>
+<hr>
+<h1 id="📜-1-call">📜 1. <code>.call</code></h1>
+<ul>
+<li>A low-level EVM instruction.</li>
+<li>Directly calls <strong>another contract</strong> at a <strong>different address</strong>.</li>
+<li><strong>Executes using the target contract’s code and the target contract’s own storage</strong>.</li>
+<li>Can send ETH along with the call.</li>
+<li>Minimal safety: no type checking, no automatic error handling — you must manually check the return values.</li>
+</ul>
+<pre><code class="language-solidity">(bool success, bytes memory returnData) = targetAddress.call{value: 0}(data);
+</code></pre>
+<p>✅ Runs with <strong>the target&#39;s code</strong> and <strong>the target&#39;s storage</strong>.<br>✅ Supports sending ETH.<br>✅ It&#39;s the most fundamental way of cross-contract interaction.</p>
+<p>⚡ <strong>Major Risk</strong>: You must manually check <code>success</code>, or risk unexpected failures.</p>
+<h1 id="📜-2-high-level-solidity-call-member-method-call">📜 2. High-Level Solidity Call (Member Method Call)</h1>
+<p>When you write:</p>
+<pre><code class="language-solidity">MyContract(targetAddress).myMethod(args);
+</code></pre>
+<ul>
+<li>Solidity automatically <strong>encodes the arguments</strong> into ABI format (<code>abi.encodeWithSelector(...)</code>).</li>
+<li>Under the hood, it still uses <code>.call</code>, but wraps it with:<ul>
+<li>Automatic <code>require(success, &quot;Failed&quot;)</code></li>
+<li>Automatic decoding of return values</li>
+<li>Type-safe interfaces</li>
+</ul>
+</li>
+<li>If the call fails, it <strong>reverts automatically</strong> with the proper error message.</li>
+</ul>
+<p>✅ Safer and easier to write.<br>⚠️ Slightly <strong>more gas-expensive</strong> due to extra type checking and error handling.</p>
+<h1 id="📜-3-delegatecall">📜 3. <code>.delegatecall</code></h1>
+<ul>
+<li>Another low-level EVM instruction.</li>
+<li><strong>Executes the target contract’s code but uses the caller’s storage, caller’s balance, and caller’s address</strong>.</li>
+<li>The target contract simply provides <strong>code</strong>; <strong>storage and context remain with the caller</strong>.</li>
+</ul>
+<pre><code class="language-solidity">(bool success, bytes memory data) = targetAddress.delegatecall(data);
+</code></pre>
+<p>✅ Commonly used for <strong>proxy contracts</strong>, <strong>plugin systems</strong>, and <strong>upgradable contracts</strong>.<br>⚡ Very dangerous if misused: a bad call could <strong>corrupt your contract&#39;s storage layout</strong>.</p>
+<p>Think of <code>.delegatecall</code> as &quot;<strong>borrowing the target’s code and running it as if it was ME</strong>.&quot;</p>
+<h1 id="📜-4-staticcall">📜 4. <code>.staticcall</code></h1>
+<ul>
+<li>Similar to <code>.call</code>, but <strong>read-only</strong>.</li>
+<li>Guarantees that <strong>no state-changing operations</strong> can happen.</li>
+<li>If the target contract tries to modify state, emit events, or send ETH — it will <strong>revert</strong>.</li>
+</ul>
+<pre><code class="language-solidity">(bool success, bytes memory data) = targetAddress.staticcall(data);
+</code></pre>
+<p>✅ Used for safely calling <strong>view</strong> and <strong>pure</strong> functions across contracts.<br>✅ Enforces strict immutability: no writes, no events, no state changes.</p>
+<hr>
+<h1 id="🧠-summary-table">🧠 Summary Table</h1>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><code>.call</code></th>
+<th>High-Level Call</th>
+<th><code>.delegatecall</code></th>
+<th><code>.staticcall</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Code runs from</td>
+<td>Target contract</td>
+<td>Target contract</td>
+<td>Target contract</td>
+<td>Target contract</td>
+</tr>
+<tr>
+<td>Storage used</td>
+<td>Target contract</td>
+<td>Target contract</td>
+<td><strong>Calling contract</strong></td>
+<td>Target contract</td>
+</tr>
+<tr>
+<td>Context (msg.sender, msg.value)</td>
+<td>Forwarded</td>
+<td>Forwarded</td>
+<td><strong>Calling contract’s</strong></td>
+<td>Forwarded</td>
+</tr>
+<tr>
+<td>Can send ETH?</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Type safety</td>
+<td>❌ Manual</td>
+<td>✅ Automatic</td>
+<td>❌ Manual</td>
+<td>❌ Manual</td>
+</tr>
+<tr>
+<td>Mutates state?</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌ (view/pure only)</td>
+</tr>
+<tr>
+<td>Common use cases</td>
+<td>Low-level flexible call, fallback functions</td>
+<td>Normal safe contract interaction</td>
+<td>Proxy contracts, plugins</td>
+<td>View-only cross-contract reads</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="bonus-how-uniswap-make-calls-to-other-contracts">Bonus: How uniswap make calls to other contracts</h1>
+<p>Uniswap uses <code>.call</code> to removes the overhead to make gas-efficient calls.</p>
+<pre><code class="language-solidity">    /// @notice performs a hook call using the given calldata on the given hook that doesn&#39;t return a delta
+    /// @return result The complete data returned by the hook
+    function callHook(IHooks self, bytes memory data) internal returns (bytes memory result) {
+        bool success;
+        assembly (&quot;memory-safe&quot;) {
+            success := call(gas(), self, 0, add(data, 0x20), mload(data), 0, 0)
+        }
+        // Revert with FailedHookCall, containing any error message to bubble up
+        if (!success) CustomRevert.bubbleUpAndRevertWith(address(self), bytes4(data), HookCallFailed.selector);
+
+        // The call was successful, fetch the returned data
+        assembly (&quot;memory-safe&quot;) {
+            // allocate result byte array from the free memory pointer
+            result := mload(0x40)
+            // store new free memory pointer at the end of the array padded to 32 bytes
+            mstore(0x40, add(result, and(add(returndatasize(), 0x3f), not(0x1f))))
+            // store length in memory
+            mstore(result, returndatasize())
+            // copy return data to result
+            returndatacopy(add(result, 0x20), 0, returndatasize())
+        }
+
+        // Length must be at least 32 to contain the selector. Check expected selector and returned selector match.
+        if (result.length &lt; 32 || result.parseSelector() != data.parseSelector()) {
+            InvalidHookResponse.selector.revertWith();
+        }
+    }
+
+    /// @notice performs a hook call using the given calldata on the given hook
+    /// @return int256 The delta returned by the hook
+    function callHookWithReturnDelta(IHooks self, bytes memory data, bool parseReturn) internal returns (int256) {
+        bytes memory result = callHook(self, data);
+
+        // If this hook wasn&#39;t meant to return something, default to 0 delta
+        if (!parseReturn) return 0;
+
+        // A length of 64 bytes is required to return a bytes4, and a 32 byte delta
+        if (result.length != 64) InvalidHookResponse.selector.revertWith();
+        return result.parseReturnDelta();
+    }
+</code></pre>
+<p>Source code: <a href="https://github.com/Uniswap/v4-core/blob/a7cf038cd568801a79a9b4cf92cd5b52c95c8585/src/libraries/Hooks.sol#L131">Hooks.sol</a></p>
+
+    </div>
+    <div class="progress-bar"></div>
+    <script>
+    require(['scripts/article'], function(article){
+        article.init();
+    });
+    </script>
+</article><div class="comment">
+    <div id="disqus_thread"></div>
+    <script>
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://thoughts-on-2-wheel.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+</div>    </div>
+</div>    <script>
+        require(['scripts/footer'], function(footer){
+            footer.init();
+        });
+    </script>
+    <script src='/scripts/bundle.js?b=1.0.11'></script></body>
+</html>

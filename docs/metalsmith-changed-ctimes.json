@@ -1,9 +1,9 @@
 {
-  ".DS_Store": 1738755037157,
+  ".DS_Store": 1745937277326,
   "CNAME": 1738408679694,
   "icons/mana.jpg": 1738343175690,
   "icons/toyonomi.png": 1738343175691,
-  "resources/.DS_Store": 1738755268634,
+  "resources/.DS_Store": 1745937277328,
   "resources/2024-iceland/.DS_Store": 1738755110931,
   "resources/2024-iceland/me-alone-with-husky.jpg": 1738346199788,
   "resources/2024-iceland/me-the-nothing.jpg": 1738755093446,
@@ -83,6 +83,7 @@
   "resources/richmond-park/inside-wooden-cottage.jpg": 1738343175868,
   "resources/richmond-park/redscarf-in-sunset.jpg": 1738343175872,
   "resources/richmond-park/sunset.jpg": 1738343175876,
+  "resources/solidity-calls/thumb.png": 1745937280117,
   "scripts/amdshim.js": 1738343175876,
   "scripts/bundle.js": 1738407096739,
   "shower-thoughts/is-apple-user-friendly.md.bak": 1738343175877,
@@ -97,6 +98,7 @@
   "shower-thoughts/google-crl/index.html": 1745827936494,
   "shower-thoughts/lessons-learnt-while-fixing-node-js-module-bundling-service/index.html": 1738343175877,
   "shower-thoughts/promise-design-patterns/index.html": 1738343175877,
+  "shower-thoughts/solidity-calls/index.html": 1745937318768,
   "zen-and-the-motorcycles/can-motorcycles-brake-faster-than-cars/index.html": 1738343175886,
   "zen-and-the-motorcycles/dream/index.html": 1738343175886,
   "zen-and-the-motorcycles/motorcycle-and-depression/index.html": 1738343175886
