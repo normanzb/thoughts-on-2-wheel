@@ -36,10 +36,10 @@
     </nav><div class="content">
     <div class="inner">
 <article class="post">
-    <div class="inner">
-        <h1>Lessons learnt while fixing node.js based dynamic module bundling service</h1>
-        <span class="date">\ Wed Feb 06 2019 00:00:00 GMT+0000 (Greenwich Mean Time) \</span>
-<p>A few months ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from query string, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.</p>
+  <div class="inner">
+    <h1>Lessons learnt while fixing node.js based dynamic module bundling service</h1>
+    <span class="date">\ February 6, 2019 +00:00 \</span>
+    <p>A few months ago we made service to allow bundling client side modules on demand. The service takes a series of module paths from query string, then the service pulls the source code, calls bundling tool such as r.js to merge them into one .js file and http respond it back to client side.</p>
 <p><img src="/resources/lessons-learnt-event-loop/event-loop.jpg" alt="inside node js event loop"></p>
 <p>The reason we need this service is that our marketing team uses a system which is quite similar to wix or squarespace, it allows marketing people to change the webpage the way they wanted. For example, they are allowed to not only change the copies on the webpage but also allowed to re-arrange the &#39;components&#39;, and even test and target selected part of the page.</p>
 <p>As a result each web page ends up with different combination of &#39;components&#39; and there is no way to determine what component will be used by which page at the time of building the project, it&#39;s totally at the marketing personnel&#39;s hand.</p>
@@ -239,13 +239,13 @@ oFSyi27wpciHjE94gFvLpv 50:02 Code delivered
 <p>Much better, as you see from above, the health checks get squeezed into between the bundlings. </p>
 <p>To make faster service and solve the issue properly, there are a few other improvement that need to be done here, such as forking the bundling and return static bundle when dynamic bundle is not ready to client side. But for now this is great lesson learnt about node js event loop: Be careful about centralised waiting in node js app.</p>
 
-    </div>
-    <div class="progress-bar"></div>
-    <script>
-    require(['scripts/article'], function(article){
-        article.init();
+  </div>
+  <div class="progress-bar"></div>
+  <script>
+    require(['scripts/article'], function (article) {
+      article.init();
     });
-    </script>
+  </script>
 </article><div class="comment">
     <div id="disqus_thread"></div>
     <script>

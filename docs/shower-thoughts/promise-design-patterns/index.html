@@ -36,10 +36,10 @@
     </nav><div class="content">
     <div class="inner">
 <article class="post">
-    <div class="inner">
-        <h1>Promise pattern - Breakable then() chain</h1>
-        <span class="date">\ Mon Jan 28 2019 00:00:00 GMT+0000 (Greenwich Mean Time) \</span>
-<p>Recently I realised that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise involved. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did.</p>
+  <div class="inner">
+    <h1>Promise pattern - Breakable then() chain</h1>
+    <span class="date">\ January 28, 2019 +00:00 \</span>
+    <p>Recently I realised that I used quite a few repetitive coding patterns that meant to solve certain problems with Promise involved. I think it would be nice to write them down here, as it will be useful to my future self or potentially anyone who is facing the same problem as I did.</p>
 <p><img src="/resources/promise-design-patterns/throw-result.png" alt="Break the callback chain"></p>
 <p>I think it would be even nicer to make these patterns into a promise-belt utility library but I don&#39;t have time to fully go through it yet... so here we go:</p>
 <p>TLDR: Use <code>throw PromiseResult(result)</code> to break a promise <code>then</code> callback chain, is much easier than checking the resolved value in each <code>then</code> callback.</p>
@@ -183,13 +183,13 @@ Promise
 </code></pre>
 <p>Now that is much better, I know some of you might not like the bits where it <code>throw</code>s, as it comes with performance penalties, but you can always substitute them into <code>return Promise.reject</code>.</p>
 
-    </div>
-    <div class="progress-bar"></div>
-    <script>
-    require(['scripts/article'], function(article){
-        article.init();
+  </div>
+  <div class="progress-bar"></div>
+  <script>
+    require(['scripts/article'], function (article) {
+      article.init();
     });
-    </script>
+  </script>
 </article><div class="comment">
     <div id="disqus_thread"></div>
     <script>

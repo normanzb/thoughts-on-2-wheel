@@ -12,6 +12,7 @@ var sharp = require('metalsmith-sharp');
 var imagemin = require('metalsmith-imagemin');
 var changed = require('metalsmith-changed');
 var handlebars = require('handlebars');
+var dateFormat = require('handlebars-dateformat');
 var pathUtil = require('path');
 var cheerio = require('cheerio');
 var LessPluginAutoPrefix = require('less-plugin-autoprefix');
@@ -23,6 +24,8 @@ var folderMapping = {
   'zen-and-the-motorcycles': '摩托车与禅',
   'shower-thoughts': '脑洞'
 };
+
+handlebars.registerHelper('dateFormat', dateFormat);
 
 handlebars.registerHelper('folder', function (path) {
   path = handlebars.Utils.escapeExpression(path);

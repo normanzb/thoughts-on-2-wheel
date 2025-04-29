@@ -5,7 +5,8 @@
     {{#if title}}
     <li onclick="window.location.href = '{{permalink}}/'">
         <h2 class="caption">
-            <a href="{{permalink}}">{{#folder path}}{{/folder}}：{{title}}</a> <span class="date">\ {{date}} \</span>
+            <a href="{{permalink}}">{{#folder path}}{{/folder}}：{{title}}</a> <span class="date">\ {{dateFormat date "LL
+                Z"}} \</span>
         </h2>
         {{#preview contents}}
         {{/preview}}
