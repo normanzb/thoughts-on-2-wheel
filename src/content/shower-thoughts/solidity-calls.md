@@ -88,46 +88,46 @@ Think of `.delegatecall` as "**borrowing the target’s code and running it as i
 Uniswap uses assembly `call` to removes the overhead for gas-efficiency.
 
 ```solidity
-    /// @notice performs a hook call using the given calldata on the given hook that doesn't return a delta
-    /// @return result The complete data returned by the hook
-    function callHook(IHooks self, bytes memory data) internal returns (bytes memory result) {
-        bool success;
-        assembly ("memory-safe") {
-            success := call(gas(), self, 0, add(data, 0x20), mload(data), 0, 0)
-        }
-        // Revert with FailedHookCall, containing any error message to bubble up
-        if (!success) CustomRevert.bubbleUpAndRevertWith(address(self), bytes4(data), HookCallFailed.selector);
+/// @notice performs a hook call using the given calldata on the given hook that doesn't return a delta
+/// @return result The complete data returned by the hook
+function callHook(IHooks self, bytes memory data) internal returns (bytes memory result) {
+  bool success;
+  assembly ("memory-safe") {
+      success := call(gas(), self, 0, add(data, 0x20), mload(data), 0, 0)
+  }
+  // Revert with FailedHookCall, containing any error message to bubble up
+  if (!success) CustomRevert.bubbleUpAndRevertWith(address(self), bytes4(data), HookCallFailed.selector);
 
-        // The call was successful, fetch the returned data
-        assembly ("memory-safe") {
-            // allocate result byte array from the free memory pointer
-            result := mload(0x40)
-            // store new free memory pointer at the end of the array padded to 32 bytes
-            mstore(0x40, add(result, and(add(returndatasize(), 0x3f), not(0x1f))))
-            // store length in memory
-            mstore(result, returndatasize())
-            // copy return data to result
-            returndatacopy(add(result, 0x20), 0, returndatasize())
-        }
+  // The call was successful, fetch the returned data
+  assembly ("memory-safe") {
+      // allocate result byte array from the free memory pointer
+      result := mload(0x40)
+      // store new free memory pointer at the end of the array padded to 32 bytes
+      mstore(0x40, add(result, and(add(returndatasize(), 0x3f), not(0x1f))))
+      // store length in memory
+      mstore(result, returndatasize())
+      // copy return data to result
+      returndatacopy(add(result, 0x20), 0, returndatasize())
+  }
 
-        // Length must be at least 32 to contain the selector. Check expected selector and returned selector match.
-        if (result.length < 32 || result.parseSelector() != data.parseSelector()) {
-            InvalidHookResponse.selector.revertWith();
-        }
-    }
+  // Length must be at least 32 to contain the selector. Check expected selector and returned selector match.
+  if (result.length < 32 || result.parseSelector() != data.parseSelector()) {
+      InvalidHookResponse.selector.revertWith();
+  }
+}
 
-    /// @notice performs a hook call using the given calldata on the given hook
-    /// @return int256 The delta returned by the hook
-    function callHookWithReturnDelta(IHooks self, bytes memory data, bool parseReturn) internal returns (int256) {
-        bytes memory result = callHook(self, data);
+/// @notice performs a hook call using the given calldata on the given hook
+/// @return int256 The delta returned by the hook
+function callHookWithReturnDelta(IHooks self, bytes memory data, bool parseReturn) internal returns (int256) {
+  bytes memory result = callHook(self, data);
 
-        // If this hook wasn't meant to return something, default to 0 delta
-        if (!parseReturn) return 0;
+  // If this hook wasn't meant to return something, default to 0 delta
+  if (!parseReturn) return 0;
 
-        // A length of 64 bytes is required to return a bytes4, and a 32 byte delta
-        if (result.length != 64) InvalidHookResponse.selector.revertWith();
-        return result.parseReturnDelta();
-    }
+  // A length of 64 bytes is required to return a bytes4, and a 32 byte delta
+  if (result.length != 64) InvalidHookResponse.selector.revertWith();
+  return result.parseReturnDelta();
+}
 ```
 
 _Source code: [Hooks.sol](https://github.com/Uniswap/v4-core/blob/a7cf038cd568801a79a9b4cf92cd5b52c95c8585/src/libraries/Hooks.sol#L131)_

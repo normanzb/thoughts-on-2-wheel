@@ -1,25 +1,23 @@
 @import "src/styles/rspn.less";
 @import "src/styles/has-activation-layer.less";
 
-.iframe-video-container:extend(.iframe-container)
-{
-    margin: var(--margin-large) 0;
-    position: relative;
-    border-radius: 5px;
-    overflow: hidden;
-    padding-top: 56.25%;
-    padding-bottom: 0;
+.iframe-video-container:extend(.iframe-container) {
+  margin: var(--margin-large) 0;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-top: 56.25%;
+  padding-bottom: 0;
 
-    > iframe 
-    {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-    }
+  > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-    .has-activation-layer();
+  .has-activation-layer();
 }

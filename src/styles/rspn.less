@@ -1,33 +1,25 @@
 @import "src/styles/variables-less";
 
-.rspn-supertop(@rules)
-{
-    @media (min-width: (@res-mobile * 2 + 1)) 
-    {
-        @rules();
-    }
+.rspn-supertop(@rules) {
+  @media (min-width: (@res-mobile * 2 + 1)) {
+    @rules();
+  }
 }
 
-.rspn-desktop(@rules)
-{
-    @media (min-width: (@res-mobile + 1))
-    {
-        @rules();
-    }
+.rspn-desktop(@rules) {
+  @media (min-width: (@res-mobile + 1)) {
+    @rules();
+  }
 }
 
-.rspn-desktop-only(@rules)
-{
-    @media (min-width: (@res-mobile + 1)) and (max-width: (@res-mobile * 2)) 
-    {
-        @rules();
-    }
+.rspn-desktop-only(@rules) {
+  @media (min-width: (@res-mobile + 1)) and (max-width: (@res-mobile * 2)) {
+    @rules();
+  }
 }
 
-.rspn-mobile(@rules)
-{
-    @media (max-width: @res-mobile) 
-    {
-        @rules();
-    }
+.rspn-mobile(@rules) {
+  @media (max-width: @res-mobile) {
+    @rules();
+  }
 }

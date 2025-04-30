@@ -2,69 +2,61 @@
 @import "src/styles/has-anchor.less";
 @import "src/styles/rspn.less";
 
-ul.posts
-{
-    padding: 0;
-    margin: var(--margin-large) 0;
-    display: grid;
+ul.posts {
+  padding: 0;
+  margin: var(--margin-large) 0;
+  display: grid;
+
+  .rspn-desktop
+  ({
+      grid-template-columns: ~'calc(50% - var(--margin-large) / 2) calc(50% - var(--margin-large) / 2)';
+      grid-gap: var(--margin-large); 
+  });;
+
+  > li {
+    display: block;
+    position: relative;
+    cursor: pointer;
 
     .rspn-desktop
     ({
-        grid-template-columns: ~'calc(50% - var(--margin-large) / 2) calc(50% - var(--margin-large) / 2)';
-        grid-gap: var(--margin-large); 
-    });
+        // it could be much simpler for just supporting webkit based browser
+        // padding-bottom: ~ calc(100% / 16   9 + var(--margin-large)   2) ;
+        // firefox doesn t calculate 100% correctly here as of version 56
+        padding-bottom: ~'calc((100vw - var(--nav-primary-thickness) - var(--margin-large) * 3) / 2 / 16 * 9 + var(--margin-large) * 2)';
+    });;
 
-    > li 
-    {
-        display: block;
-        position: relative;
-        cursor: pointer;
+    > .caption {
+      .has-anchor();
+      /* again cancel it out */
+      margin-top: 0;
+      text-align: center;
+      line-height: 1.3;
 
-        .rspn-desktop
-        ({
-            // it could be much simpler for just supporting webkit based browser
-            // padding-bottom: ~'calc(100% / 16 * 9 + var(--margin-large) * 2)';
-            // firefox doesn't calculate 100% correctly here as of version 56
-            padding-bottom: ~'calc((100vw - var(--nav-primary-thickness) - var(--margin-large) * 3) / 2 / 16 * 9 + var(--margin-large) * 2)';
-        });
+      .rspn-desktop
+      ({
+          text-align: left; 
+      });;
 
-        > .caption
-        {
-            .has-anchor();
-            /* again cancel it out */
-            margin-top: 0;
-            text-align: center;
-            line-height: 1.3;
-
-            .rspn-desktop
-            ({
-                text-align: left; 
-            });
-
-            > .date
-            {
-                .date-def;
-            }
-        }
-
-        > .preview-text
-        {
-    
-        }
-
-        > .image-container
-        {
-            .rspn-desktop
-            ({
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0; 
-            });
-        }
+      > .date {
+        .date-def;
+      }
     }
-    > li:empty 
-    {
-        display: none;
+
+    > .preview-text {
     }
+
+    > .image-container {
+      .rspn-desktop
+      ({
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0; 
+      });;
+    }
+  }
+  > li:empty {
+    display: none;
+  }
 }
