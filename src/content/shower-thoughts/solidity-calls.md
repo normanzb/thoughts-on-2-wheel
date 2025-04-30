@@ -8,7 +8,7 @@ In Solidity, different ways of calling contracts represent different behaviors a
 
 ![4 different ways of calling contracts](/resources/solidity-calls/thumb.jpg)
 
-# 🤷‍♂️ TL;DR
+## 🤷‍♂️ TL;DR
 
 - `.call`: Flexible but dangerous low-level call.
 - Member call: Safe and easy Solidity wrapper around `.call`.
@@ -17,7 +17,7 @@ In Solidity, different ways of calling contracts represent different behaviors a
 
 ---
 
-# 📜 1. `.call`
+## 📜 1. `.call`
 
 - A low-level EVM instruction.
 - Directly calls **another contract** at a **different address**.
@@ -35,7 +35,7 @@ In Solidity, different ways of calling contracts represent different behaviors a
 
 ⚡ **Major Risk**: You must manually check `success`, or risk unexpected failures.
 
-# 📜 2. High-Level Solidity Call (Member Method Call)
+## 📜 2. High-Level Solidity Call (Member Method Call)
 
 When you write:
 
@@ -53,7 +53,7 @@ MyContract(targetAddress).myMethod(args);
 ✅ Safer and easier to write.  
 ⚠️ Slightly **more gas-expensive** due to extra type checking and error handling.
 
-# 📜 3. `.delegatecall`
+## 📜 3. `.delegatecall`
 
 - Another low-level EVM instruction.
 - **Executes the target contract’s code but uses the caller’s storage, caller’s balance, and caller’s address**.
@@ -68,7 +68,7 @@ MyContract(targetAddress).myMethod(args);
 
 Think of `.delegatecall` as "**borrowing the target’s code and running it as if it was ME**."
 
-# 📜 4. `.staticcall`
+## 📜 4. `.staticcall`
 
 - Similar to `.call`, but **read-only**.
 - Guarantees that **no state-changing operations** can happen.
@@ -83,7 +83,7 @@ Think of `.delegatecall` as "**borrowing the target’s code and running it as i
 
 ---
 
-# Bonus: How uniswap make calls to other contracts
+## Bonus: How uniswap make calls to other contracts
 
 Uniswap uses `.call` to removes the overhead to make gas-efficient calls.
 
@@ -130,4 +130,4 @@ Uniswap uses `.call` to removes the overhead to make gas-efficient calls.
     }
 ```
 
-Source code: [Hooks.sol](https://github.com/Uniswap/v4-core/blob/a7cf038cd568801a79a9b4cf92cd5b52c95c8585/src/libraries/Hooks.sol#L131)
+_Source code: [Hooks.sol](https://github.com/Uniswap/v4-core/blob/a7cf038cd568801a79a9b4cf92cd5b52c95c8585/src/libraries/Hooks.sol#L131)_
