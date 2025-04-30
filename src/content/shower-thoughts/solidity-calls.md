@@ -1,12 +1,12 @@
 ---
-title: Understanding `.call`, Member Method Calls, `.delegatecall`, and `.staticcall`
+title: Understanding `.call`, Member Method Calls, `.delegatecall`, `.staticcall` and assembly `call`
 date: 2025-04-29
 keywords: solidity, call, delegatecall, staticcall
 ---
 
 In Solidity, different ways of calling contracts represent different behaviors at the EVM level. Understanding their differences is critical to writing secure and efficient smart contracts.
 
-![4 different ways of calling contracts](/resources/solidity-calls/thumb.jpg)
+![5 different ways of calling contracts](/resources/solidity-calls/thumb.jpg)
 
 ## 🤷‍♂️ TL;DR
 
@@ -83,9 +83,9 @@ Think of `.delegatecall` as "**borrowing the target’s code and running it as i
 
 ---
 
-## Bonus: How uniswap make calls to other contracts
+## 5. Bonus: Assembly `call`
 
-Uniswap uses `.call` to removes the overhead to make gas-efficient calls.
+Uniswap uses assembly `call` to removes the overhead for gas-efficiency.
 
 ```solidity
     /// @notice performs a hook call using the given calldata on the given hook that doesn't return a delta

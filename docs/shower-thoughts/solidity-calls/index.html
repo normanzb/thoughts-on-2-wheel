@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <title>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, and &#x60;.staticcall&#x60;</title>
+    <title>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, &#x60;.staticcall&#x60; and assembly &#x60;call&#x60;</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="/styles/main.css?b=1.0.11">
     <link rel="stylesheet" href="/styles/highlight/nord.css?b=1.0.11"><meta name="google-site-verification" content="Y5v4UOoqDBRberYzo-I0dA8RxEQ2rGDbtizQMoRqW0g" />
@@ -37,10 +37,10 @@
     <div class="inner">
 <article class="post">
   <div class="inner">
-    <h1>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, and &#x60;.staticcall&#x60;</h1>
+    <h1>Understanding &#x60;.call&#x60;, Member Method Calls, &#x60;.delegatecall&#x60;, &#x60;.staticcall&#x60; and assembly &#x60;call&#x60;</h1>
     <span class="date">\ April 29, 2025 +01:00 \</span>
     <p>In Solidity, different ways of calling contracts represent different behaviors at the EVM level. Understanding their differences is critical to writing secure and efficient smart contracts.</p>
-<p><img src="/resources/solidity-calls/thumb.jpg" alt="4 different ways of calling contracts"></p>
+<p><img src="/resources/solidity-calls/thumb.jpg" alt="5 different ways of calling contracts"></p>
 <h2 id="🤷♂️-tldr">🤷‍♂️ TL;DR</h2>
 <ul>
 <li><code>.call</code>: Flexible but dangerous low-level call.</li>
@@ -96,8 +96,8 @@
 </code></pre>
 <p>✅ Used for safely calling <strong>view</strong> and <strong>pure</strong> functions across contracts.<br>✅ Enforces strict immutability: no writes, no events, no state changes.</p>
 <hr>
-<h2 id="bonus-how-uniswap-make-calls-to-other-contracts">Bonus: How uniswap make calls to other contracts</h2>
-<p>Uniswap uses <code>.call</code> to removes the overhead to make gas-efficient calls.</p>
+<h2 id="5-bonus-assembly-call">5. Bonus: Assembly <code>call</code></h2>
+<p>Uniswap uses assembly <code>call</code> to removes the overhead for gas-efficiency.</p>
 <pre><code class="language-solidity">    /// @notice performs a hook call using the given calldata on the given hook that doesn&#39;t return a delta
     /// @return result The complete data returned by the hook
     function callHook(IHooks self, bytes memory data) internal returns (bytes memory result) {
