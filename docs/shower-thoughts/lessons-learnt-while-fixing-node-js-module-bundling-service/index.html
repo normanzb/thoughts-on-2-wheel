@@ -246,16 +246,24 @@ oFSyi27wpciHjE94gFvLpv 50:02 Code delivered
       article.init();
     });
   </script>
-</article><div class="comment">
-    <div id="disqus_thread"></div>
-    <script>
-    (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://thoughts-on-2-wheel.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
+</article><div class="comment" style="border-radius: 8px; background-color: #f5f5f5; padding: 30px;">
+  <iframe
+    src="https://embed.ethcomments.xyz/?targetUri=https%3A%2F%2Fdocs.ethcomments.xyz%2Fintegration-options%2Fembed-comments&amp;config=N4IgLgFgpgtlIC5QGMD2AbVAnAzo06AlgOYRj4gBGAhsgNbFaoCuAdgCaIgDEAZgKwCBIADQhe2KIxYcu3AAzVFi0SFpo2YALRR2hbUVZ05AZkoAOAEy8AbKoAOWQjGpYAnnICMAdh8%2BHTi7uWhJYUkxsnAg8vNSxsao4UGgcrh7RfIJZicmoqcGh4TJRPH6%2B3qrsUDhgWMzIYIQAbvAZULwALF0dldW19Y0tIZLSkXLxcdSqMMxgusNho7IZ3iarq6pOrMRyykpTYpTYVVhyUPzn56pHWCfDyMx4GXsqAL5i7K7GSFS0DBHLHgvA7iEYAkp8SYJMTqGTaXT6LSGb48MxWWwBZxpcZQkGOLEFMHFLzlfxiJIpT7uOSWGy02k5SlpBZFMYZCbQkBVGp1BrNVo8drdHofPq8wZQFlLCEckEzObsKXguTUEyq1WbQjbOTsDq63XXY5QU4Zel0uyHI1Ye6PHV6%2B0gV7vUGscg-CSugBi1BghHQ6VAODcNVgXAA4lBCDURAACACCTmo6FjAAkoOgWo1kNRYzhqKwcFokk5eI7yYQAF7VCg0JIUHCVgWeMIwVSGKBpkhkLieAB0-DLIGNTGtOGQYSgrC0jTA6FagcbPf7LbbWo7kdIbpAfcsg9g9jAbiL46gk%2Bn%2Bjn9cX0T7-BXYnbnc3S93zug1HY7avVZfd9DD7XJ9uxvXtXzEAAPJ4Fx-aJ5F7bw-1bADWHXLst08QccFbH4GxgkA4PMBD7xAR8N2A7dQIHJ1nVQSBjQoLAP0IW1YOXf8QCYWitHsD89G2LQWiwLMky4eRNlQLiePYPjiC0CBsErPIwBE2DBxgVAqi4IhnydIA"
+    style="width:100%;border:none" title="Comments"></iframe>
+  <script>(function scriptContent(origin2) {
+      window.addEventListener("message", (event) => {
+        if (event.origin !== origin2 || event.data.type !== "@ecp.eth/sdk/embed/resize") {
+          return;
+        }
+        const embedIframe = document.querySelector(
+          "iframe[title=Comments]"
+        );
+        if (!embedIframe) {
+          return;
+        }
+        embedIframe.style.height = event.data.height + "px";
+      });
+    })("https://embed.ethcomments.xyz")</script>
 </div>    </div>
 </div>    <script>
         require(['scripts/footer'], function(footer){
