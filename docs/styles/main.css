@@ -749,12 +749,14 @@ body article.post > .inner {
     --pre-padding: 1em;
     padding: var(--pre-padding);
     position: relative;
-    border-radius: 3px;
+    border-radius: 8px;
     background-color: #e1e1e1;
     font-size: 0.7em;
   }
   body article.post > .inner > pre.road-book--pre {
     padding-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
   body article.post > .inner > pre.road-book--pre:after {
     position: absolute;
@@ -767,6 +769,8 @@ body article.post > .inner {
   }
   body article.post > .inner > pre.road-book--post {
     padding-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
   body article.post > .inner > pre.road-book--post:before {
     position: absolute;
@@ -800,7 +804,7 @@ body article.post > .inner {
     text-shadow: 1px 1px 0 #ffffff;
     padding: 0.15em var(--margin-default);
     color: #000;
-    border-radius: 3px;
+    border-radius: 8px;
     background-color: #e1e1e1;
     font-size: 0.7em;
   }
@@ -942,12 +946,14 @@ body article.post > .inner > .road-book > .inner > .page > .inner > pre {
   --pre-padding: 1em;
   padding: var(--pre-padding);
   position: relative;
-  border-radius: 3px;
+  border-radius: 8px;
   background-color: #e1e1e1;
   font-size: 0.7em;
 }
 body article.post > .inner > .road-book > .inner > .page > .inner > pre.road-book--pre {
   padding-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 body article.post > .inner > .road-book > .inner > .page > .inner > pre.road-book--pre:after {
   position: absolute;
@@ -960,6 +966,8 @@ body article.post > .inner > .road-book > .inner > .page > .inner > pre.road-boo
 }
 body article.post > .inner > .road-book > .inner > .page > .inner > pre.road-book--post {
   padding-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 body article.post > .inner > .road-book > .inner > .page > .inner > pre.road-book--post:before {
   position: absolute;
@@ -993,7 +1001,7 @@ body article.post > .inner > .road-book > .inner > .page > .inner > p > code {
   text-shadow: 1px 1px 0 #ffffff;
   padding: 0.15em var(--margin-default);
   color: #000;
-  border-radius: 3px;
+  border-radius: 8px;
   background-color: #e1e1e1;
   font-size: 0.7em;
 }
