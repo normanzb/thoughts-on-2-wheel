@@ -1108,7 +1108,7 @@ body ul.posts > li:empty {
 body .image-container {
   margin: var(--margin-large) 0;
   position: relative;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
 }
 body .image-container:after {
@@ -1167,7 +1167,7 @@ body .has-activation-layer.activated:before {
 body .iframe-container {
   margin: var(--margin-large) 0;
   position: relative;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
 }
 body .iframe-container:before {
@@ -1204,7 +1204,7 @@ body .iframe-container.activated:before {
 body .iframe-video-container {
   margin: var(--margin-large) 0;
   position: relative;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
   padding-top: 56.25%;
   padding-bottom: 0;
