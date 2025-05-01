@@ -671,6 +671,11 @@ body .content > .inner {
   position: relative;
   margin: var(--margin-large);
 }
+body .content > .inner > .sub {
+  border-radius: 8px;
+  background: #fff;
+  padding: 1em;
+}
 body .content > .inner > .caption {
   margin: var(--margin-large) 0;
   text-align: center;
