@@ -73,10 +73,40 @@
   <iframe
     src="https://embed.ethcomments.xyz/?targetUri=https%3A%2F%2Fblog.norm.imzen-and-the-motorcycles%2Fdream%2F&config=N4IgLgFgpgtlIC5QGMD2AbVAnAzo06AlgOYRj4gBGAhsgNbFaoCuAdgCaIgDEAZgKwCBIADQhe2KIxYcu3AAzVFi0SFpo2YALRR2hbUVZ05AZkoAOAEy8AbKoAOWQjGpYAnnICMAdh8%2BHTi7uWhJYUkxsnAg8vNSxsao4UGgcrh7RfIJZicmoqcGh4TJRPH6%2B3qrsUDhgWMzIYIQAbvAZULwALF0dldW19Y0tIZLSkXLxcdSqMMxgusNho7IZ3iarq6pOrMRyykpTYpTYVVhyUPzn56pHWCfDyMx4GXsqYoSs9rPjvD8-qu%2BfbSFJYlBQAQXkELBIAAvmJ2K5jEgqLQGBFlqVLJ5sSZVMD0aCJgkxOoZNpdPotIYkTwzFZbAFnGlxpNiSBHEyCiMCV5yv4xEkUgj3HJLDYxWKckK0gsimMMkSDiAqjU6g1mq0eO1uj14X01YMoLKQSyJtNZvN8cU5NQTLbbZt3jsMuwOq7XddjlBThkJeK7IcvVh7o85O63bqQACvhlPFicf8PrNjTyMgAxMEZjOwuHiPLkZESVhgNPUGCEdDpUA4Nw1WBcADiUEINREAAIwU5qOh2wAJKDoFqNZDUds4aisHBaJJOXiwgWEABe1QoNCSFBwS81njCMFUhig-ZIZC4ngAdPx5yBvUxgzhkGEoKwtI0wOhWtWt6eL7v9%2B9D82pAFiA56WFesD2GAbjTg%2BUBPi%2B%2BjvhuX7ROe-C-mIB5HkB35gbm0DUOwB7IcuuHofWmH-thJ6oWeeFiAAHk8n6kdE8hnt45F7pRrAAcewGeFeOB7sim6sSA7HmJxGEgFhgE0SBdGXjCKliKgkDehQWCEYQoZsT%2BFEgEw6laPYhF6NsWgtFgw7dlw8ibKgJlmewFnEFoEDYEu%2BZ2WxV4wKgVRcEQOG5mEqqEA0ACy1AMc4zAwAAwj5-5YAA6oQ7CQIgsToEkMJAA"
     style="width:100%;border:none" title="Comments"></iframe>
-  <script>
-
-  </script>
-  <script>(function V(X) { window.addEventListener("message", p => { if (p.origin !== X || p.data.type !== "@ecp.eth/sdk/embed/resize") return; const j = document.querySelector("iframe[title=Comments]"); j && (j.style.height = p.data.height + "px") }) })("https://embed.ethcomments.xyz")</script>
+  <script>(function mandatoryScript(origin) {
+      window.addEventListener("message", (event) => {
+        if (event.data.type !== "rainbowkit-wallet-button-mobile-clicked" || origin !== event.origin) {
+          return;
+        }
+        const mobileUri = event.data.uri;
+        if (mobileUri.toLowerCase().startsWith("javascript:") || mobileUri.toLowerCase().startsWith("data:")) {
+          console.warn("Blocked potentially dangerous URI scheme:", mobileUri);
+          return;
+        }
+        if (mobileUri.toLowerCase().startsWith("http")) {
+          const link = document.createElement("a");
+          link.href = mobileUri;
+          link.target = "_blank";
+          link.rel = "noreferrer noopener";
+          link.click();
+        } else {
+          window.location.href = mobileUri;
+        }
+      });
+    })("http://192.168.1.26:3002"); (function heightAdjustmentScript(origin) {
+      window.addEventListener("message", (event) => {
+        if (event.origin !== origin || event.data.type !== "@ecp.eth/sdk/embed/resize") {
+          return;
+        }
+        const embedIframe = document.querySelector(
+          "iframe[title=Comments]"
+        );
+        if (!embedIframe) {
+          return;
+        }
+        embedIframe.style.height = event.data.height + "px";
+      });
+    })("http://192.168.1.26:3002");</script>
 </div>    </div>
 </div>    <script>
         require(['scripts/footer'], function(footer){
