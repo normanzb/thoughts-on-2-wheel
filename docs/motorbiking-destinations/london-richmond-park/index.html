@@ -88,7 +88,7 @@
           window.location.href = mobileUri;
         }
       });
-    })("http://192.168.1.26:3002"); (function heightAdjustmentScript(origin) {
+    })("https://embed.ethcomments.xyz"); (function heightAdjustmentScript(origin) {
       window.addEventListener("message", (event) => {
         if (event.origin !== origin || event.data.type !== "@ecp.eth/sdk/embed/resize") {
           return;
@@ -101,7 +101,7 @@
         }
         embedIframe.style.height = event.data.height + "px";
       });
-    })("http://192.168.1.26:3002");</script>
+    })("https://embed.ethcomments.xyz");</script>
 </div>    </div>
 </div>    <script>
         require(['scripts/footer'], function(footer){
