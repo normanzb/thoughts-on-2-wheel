@@ -57,7 +57,9 @@ handlebars.registerHelper("preview", function (content) {
 
 handlebars.registerHelper("encodeURL", function (path) {
   return new handlebars.SafeString(
-    encodeURIComponent("https://blog.norm.im" + path.replace(/\.md$/, "/"))
+    encodeURIComponent(
+      new URL(path.replace(/\.md$/, "/"), "https://blog.norm.im").toString()
+    )
   );
 });
 
